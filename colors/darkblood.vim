@@ -58,7 +58,7 @@ hi CursorColumn  cterm=NONE      ctermfg=NONE      ctermbg=233
 hi CursorLineNr  cterm=NONE      ctermfg=NONE      ctermbg=233
 hi CursorLine    cterm=NONE      ctermfg=NONE      ctermbg=233
 hi ColorColumn   cterm=NONE      ctermfg=NONE      ctermbg=233
-	hi Cursor        cterm=NONE      ctermfg=white     ctermbg=darkred
+hi Cursor        cterm=NONE      ctermfg=white     ctermbg=darkred
 hi Title         cterm=bold      ctermfg=white     ctermbg=NONE
 hi Pmenu         cterm=NONE      ctermfg=NONE      ctermbg=233
 hi PmenuSel      cterm=bold      ctermfg=white     ctermbg=darkred
