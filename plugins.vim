@@ -7,8 +7,6 @@ Plug 'Shougo/neco-vim'
 Plug 'artur-shaik/vim-javacomplete2'
 Plug 'Rip-Rip/clang_complete'
 Plug 'Shougo/echodoc.vim'
-"Plug 'racer-rust/vim-racer'
-"Plug 'roxma/nvim-cm-racer'
 
 " Functionality
 Plug 'mhinz/vim-grepper'
