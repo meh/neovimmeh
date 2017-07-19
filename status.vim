@@ -188,10 +188,11 @@ function StatusLine_render(window_id)
 	let winnr   = index(map(range(1, winnr('$')), 'StatusLine_id(v:val)'), a:window_id) + 1
 	let bufnr   = winbufnr(l:winnr)
 	let current = w:window_id is# a:window_id
+	let buf     = bufname(l:bufnr)
 
 	if getwinvar(l:winnr, '&filetype') == 'help'
 		return StatusLine_render_help(l:winnr, l:bufnr, l:current)
-	elseif bufname(l:bufnr) =~ "NERD_tree" || bufname(l:bufnr) =~ "Tagbar" || getwinvar(l:winnr, '&filetype') == 'startify'
+	elseif l:buf =~ "NERD_tree" || l:buf =~ "Tagbar" || l:buf =~ "man:" || l:buf =~ "term:" || l:buf == ".git/index" || l:buf =~ "Command-T"
 		return StatusLine_render_none(l:winnr)
 	else
 		return StatusLine_render_normal(l:winnr, l:bufnr, l:current)
