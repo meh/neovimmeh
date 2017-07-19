@@ -1,14 +1,22 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
+" Programming stuff.
+Plug 'roxma/nvim-completion-manager'
+Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/neco-vim'
+Plug 'artur-shaik/vim-javacomplete2'
+Plug 'Rip-Rip/clang_complete'
+Plug 'Shougo/echodoc.vim'
+"Plug 'racer-rust/vim-racer'
+"Plug 'roxma/nvim-cm-racer'
+
 " Functionality
-Plug 'neomake/neomake'
 Plug 'mhinz/vim-grepper'
 Plug 'mhinz/vim-signify'
 Plug 'mhinz/vim-rfc'
 Plug 'wincent/command-t'
 Plug 'sjl/gundo.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'Valloric/YouCompleteMe'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-repeat'
@@ -53,8 +61,24 @@ Plug 'cespare/vim-toml'
 Plug 'enomsg/vim-haskellConcealPlus'
 Plug 'keith/swift.vim'
 
+call plug#end()
+
 " Grepper
 command! -nargs=+ -complete=file Rg Grepper -noprompt -tool rg -query <args>
+
+" RLS
+let g:LanguageClient_autoStart = 1
+
+let g:LanguageClient_serverCommands = {
+	\ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+	\ }
+
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+
+" Completion
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Rust syntax
 let g:rust_recommended_style = 0
@@ -67,45 +91,6 @@ let NERDTreeIgnore=['\.so$', '\.o$', '\.la$', '\.a$', '\.class$', '\~$', '\.beam
 
 " NoHomo
 let g:nohomo_ignore_filetype = ['mail', 'markdown', 'scss', 'mustache']
-
-" Syntastic
-let g:syntastic_enable_signs         = 1
-let g:syntastic_error_symbol         = '!!'
-let g:syntastic_style_error_symbol   = '!¡'
-let g:syntastic_warning_symbol       = '??'
-let g:syntastic_style_warning_symbol = '?¿'
-
-let c_no_curly_error = 1
-
-let g:syntastic_c_checker          = "clang"
-let g:syntastic_c_compiler_options = "-std=c11"
-
-let g:syntastic_cpp_checker          = "clang"
-let g:syntastic_cpp_compiler_options = "-std=c++11"
-
-let g:syntastic_mode_map = { 'mode': 'active',
-                           \ 'passive_filetypes': ['elixir', 'javascript'] }
-
-" You Complete Me
-let g:ycm_global_ycm_extra_conf     = $HOME . '/.vim/ycm.py'
-let g:ycm_extra_conf_vim_data       = ['&filetype', 'g:syntastic_c_compiler_options', 'g:syntastic_cpp_compiler_options']
-let g:ycm_key_invoke_completion     = '<Leader><Leader><Tab>'
-
-let g:ycm_key_list_select_completion   = ['<Tab>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<Leader><Tab>', '<Up>']
-
-let g:ycm_min_num_of_chars_for_completion = 3
-let g:ycm_rust_src_path = $RUST_SRC_PATH
-
-set completeopt=menuone
-
-let g:ycm_filetype_blacklist = {
-	\ 'notes' : 1,
-	\ 'markdown' : 1,
-	\ 'text' : 1,
-	\ 'gitcommit': 1,
-	\ 'mail': 1,
-\}
 
 " Signify
 let g:signify_sign_overwrite = 1
@@ -195,5 +180,3 @@ autocmd FileType vinarise
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
 let g:gist_browser_command = 'echo %URL% | xclip'
-
-call plug#end()

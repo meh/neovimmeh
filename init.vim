@@ -42,6 +42,7 @@ set wildmenu
 set emoji
 set magic
 set hidden
+set shortmess+=c
 
 " Resize windows on outer window resize.
 autocmd VimResized * wincmd =
