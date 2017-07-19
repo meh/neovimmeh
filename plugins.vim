@@ -69,6 +69,9 @@ let g:relativity_filetype_ignore = ['controlp', 'nerdtree', 'fugitive', 'tagbar'
 autocmd TermOpen * set nonu
 
 " Grepper
+let g:grepper = {}
+let g:grepper.quickfix = 0
+
 command! -nargs=+ -complete=file Rg Grepper -noprompt -tool rg -query <args>
 
 " RLS
