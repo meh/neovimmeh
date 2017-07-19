@@ -26,6 +26,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'Chiel92/vim-autoformat'
 Plug 'easymotion/vim-easymotion'
 Plug 'mattn/gist-vim'
+Plug 'kennykaye/vim-relativity'
 
 " Syntax
 Plug 'udalov/kotlin-vim'
@@ -60,6 +61,12 @@ Plug 'enomsg/vim-haskellConcealPlus'
 Plug 'keith/swift.vim'
 
 call plug#end()
+
+" Numbers
+let g:relativity_buftype_ignore = ['nofile', 'terminal']
+let g:relativity_filetype_ignore = ['controlp', 'nerdtree', 'fugitive', 'tagbar', 'agsv', 'gitcommit']
+
+autocmd TermOpen * set nonu
 
 " Grepper
 command! -nargs=+ -complete=file Rg Grepper -noprompt -tool rg -query <args>

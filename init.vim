@@ -9,10 +9,6 @@ colorscheme darkblood
 " Ignore files.
 set wildignore+=*.o,*.obj,.git,*.a,*.so,*.lo,*.class,*.beam,deps/*,Mnesia.*,*.hi,vendor/*,copycat/*,target/*,_build/*
 
-" Set line numbers.
-set nu
-set rnu
-
 " Set undo history.
 set undofile
 set undolevels=1000
