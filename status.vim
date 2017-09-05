@@ -192,7 +192,7 @@ function StatusLine_render(window_id)
 
 	if getwinvar(l:winnr, '&filetype') == 'help'
 		return StatusLine_render_help(l:winnr, l:bufnr, l:current)
-	elseif l:buf =~ "NERD_tree" || l:buf =~ "Tagbar" || l:buf =~ "man:" || l:buf =~ "term:" || l:buf == ".git/index" || l:buf =~ "Command-T"
+	elseif l:buf =~ "NERD_tree" || l:buf =~ "Tagbar" || l:buf =~ "man:" || l:buf =~ "term:" || l:buf =~ "Command-T" || &ft == 'gitcommit'
 		return StatusLine_render_none(l:winnr)
 	else
 		return StatusLine_render_normal(l:winnr, l:bufnr, l:current)
