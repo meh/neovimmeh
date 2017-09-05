@@ -43,5 +43,3 @@ augroup END
 autocmd BufReadCmd *.docx,*.xlsx,*.pptx call zip#Browse(expand("<amatch>"))
 autocmd BufReadCmd *.odt,*.ott,*.ods,*.ots,*.odp,*.otp,*.odg,*.otg call zip#Browse(expand("<amatch>"))
 autocmd BufReadPost *.pdf silent %!pdftotext -layout -nopgbrk "%" -
-
-autocmd BufWrite *.rs :Autoformat

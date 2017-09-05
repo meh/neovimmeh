@@ -23,9 +23,11 @@ Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
-Plug 'Chiel92/vim-autoformat'
+Plug 'sbdchd/neoformat'
 Plug 'easymotion/vim-easymotion'
+Plug 'junegunn/vim-easy-align'
 Plug 'mattn/gist-vim'
+Plug 'MarcWeber/vim-addon-local-vimrc'
 Plug 'kennykaye/vim-relativity'
 
 " Syntax
@@ -188,3 +190,6 @@ autocmd FileType vinarise
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
 let g:gist_browser_command = 'echo %URL% | xclip'
+
+" neoformat
+let g:neoformat_only_msg_on_error = 1
