@@ -83,6 +83,32 @@ let g:LanguageClient_serverCommands = {
 	\ 'rust': ['rustup', 'run', 'nightly', 'rls'],
 	\ }
 
+let g:LanguageClient_diagnosticsDisplay = {
+	\	'1': {
+	\		"name": "Error",
+	\		"texthl": "ErrorMsg",
+	\		"signText": "×",
+	\		"signTexthl": "ErrorMsg"
+	\	},
+	\	'2': {
+	\		"name": "Warning",
+	\		"texthl": "WarningMsg",
+	\		"signText": "!",
+	\		"signTexthl": "WarningMsg"
+	\	},
+	\	'3': {
+	\			"name": "Information",
+	\			"texthl": "ALEInfo",
+	\			"signText": "i",
+	\			"signTexthl": "ALEInfoSign"
+	\	},
+	\	'4': {
+	\		"name": "Hint",
+	\		"texthl": "ALEInfo",
+	\		"signText": "≫",
+	\		"signTexthl": "ALEInfoSign"
+	\	} }
+
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 

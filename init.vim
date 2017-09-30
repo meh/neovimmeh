@@ -33,6 +33,7 @@ set nowrap
 " Gotta go wild.
 set wildmode=longest:full
 set wildmenu
+set signcolumn=yes
 
 " Random crap.
 set emoji

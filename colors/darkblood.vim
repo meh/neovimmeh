@@ -43,7 +43,7 @@ hi Visual        cterm=NONE      ctermfg=white     ctermbg=darkred
 hi VisualNOS     cterm=NONE      ctermfg=white     ctermbg=darkred
 hi MoreMsg       cterm=bold      ctermfg=white     ctermbg=NONE
 hi Question      cterm=bold      ctermfg=white     ctermbg=NONE
-hi WarningMsg    cterm=NONE      ctermfg=darkred   ctermbg=NONE
+hi WarningMsg    cterm=NONE      ctermfg=3         ctermbg=NONE
 hi WildMenu      cterm=NONE      ctermfg=white     ctermbg=NONE
 hi TabLine       cterm=underline ctermfg=white     ctermbg=NONE
 hi TabLineSel    cterm=underline ctermfg=white     ctermbg=darkred
