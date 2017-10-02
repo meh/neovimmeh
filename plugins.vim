@@ -219,3 +219,6 @@ let g:gist_browser_command = 'echo %URL% | xclip'
 
 " neoformat
 let g:neoformat_only_msg_on_error = 1
+
+" clang_complete
+let g:clang_library_path = '/usr/lib/libclang.so'
