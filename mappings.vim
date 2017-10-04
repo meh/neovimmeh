@@ -1,17 +1,14 @@
 let mapleader=";"
 let maplocaleader="\\"
 
-" Tabs
-map <silent> <C-T> :tabnew<CR>
-map <silent> <C-W> :tabclose<CR>
-map <silent> <S-H> :tabprevious<CR>
-map <silent> <S-L> :tabnext<CR>
-
-" Windows
-nnoremap <silent> <C-h> :wincmd h<CR>
-nnoremap <silent> <C-k> :wincmd k<CR>
-nnoremap <silent> <C-l> :wincmd l<CR>
-nnoremap <silent> <C-j> :wincmd j<CR>
+nnoremap <C-t>h  :tabfirst<CR>
+nnoremap <C-t>j  :tabnext<CR>
+nnoremap <C-t>k  :tabprev<CR>
+nnoremap <C-t>l  :tablast<CR>
+nnoremap <C-t>t  :tabedit<Space>
+nnoremap <C-t>n  :tabnext<Space>
+nnoremap <C-t>m  :tabm<Space>
+nnoremap <C-t>d  :tabclose<CR>
 
 " Other mappings
 nmap <Leader>f :CommandT<CR>
