@@ -4,7 +4,7 @@ let maplocaleader="\\"
 nnoremap <C-t>h  :tabprev<CR>
 nnoremap <C-t>j  :tabfirst<CR>
 nnoremap <C-t>k  :tablast<CR>
-nnoremap <C-t>l  :tabprev<CR>
+nnoremap <C-t>l  :tabnext<CR>
 nnoremap <C-t>t  :tabedit<Space>
 nnoremap <C-t>n  :tabnext<Space>
 nnoremap <C-t>m  :tabm<Space>
