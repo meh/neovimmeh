@@ -29,6 +29,8 @@ Plug 'junegunn/vim-easy-align'
 Plug 'mattn/gist-vim'
 Plug 'MarcWeber/vim-addon-local-vimrc'
 Plug 'kennykaye/vim-relativity'
+Plug 'racer-rust/vim-racer'
+Plug 'roxma/nvim-cm-racer'
 
 " Syntax
 Plug 'udalov/kotlin-vim'
