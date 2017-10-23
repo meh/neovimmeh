@@ -12,7 +12,8 @@ Plug 'Shougo/echodoc.vim'
 Plug 'mhinz/vim-grepper'
 Plug 'mhinz/vim-signify'
 Plug 'mhinz/vim-rfc'
-Plug 'wincent/command-t'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'sjl/gundo.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
@@ -224,3 +225,6 @@ let g:neoformat_only_msg_on_error = 1
 
 " clang_complete
 let g:clang_library_path = '/usr/lib/libclang.so'
+
+" fzf
+let g:fzf_layout = { 'down': '10' }
