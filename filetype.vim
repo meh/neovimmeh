@@ -43,3 +43,7 @@ augroup END
 autocmd BufReadCmd *.docx,*.xlsx,*.pptx call zip#Browse(expand("<amatch>"))
 autocmd BufReadCmd *.odt,*.ott,*.ods,*.ots,*.odp,*.otp,*.odg,*.otg call zip#Browse(expand("<amatch>"))
 autocmd BufReadPost *.pdf silent %!pdftotext -layout -nopgbrk "%" -
+
+" Enter input in any terminal window.
+autocmd TermOpen * set signcolumn=no nonu nornu
+autocmd TermOpen * startinsert
