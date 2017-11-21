@@ -34,6 +34,7 @@ Plug 'racer-rust/vim-racer'
 Plug 'roxma/nvim-cm-racer'
 
 " Syntax
+Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'udalov/kotlin-vim'
 Plug 'shiracamus/vim-syntax-x86-objdump-d'
 Plug 'vim-scripts/proguard.vim'
@@ -41,7 +42,6 @@ Plug 'raymond-w-ko/vim-niji'
 Plug 'beyondmarc/glsl.vim'
 Plug 'guns/vim-clojure-static'
 Plug 'kchmck/vim-coffee-script'
-Plug 'vim-scripts/Cpp11-Syntax-Support'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'vim-scripts/ebnf.vim'
 Plug 'elixir-lang/vim-elixir'
@@ -62,7 +62,6 @@ Plug 'vim-scripts/rfc-syntax'
 Plug 'vim-ruby/vim-ruby'
 Plug 'rust-lang/rust.vim'
 Plug 'cespare/vim-toml'
-Plug 'enomsg/vim-haskellConcealPlus'
 Plug 'keith/swift.vim'
 
 call plug#end()
@@ -228,3 +227,8 @@ let g:clang_library_path = '/usr/lib/libclang.so'
 
 " fzf
 let g:fzf_layout = { 'down': '10' }
+
+" cpp-enhanced
+let c_no_curly_error = 1
+let g:cpp_experimental_simple_template_highlight = 1
+let g:cpp_concepts_highlight = 1
