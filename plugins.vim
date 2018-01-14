@@ -32,6 +32,7 @@ Plug 'MarcWeber/vim-addon-local-vimrc'
 Plug 'kennykaye/vim-relativity'
 Plug 'racer-rust/vim-racer'
 Plug 'roxma/nvim-cm-racer'
+Plug 'mattn/webapi-vim'
 
 " Syntax
 Plug 'octol/vim-cpp-enhanced-highlight'
@@ -218,6 +219,7 @@ autocmd FileType vinarise
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
 let g:gist_browser_command = 'echo %URL% | xclip'
+let g:gist_post_private = 1
 
 " neoformat
 let g:neoformat_only_msg_on_error = 1
