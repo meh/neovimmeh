@@ -33,6 +33,7 @@ Plug 'kennykaye/vim-relativity'
 Plug 'racer-rust/vim-racer'
 Plug 'roxma/nvim-cm-racer'
 Plug 'mattn/webapi-vim'
+Plug 'shime/vim-livedown'
 
 " Syntax
 Plug 'octol/vim-cpp-enhanced-highlight'
@@ -234,3 +235,9 @@ let g:fzf_layout = { 'down': '10' }
 let c_no_curly_error = 1
 let g:cpp_experimental_simple_template_highlight = 1
 let g:cpp_concepts_highlight = 1
+
+" livedown
+let g:livedown_browser = "firefox-developer-edition"
+
+" markdown
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'rust', 'json']

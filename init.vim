@@ -40,6 +40,7 @@ set emoji
 set magic
 set hidden
 set shortmess+=c
+set conceallevel=3
 
 " Resize windows on outer window resize.
 autocmd VimResized * wincmd =
