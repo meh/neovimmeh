@@ -1,12 +1,19 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Programming stuff.
-Plug 'roxma/nvim-completion-manager'
-Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+Plug 'autozimu/LanguageClient-neovim', {
+	\ 'do': 'bash install.sh',
+	\ 'branch': 'next'
+	\ }
+
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
 Plug 'Shougo/neco-vim'
-Plug 'artur-shaik/vim-javacomplete2'
-Plug 'Rip-Rip/clang_complete'
 Plug 'Shougo/echodoc.vim'
+Plug 'mhartington/nvim-typescript'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-pyclang'
 
 " Functionality
 Plug 'mhinz/vim-grepper'
@@ -39,6 +46,7 @@ Plug 'shime/vim-livedown'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'udalov/kotlin-vim'
 Plug 'shiracamus/vim-syntax-x86-objdump-d'
+Plug 'vim-scripts/ttcn-syntax'
 Plug 'vim-scripts/proguard.vim'
 Plug 'raymond-w-ko/vim-niji'
 Plug 'beyondmarc/glsl.vim'
@@ -65,6 +73,7 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'rust-lang/rust.vim'
 Plug 'cespare/vim-toml'
 Plug 'keith/swift.vim'
+Plug 'HerringtonDarkholme/yats.vim'
 
 call plug#end()
 
@@ -225,9 +234,6 @@ let g:gist_post_private = 1
 " neoformat
 let g:neoformat_only_msg_on_error = 1
 
-" clang_complete
-let g:clang_library_path = '/usr/lib/libclang.so'
-
 " fzf
 let g:fzf_layout = { 'down': '10' }
 
@@ -241,3 +247,11 @@ let g:livedown_browser = "firefox-developer-edition"
 
 " markdown
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'rust', 'json']
+
+" ncm2
+let g:ncm2_pyclang#library_path = '/usr/lib64/libclang.so'
+
+autocmd BufEnter * call ncm2#enable_for_buffer()
+autocmd TextChangedI * call ncm2#auto_trigger()
+
+autocmd FileType c,cpp nnoremap <buffer> gd :<c-u>call ncm2_pyclang#goto_declaration()<cr>

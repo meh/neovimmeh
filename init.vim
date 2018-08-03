@@ -41,6 +41,7 @@ set magic
 set hidden
 set shortmess+=c
 set conceallevel=3
+set completeopt=noinsert,menuone,noselect
 
 " Resize windows on outer window resize.
 autocmd VimResized * wincmd =

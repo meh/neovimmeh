@@ -30,7 +30,7 @@ if &term =~ "cancer"
 endif
 
 " General colors
-hi Normal        cterm=NONE      ctermfg=251       ctermbg=NONE
+hi Normal        cterm=NONE      ctermfg=251       ctermbg=black
 hi Directory     cterm=NONE      ctermfg=red       ctermbg=NONE
 hi ErrorMsg      cterm=NONE      ctermfg=darkred   ctermbg=NONE
 hi NonText       cterm=NONE      ctermfg=darkgray  ctermbg=NONE
