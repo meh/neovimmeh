@@ -41,6 +41,7 @@ Plug 'mattn/webapi-vim'
 Plug 'shime/vim-livedown'
 Plug 'reedes/vim-pencil'
 Plug 'tpope/vim-sleuth'
+Plug 'aserebryakov/vim-todo-lists'
 
 " Navigation
 Plug 'https://github.com/wellle/targets.vim'
