@@ -58,7 +58,7 @@ hi CursorColumn  cterm=NONE      ctermfg=NONE      ctermbg=233
 hi CursorLineNr  cterm=NONE      ctermfg=NONE      ctermbg=233
 hi CursorLine    cterm=NONE      ctermfg=NONE      ctermbg=233
 hi ColorColumn   cterm=NONE      ctermfg=NONE      ctermbg=233
-hi Cursor        cterm=NONE      ctermfg=white     ctermbg=darkred
+hi Cursor        cterm=bold      ctermfg=white     ctermbg=darkred
 hi Title         cterm=bold      ctermfg=white     ctermbg=NONE
 hi Pmenu         cterm=NONE      ctermfg=NONE      ctermbg=233
 hi PmenuSel      cterm=bold      ctermfg=white     ctermbg=darkred
@@ -79,6 +79,12 @@ hi User3 cterm=bold ctermfg=237   ctermbg=NONE
 hi User4 cterm=bold ctermfg=220   ctermbg=NONE
 hi User5 cterm=bold ctermfg=34    ctermbg=NONE
 hi User6 cterm=bold ctermfg=160   ctermbg=NONE
+
+" spellcheck
+hi SpellBad      cterm=NONE      ctermfg=white     ctermbg=darkred
+hi SpellRare     cterm=bold      ctermfg=232       ctermbg=darkred
+hi SpellLocal    cterm=NONE      ctermfg=darkred   ctermbg=NONE
+hi SpellCap      cterm=underline ctermfg=white     ctermbg=NONE
 
 " tty
 if &term =~ "linux"
