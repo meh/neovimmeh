@@ -60,6 +60,7 @@ Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-eunuch'
 
 " Syntax
+Plug 'gisphm/vim-gitignore'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'udalov/kotlin-vim'
 Plug 'shiracamus/vim-syntax-x86-objdump-d'
