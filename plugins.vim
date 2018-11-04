@@ -268,8 +268,21 @@ let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'rust', 'json']
 
 " ncm2
 let g:ncm2_pyclang#library_path = '/usr/lib64/libclang.so'
+let g:ncm2_pyclang#args_file_path = ['.clang_complete']
 
 autocmd BufEnter * call ncm2#enable_for_buffer()
 autocmd TextChangedI * call ncm2#auto_trigger()
 
 autocmd FileType c,cpp nnoremap <buffer> gd :<c-u>call ncm2_pyclang#goto_declaration()<cr>
+
+" ale
+let g:ale_lint_on_text_changed = 'never'
+
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+
+let g:ale_cpp_gcc_options = '-std=c++17 -Wall -fpermissive'
+let g:ale_cpp_clang_options = '-std=c++17 -Wall -fpermissive'
+
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
