@@ -11,9 +11,9 @@ Plug 'roxma/nvim-yarp'
 Plug 'Shougo/neco-vim'
 Plug 'Shougo/echodoc.vim'
 Plug 'mhartington/nvim-typescript'
-Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
 Plug 'ncm2/ncm2-pyclang'
+Plug 'ncm2/ncm2-cssomni'
 Plug 'w0rp/ale'
 
 " Functionality
@@ -42,6 +42,9 @@ Plug 'shime/vim-livedown'
 Plug 'reedes/vim-pencil'
 Plug 'tpope/vim-sleuth'
 Plug 'aserebryakov/vim-todo-lists'
+Plug 'tpope/vim-obsession'
+Plug 'dhruvasagar/vim-prosession'
+Plug 'derekelkins/agda-vim'
 
 " Navigation
 Plug 'https://github.com/wellle/targets.vim'
@@ -286,3 +289,9 @@ let g:ale_cpp_clang_options = '-std=c++17 -Wall -fpermissive'
 
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+" session
+set sessionoptions-=buffers
+let g:prosession_dir = "~/.config/nvim/sessions"
+let g:prosession_per_branch = 1
+let g:prosession_on_startup = 1
