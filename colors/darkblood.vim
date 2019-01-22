@@ -81,10 +81,10 @@ hi User5 cterm=bold ctermfg=34    ctermbg=NONE
 hi User6 cterm=bold ctermfg=160   ctermbg=NONE
 
 " spellcheck
-hi SpellBad      cterm=NONE      ctermfg=white     ctermbg=NONE
-hi SpellRare     cterm=bold      ctermfg=232       ctermbg=NONE
+hi SpellBad      cterm=underline ctermfg=white     ctermbg=NONE
+hi SpellRare     cterm=bold      ctermfg=232       ctermbg=darkred
 hi SpellLocal    cterm=NONE      ctermfg=darkred   ctermbg=NONE
-hi SpellCap      cterm=underline ctermfg=white     ctermbg=NONE
+hi SpellCap      cterm=underline ctermfg=251       ctermbg=NONE
 
 " tty
 if &term =~ "linux"
