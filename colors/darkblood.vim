@@ -178,9 +178,9 @@ hi link hsImportLabel Keyword
 hi link hsVarSym Statement
 
 " Signify
-highlight SignifySignAdd    cterm=NONE ctermbg=NONE  ctermfg=2
-highlight SignifySignDelete cterm=NONE ctermbg=NONE  ctermfg=1
-highlight SignifySignChange cterm=NONE ctermbg=NONE  ctermfg=3
+hi SignifySignAdd    cterm=NONE ctermbg=NONE  ctermfg=2
+hi SignifySignDelete cterm=NONE ctermbg=NONE  ctermfg=1
+hi SignifySignChange cterm=NONE ctermbg=NONE  ctermfg=3
 
 let g:signify_sign_add               = '+'
 let g:signify_sign_change            = '±'
@@ -189,8 +189,9 @@ let g:signify_sign_delete_first_line = '^'
 
 " Coc
 hi CocErrorSign   cterm=NONE      ctermfg=white ctermbg=darkred
-hi CocWarningSign cterm=underline ctermfg=white ctermbg=NONE
-hi CocInfoSign    cterm=NONE      ctermfg=255   ctermbg=NONE
+hi CocWarningSign cterm=underline ctermfg=white
+hi CocInfoSign    cterm=NONE      ctermfg=255
+hi CocHintSign    cterm=NONE      ctermfg=2
 
 " syntax
 hi Comment     cterm=NONE ctermfg=darkgrey ctermbg=NONE
