@@ -43,7 +43,7 @@ hi Visual        cterm=NONE      ctermfg=white     ctermbg=darkred
 hi VisualNOS     cterm=NONE      ctermfg=white     ctermbg=darkred
 hi MoreMsg       cterm=bold      ctermfg=white     ctermbg=NONE
 hi Question      cterm=bold      ctermfg=white     ctermbg=NONE
-hi WarningMsg    cterm=NONE      ctermfg=3         ctermbg=NONE
+hi WarningMsg    cterm=underline                   ctermbg=NONE
 hi WildMenu      cterm=NONE      ctermfg=white     ctermbg=NONE
 hi TabLine       cterm=underline ctermfg=white     ctermbg=NONE
 hi TabLineSel    cterm=underline ctermfg=white     ctermbg=darkred
@@ -81,7 +81,7 @@ hi User5 cterm=bold ctermfg=34    ctermbg=NONE
 hi User6 cterm=bold ctermfg=160   ctermbg=NONE
 
 " spellcheck
-hi SpellBad      cterm=underline ctermfg=white     ctermbg=NONE
+hi SpellBad      cterm=underline                   ctermbg=NONE
 hi SpellRare     cterm=bold      ctermfg=232       ctermbg=darkred
 hi SpellLocal    cterm=NONE      ctermfg=darkred   ctermbg=NONE
 hi SpellCap      cterm=underline ctermfg=251       ctermbg=NONE
@@ -94,10 +94,6 @@ if &term =~ "linux"
 	hi StatusLine    cterm=NONE ctermfg=black ctermbg=darkred
 	hi StatusLineNC  cterm=NONE ctermfg=white ctermbg=NONE
 endif
-
-" syntastic
-hi SyntasticError   cterm=NONE      ctermfg=white ctermbg=darkred
-hi SyntasticWarning cterm=underline ctermfg=white ctermbg=NONE
 
 " Taglist
 hi TagListFileName cterm=NONE ctermfg=darkred ctermbg=NONE
@@ -190,6 +186,11 @@ let g:signify_sign_add               = '+'
 let g:signify_sign_change            = '±'
 let g:signify_sign_delete            = '-'
 let g:signify_sign_delete_first_line = '^'
+
+" Coc
+hi CocErrorSign   cterm=NONE      ctermfg=white ctermbg=darkred
+hi CocWarningSign cterm=underline ctermfg=white ctermbg=NONE
+hi CocInfoSign    cterm=NONE      ctermfg=255   ctermbg=NONE
 
 " syntax
 hi Comment     cterm=NONE ctermfg=darkgrey ctermbg=NONE

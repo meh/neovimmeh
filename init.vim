@@ -43,6 +43,7 @@ set shortmess+=c
 set conceallevel=3
 set scrollback=31337
 set completeopt=noinsert,menuone,noselect
+set updatetime=300
 
 " Resize windows on outer window resize.
 autocmd VimResized * wincmd =
