@@ -193,6 +193,9 @@ hi CocWarningSign cterm=underline ctermfg=white
 hi CocInfoSign    cterm=NONE      ctermfg=255
 hi CocHintSign    cterm=NONE      ctermfg=2
 
+" YAML
+hi link yamlBlockMappingKey Function
+
 " syntax
 hi Comment     cterm=NONE ctermfg=darkgrey ctermbg=NONE
 hi PreProc     cterm=NONE ctermfg=white    ctermbg=NONE

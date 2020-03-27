@@ -2,10 +2,17 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " Programming stuff.
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'roxma/nvim-yarp'
 Plug 'Shougo/echodoc.vim'
 
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-pyclang'
+Plug 'ncm2/ncm2-cssomni'
+Plug 'ncm2/ncm2-coc'
+
 " Functionality
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'mhinz/vim-grepper'
 Plug 'mhinz/vim-signify'
 Plug 'mhinz/vim-rfc'
@@ -174,6 +181,15 @@ if exists("vimpager")
 	set nonumber
 endif
 
+" ncm2
+let g:ncm2_pyclang#library_path = '/usr/lib64/libclang.so'
+let g:ncm2_pyclang#args_file_path = ['.clang_complete']
+
+autocmd BufEnter * call ncm2#enable_for_buffer()
+autocmd TextChangedI * call ncm2#auto_trigger()
+
+autocmd FileType c,cpp nnoremap <buffer> gd :<c-u>call ncm2_pyclang#goto_declaration()<cr>
+
 " vinarise
 let g:vinarise_enable_auto_detect = 1
 let g:vinarise_detect_large_file_size = -1
@@ -192,7 +208,7 @@ let g:gist_post_private = 1
 let g:neoformat_only_msg_on_error = 1
 
 " fzf
-let g:fzf_layout = { 'down': '10' }
+let g:fzf_layout = { 'down': '35%' }
 
 " cpp-enhanced
 let c_no_curly_error = 1
@@ -366,3 +382,6 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+""" Markdown Preview
+let g:mkdp_browser = 'qutebrowser'
