@@ -12,6 +12,7 @@ Plug 'ncm2/ncm2-cssomni'
 Plug 'ncm2/ncm2-coc'
 
 " Functionality
+Plug 'godlygeek/tabular'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'mhinz/vim-grepper'
 Plug 'mhinz/vim-signify'
@@ -59,6 +60,7 @@ Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-eunuch'
 
 " Syntax
+Plug 'jparise/vim-graphql'
 Plug 'digitaltoad/vim-pug'
 Plug 'evanleck/vim-svelte'
 Plug 'wilriker/gcode.vim'
@@ -84,7 +86,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'OrangeT/vim-csharp'
 Plug 'vim-scripts/JSON.vim'
 Plug 'groenewege/vim-less'
-Plug 'tpope/vim-markdown'
+Plug 'plasticboy/vim-markdown'
 Plug 'juvenn/mustache.vim'
 Plug 'programble/ooc.vim'
 Plug 'petdance/vim-perl'
