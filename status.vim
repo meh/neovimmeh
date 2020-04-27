@@ -173,6 +173,25 @@ function StatusLine_render_normal(winnr, bufnr, current)
 		let left .= "] "
 	endif
 
+	let coc = get(b:, 'coc_diagnostic_info', {})
+	if !empty(coc)
+		let msgs = []
+
+	if get(coc, 'error', 0)
+			call add(msgs, "%6*" . coc['error'] . "!%*")
+	endif
+
+		if get(coc, 'warning', 0)
+			call add(msgs, "%4*" . coc['warning'] . "?%*")
+		endif
+
+		if get(coc, 'information', 0) + get(coc, 'hint', 0)
+			call add(msgs, "%5*" . coc['information'] + coc['hint'] . "~%*")
+		endif
+
+	let right .= " [" . join(msgs, ' ') . "%*]"
+	endif
+
 	if strlen(getwinvar(a:winnr, '&filetype'))
 		let right .= " [%1*⭢⭣ %{&filetype}%* %2*%{&enc}%*]"
 	else
