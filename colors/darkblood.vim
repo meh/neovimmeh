@@ -191,7 +191,7 @@ let g:signify_sign_delete_first_line = '^'
 hi CocErrorSign   cterm=NONE      ctermfg=white ctermbg=darkred
 hi CocWarningSign cterm=underline ctermfg=white
 hi CocInfoSign    cterm=NONE      ctermfg=255
-hi CocHintSign    cterm=NONE      ctermfg=2
+hi CocHintSign    cterm=NONE      ctermfg=238
 
 " YAML
 hi link yamlBlockMappingKey Function

@@ -28,6 +28,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-abolish'
 Plug 'sbdchd/neoformat'
 Plug 'easymotion/vim-easymotion'
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug 'junegunn/vim-easy-align'
 Plug 'mattn/gist-vim'
 Plug 'MarcWeber/vim-addon-local-vimrc'
@@ -62,6 +63,7 @@ Plug 'tpope/vim-eunuch'
 " Syntax
 Plug 'jparise/vim-graphql'
 Plug 'digitaltoad/vim-pug'
+Plug 'LnL7/vim-nix'
 Plug 'evanleck/vim-svelte'
 Plug 'wilriker/gcode.vim'
 Plug 'JuliaEditorSupport/julia-vim'
@@ -72,6 +74,7 @@ Plug 'shiracamus/vim-syntax-x86-objdump-d'
 Plug 'vim-scripts/ttcn-syntax'
 Plug 'vim-scripts/proguard.vim'
 Plug 'raymond-w-ko/vim-niji'
+Plug 'nfnty/vim-nftables'
 Plug 'beyondmarc/glsl.vim'
 Plug 'guns/vim-clojure-static'
 Plug 'kchmck/vim-coffee-script'
@@ -387,3 +390,7 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 """ Markdown Preview
 let g:mkdp_browser = 'qutebrowser'
+
+""" LaTeX
+let g:livepreview_previewer = 'mupdf'
+let g:livepreview_engine = 'xelatex'
