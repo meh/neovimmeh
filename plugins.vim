@@ -12,6 +12,7 @@ Plug 'ncm2/ncm2-cssomni'
 Plug 'ncm2/ncm2-coc'
 
 " Functionality
+Plug 'jamessan/vim-gnupg'
 Plug 'godlygeek/tabular'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'mhinz/vim-grepper'
@@ -61,6 +62,7 @@ Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-eunuch'
 
 " Syntax
+Plug 'lifepillar/pgsql.vim'
 Plug 'jparise/vim-graphql'
 Plug 'digitaltoad/vim-pug'
 Plug 'LnL7/vim-nix'
@@ -225,6 +227,7 @@ let g:livedown_browser = "firefox-developer-edition"
 
 " markdown
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'rust', 'json']
+let g:markdown_folding = 0
 
 " ale
 let g:ale_lint_on_text_changed = 'never'
@@ -316,14 +319,14 @@ function! s:show_documentation()
 endfunction
 
 " Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
+"autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>F  <Plug>(coc-format-selected)
+nmap <leader>F  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -388,9 +391,15 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
 """ Markdown Preview
 let g:mkdp_browser = 'qutebrowser'
 
 """ LaTeX
 let g:livepreview_previewer = 'mupdf'
 let g:livepreview_engine = 'xelatex'
+
+" pgsql.vim
+let g:sql_type_default = 'pgsql'
+let g:pgsql_pl = ['markdown']
