@@ -23,15 +23,6 @@
 (defn attach [?opts]
   (fn [client bufnr]
     (do
-      (when client.resolved_capabilities.document_highlight
-        (nvim.exec "
-          augroup lsp_document_highlight
-            autocmd! * <buffer>
-            autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-            autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-          augroup END"
-          false))
-
       (when (not= (?. ?opts :format) false)
         (nvim.exec "
           augroup lsp_formatting_sync
@@ -42,7 +33,6 @@
 
       (signature.on_attach {:bind true
                             :hint_enable false
-                            :hi_parameter :Title
                             :handler_opts {:border :shadow}}
                            bufnr)
       (hilight.on_attach client)
@@ -51,7 +41,7 @@
     (nvim.buf_set_option bufnr :omnifunc "v:lua.vim.lsp.omnifunc")
 
     ; keybindings
-    (nvim.buf_set_keymap bufnr :n :S "<cmd>lua vim.lsp.buf.hover()<cr>" {})
+    (nvim.buf_set_keymap bufnr :n :K "<cmd>lua vim.lsp.buf.hover()<cr>" {})
     (nvim.buf_set_keymap bufnr :n :<leader>clr "<cmd>lua vim.lsp.stop_client(vim.lsp.get_active_clients())<cr>" {})
     (nvim.buf_set_keymap bufnr :n :<leader>ca "<cmd>Telescope lsp_code_actions previewer=false<cr>" {})
     (nvim.buf_set_keymap bufnr :n :<leader>cd "<cmd>lua vim.lsp.buf.definition()<cr>" {})
@@ -72,41 +62,58 @@
 
 (def- flags {})
 
-(defn setup [[lsp-name lsp-settings] settings ?on-attach]
+(defn setup [[lsp-name ?lsp-settings] settings ?on-attach]
   ((. (. lsp lsp-name) :setup) {:flags flags
                                 :capabilities capabilities
                                 :on_attach (or ?on-attach (attach))
-                                :settings {lsp-settings settings}}))
+                                :settings {(or ?lsp-settings lsp-name) settings}}))
+(setup [:svelte] {})
+(setup [:tailwindcss] {})
+(setup [:tsserver] {})
+(setup [:texlab] {})
+(setup [:sumneko_lua :Lua] {})
+(setup [:sqls] {})
+(setup [:rnix] {})
+(setup [:kotlin_language_server] {})
+(setup [:gopls] {})
+(setup [:clojure-lsp] {})
 
-(setup [:rust_analyzer :rust-analyzer] {})
-
-(rust.setup {:server
-             {:assist {:importGroup true
-                 :importMergeBehavior :full
-                 :importPrefix :by_crate}
-              :callInfo {:full true}
-              :cargo {:allFeatures true
-                      :autoreload true
-                      :loadOutDirsFromCheck true}
-              :checkOnSave {:enable true
-                            :allFeatures true}
-              :completion {:addCallArgumentSnippets true
-                           :addCallParenthesis true
-                           :postfix {:enable true}
-                           :autoimport {:enable true}}
-              :diagnostics {:enable true
-                            :enableExperimental true}
-              :hoverActions {:enable true
-                             :debug true
-                             :gotoTypeDef true
-                             :implementations true
-                             :run true
-                             :linksInHover true}
-              :lens {:enable true
-                     :debug true
-                     :implementations true
-                     :run true
-                     :methodReferences true
-                     :references true}
-              :notifications {:cargoTomlNotFound true}
-              :procMacro {:enable true}}})
+(rust.setup {:tools {:hover_actions {:border [[" " "FloatBorder"] [" " "FloatBorder"]
+                                              [" " "FloatBorder"] [" " "FloatBorder"]
+                                              [" " "FloatBorder"] [" " "FloatBorder"]
+                                              [" " "FloatBorder"] [" " "FloatBorder"]]}}
+             :server
+             {:flags flags
+              :capabilities capabilities
+              :on_attach (attach)
+              :settings {:rust-analyzer {
+                :assist {:importGroup true
+                   :importMergeBehavior :full
+                   :importPrefix :by_crate}
+                :callInfo {:full true}
+                :cargo {:allFeatures true
+                        :autoreload true
+                        :loadOutDirsFromCheck true}
+                :checkOnSave {:enable true
+                              :allFeatures true}
+                :completion {:addCallArgumentSnippets true
+                             :addCallParenthesis true
+                             :postfix {:enable true}
+                             :autoimport {:enable true}}
+                :diagnostics {:enable true
+                              :enableExperimental true
+                              :disabled [:unresolved-proc-macro]}
+                :hoverActions {:enable true
+                               :debug true
+                               :gotoTypeDef true
+                               :implementations true
+                               :run true
+                               :linksInHover true}
+                :lens {:enable true
+                       :debug true
+                       :implementations true
+                       :run true
+                       :methodReferences true
+                       :references true}
+                :notifications {:cargoTomlNotFound true}
+                :procMacro {:enable true}}}}})

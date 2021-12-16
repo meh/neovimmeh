@@ -75,16 +75,9 @@
   :lambdalisue/suda.vim {}
   :simnalamburt/vim-mundo {}
 
-  :tpope/vim-abolish {}
-  :tpope/vim-dadbod {}
-  :tpope/vim-dispatch {}
   :tpope/vim-eunuch {}
   :tpope/vim-fugitive {}
   :tpope/vim-repeat {}
-  :tpope/vim-sleuth {}
-  :tpope/vim-surround {}
-  :tpope/vim-unimpaired {}
-  :tpope/vim-vinegar {}
 
   :b3nj5m1n/kommentary {}
 

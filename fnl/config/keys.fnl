@@ -34,6 +34,15 @@
 
 ;; Buffers.
 (remap :n :<leader>bb "<cmd>Telescope buffers previewer=false<cr>")
+(remap :n :<leader>bd "<cmd>bdel<cr>")
+(remap :n :<leader>bD "<cmd>bdel!<cr>")
+(remap :n :<leader>bn "<cmd>new<cr>")
+(remap :n :<leader>bv "<cmd>vnew<cr>")
+
+;; Tabs.
+(remap :n :<leader>br "<cmd>tabn<cr>")
+(remap :n :<leader>bc "<cmd>tabp<cr>")
+(remap :n :<leader>bt "<cmd>tabnew<cr>")
 
 ;; Files.
 (remap :n :<leader>ff "<cmd>Telescope find_files previewer=false<cr>")
