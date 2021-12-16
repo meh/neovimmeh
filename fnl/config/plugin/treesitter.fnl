@@ -9,4 +9,9 @@
                                                      :node_incremental "grn"
                                                      :scope_incremental "grc"
                                                      :node_decremental "grm"}}
-                   :ensure_installed "maintained"})
+                   :ensure_installed "maintained"
+                   :matchup {:enable true}
+                   :textobjects {:lsp_interop {:enable true
+                                               :border :none
+                                               :peek_definition_code {:<leader>df "@function.outer"
+                                                                      :<leader>dF "@class.outer"}}}})
