@@ -37,10 +37,10 @@ hi WildMenu      cterm=NONE           ctermfg=white     ctermbg=NONE
 hi TabLine       cterm=underline      ctermfg=white     ctermbg=NONE
 hi TabLineSel    cterm=underline      ctermfg=white     ctermbg=darkred
 hi TabLineFill   cterm=underline      ctermfg=white     ctermbg=NONE
-hi DiffAdd       cterm=NONE           ctermfg=darkgreen ctermbg=NONE
-hi DiffChange    cterm=NONE           ctermfg=208       ctermbg=NONE
-hi DiffDelete    cterm=NONE           ctermfg=darkred   ctermbg=NONE
-hi DiffText      cterm=NONE           ctermfg=white     ctermbg=NONE
+hi DiffAdd       cterm=NONE           ctermfg=darkgreen ctermbg=NONE guifg=green
+hi DiffChange    cterm=NONE           ctermfg=208       ctermbg=NONE guifg=208
+hi DiffDelete    cterm=NONE           ctermfg=darkred   ctermbg=NONE guifg=192
+hi DiffText      cterm=NONE           ctermfg=white     ctermbg=NONE guifg=white
 hi SignColumn    cterm=NONE           ctermfg=darkred   ctermbg=NONE
 hi VertSplit     cterm=NONE           ctermfg=darkred   ctermbg=NONE
 hi CursorColumn  cterm=NONE           ctermfg=NONE      ctermbg=233
@@ -96,6 +96,10 @@ hi HopNextKey   cterm=bold ctermfg=196
 hi HopNextKey1  cterm=bold ctermfg=255
 hi HopNextKey2             ctermfg=255
 hi HopUnmatched cterm=NONE ctermfg=240
+
+" blankline
+hi IndentBlanklineContextChar ctermfg=235 ctermbg=235
+hi IndentBlanklineContextStart ctermbg=235
 
 " Taglist
 hi TagListFileName cterm=NONE ctermfg=darkred ctermbg=NONE

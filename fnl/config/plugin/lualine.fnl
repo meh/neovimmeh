@@ -33,7 +33,7 @@
 
 (lualine.setup {:extensions [:fugitive :nvim-tree :quickfix :toggleterm]
                 :options {:icons_enabled false
-                          :component_separators {:left "" :right ""}
+                          :component_separators {:left "│" :right "│"}
                           :section_separators {:left "" :right ""}
                           :theme theme}
                 :sections {:lualine_a [{1 :mode :fmt (fn [str] (str:sub 1 1))}]
@@ -48,16 +48,16 @@
                            :lualine_x [:filetype]
                            :lualine_y [:progress]
                            :lualine_z [:location]}
+                :inactive_sections {:lualine_a []
+                                    :lualine_b [:branch :diff]
+                                    :lualine_c [{1 :filename :path 1}]
+                                    :lualine_x [:filetype]
+                                    :lualine_y []
+                                    :lualine_z [:location]}
                 :tabline {:lualine_a []
                           :lualine_b [{1 :buffers
                                        :show_filename_only false}]
                           :lualine_c []
                           :lualine_x [:lsp_progress]
                           :lualine_y [:tabs]
-                          :lualine_z [(fn [] (session.current_session_name))]}
-                :inactive_sections {:lualine_a []
-                                    :lualine_b [:filename]
-                                    :lualine_c [:filename]
-                                    :lualine_x [:location]
-                                    :lualine_y []
-                                    :lualine_z []}})
+                          :lualine_z [(fn [] (session.current_session_name))]}})

@@ -33,7 +33,7 @@
 
       (signature.on_attach {:bind true
                             :hint_enable false
-                            :handler_opts {:border :shadow}}
+                            :handler_opts {:border :none}}
                            bufnr)
       (hilight.on_attach client)
 
@@ -72,7 +72,6 @@
 (setup [:tsserver] {})
 (setup [:texlab] {})
 (setup [:sumneko_lua :Lua] {})
-(setup [:sqls] {})
 (setup [:rnix] {})
 (setup [:kotlin_language_server] {})
 (setup [:gopls] {})
