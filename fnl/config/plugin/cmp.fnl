@@ -7,9 +7,10 @@
 (defn- has-words-before []
   (let [[line col] (nvim.win_get_cursor 0)]
     (and (not= col 0)
-         (nil? (: (: (. 1 (nvim.buf_get_lines 0 (- 1 line) line true))
-                     :sub col col)
-                  :match :%s)))))
+         (not (a.nil? (-?> (nvim.buf_get_lines 0 (- 1 line) line true)
+                           (. 1)
+                           (: :sub col col)
+                           (: :match :%s)))))))
 
 (a.assoc nvim.o :completeopt "menuone,noselect")
 
