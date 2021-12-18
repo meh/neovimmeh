@@ -77,42 +77,42 @@
 (setup [:gopls] {})
 (setup [:clojure-lsp] {})
 
-(rust.setup {:tools {:hover_actions {:border [[" " "FloatBorder"] [" " "FloatBorder"]
-                                              [" " "FloatBorder"] [" " "FloatBorder"]
-                                              [" " "FloatBorder"] [" " "FloatBorder"]
-                                              [" " "FloatBorder"] [" " "FloatBorder"]]}}
-             :server
-             {:flags flags
-              :capabilities capabilities
-              :on_attach (attach)
-              :settings {:rust-analyzer {
-                :assist {:importGroup true
-                   :importMergeBehavior :full
-                   :importPrefix :by_crate}
-                :callInfo {:full true}
-                :cargo {:allFeatures true
-                        :autoreload true
-                        :loadOutDirsFromCheck true}
-                :checkOnSave {:enable true
-                              :allFeatures true}
-                :completion {:addCallArgumentSnippets true
-                             :addCallParenthesis true
-                             :postfix {:enable true}
-                             :autoimport {:enable true}}
-                :diagnostics {:enable true
-                              :enableExperimental true
-                              :disabled [:unresolved-proc-macro]}
-                :hoverActions {:enable true
-                               :debug true
-                               :gotoTypeDef true
-                               :implementations true
-                               :run true
-                               :linksInHover true}
-                :lens {:enable true
-                       :debug true
-                       :implementations true
-                       :run true
-                       :methodReferences true
-                       :references true}
-                :notifications {:cargoTomlNotFound true}
-                :procMacro {:enable true}}}}})
+(rust.setup
+  {:tools {:hover_actions {:border [[" " "FloatBorder"] [" " "FloatBorder"]
+                                    [" " "FloatBorder"] [" " "FloatBorder"]
+                                    [" " "FloatBorder"] [" " "FloatBorder"]
+                                    [" " "FloatBorder"] [" " "FloatBorder"]]}}
+   :server {:flags flags
+            :capabilities capabilities
+            :on_attach (attach)
+            :settings {:rust-analyzer {
+              :assist {:importGroup true
+                 :importMergeBehavior :full
+                 :importPrefix :by_crate}
+              :callInfo {:full true}
+              :cargo {:allFeatures true
+                      :autoreload true
+                      :loadOutDirsFromCheck true}
+              :checkOnSave {:enable true
+                            :allFeatures true}
+              :completion {:addCallArgumentSnippets true
+                           :addCallParenthesis true
+                           :postfix {:enable true}
+                           :autoimport {:enable true}}
+              :diagnostics {:enable true
+                            :enableExperimental true
+                            :disabled [:unresolved-proc-macro]}
+              :hoverActions {:enable true
+                             :debug true
+                             :gotoTypeDef true
+                             :implementations true
+                             :run true
+                             :linksInHover true}
+              :lens {:enable true
+                     :debug true
+                     :implementations true
+                     :run true
+                     :methodReferences true
+                     :references true}
+              :notifications {:cargoTomlNotFound true}
+              :procMacro {:enable true}}}}})

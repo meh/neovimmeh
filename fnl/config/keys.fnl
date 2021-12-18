@@ -11,8 +11,9 @@
 ;; Clear highlighting on enter in normal mode.
 (remap :n :<Space> ":noh<CR>")
 
-;; Duplicate currents panel in a new tab.
-(remap :n :<C-w>T ":tab split<CR>")
+;; Terminal
+(remap :n :<leader>tt "<cmd>ToggleTerm<CR>")
+(remap :n :<leader>tT "<cmd>ToggleTermToggleAll<CR>")
 
 ;; Redo
 (remap :n :U :<cmd>redo<cr>)
@@ -36,13 +37,26 @@
 (remap :n :<leader>bb "<cmd>Telescope buffers previewer=false<cr>")
 (remap :n :<leader>bd "<cmd>bdel<cr>")
 (remap :n :<leader>bD "<cmd>bdel!<cr>")
-(remap :n :<leader>bn "<cmd>new<cr>")
+(remap :n :<leader>bh "<cmd>new<cr>")
 (remap :n :<leader>bv "<cmd>vnew<cr>")
 
+;; Windows.
+(remap :n :<leaer>wd "<cmd>q<cr>")
+(remap :n :<leaer>wD "<cmd>q!<cr>")
+
 ;; Tabs.
-(remap :n :<leader>br "<cmd>tabn<cr>")
-(remap :n :<leader>bc "<cmd>tabp<cr>")
-(remap :n :<leader>bt "<cmd>tabnew<cr>")
+(remap :n :<C-w>T ":tab split<CR>")
+
+(remap :n :<leader>tn "<cmd>tabnext<cr>")
+(remap :n :<leader>tp "<cmd>tabprev<cr>")
+(remap :n :<leader>to "<cmd>tabnew<cr>")
+(remap :n :<leader>td "<cmd>tabclose<cr>")
+
+(for [i 1 9]
+  (remap :n (.. :<leader> i) (.. i :gt)))
+
+(remap :n :H "<cmd>tabprev<cr>")
+(remap :n :L "<cmd>tabnext<cr>")
 
 ;; Files.
 (remap :n :<leader>ff "<cmd>Telescope find_files previewer=false<cr>")

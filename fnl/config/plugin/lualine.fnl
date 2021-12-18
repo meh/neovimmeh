@@ -52,8 +52,8 @@
                                     :lualine_b [:branch :diff]
                                     :lualine_c [{1 :filename :path 1}]
                                     :lualine_x [:filetype]
-                                    :lualine_y []
-                                    :lualine_z [:location]}
+                                    :lualine_y [:location]
+                                    :lualine_z []}
                 :tabline {:lualine_a []
                           :lualine_b [{1 :buffers
                                        :show_filename_only false}]
