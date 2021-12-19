@@ -11,6 +11,7 @@
                                                      :node_decremental "grm"}}
                    :ensure_installed "maintained"
                    :matchup {:enable true}
+                   :playground {:enable true}
                    :textobjects {:lsp_interop {:enable true
                                                :border :none
                                                :peek_definition_code {:<leader>df "@function.outer"

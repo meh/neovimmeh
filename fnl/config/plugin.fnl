@@ -97,6 +97,7 @@
                                     :mod :treesitter}
 
   :nvim-treesitter/nvim-treesitter-textobjects {}
+  :nvim-treesitter/playground {}
 
   :Olical/AnsiEsc {}
 
