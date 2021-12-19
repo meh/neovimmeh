@@ -32,7 +32,7 @@ hi Visual        cterm=NONE           ctermfg=white     ctermbg=darkred
 hi VisualNOS     cterm=NONE           ctermfg=white     ctermbg=darkred
 hi MoreMsg       cterm=bold           ctermfg=white     ctermbg=NONE
 hi Question      cterm=bold           ctermfg=white     ctermbg=NONE
-hi WarningMsg    cterm=underline                        ctermbg=NONE
+hi WarningMsg    cterm=bold           ctermfg=255       ctermbg=darkred
 hi WildMenu      cterm=NONE           ctermfg=white     ctermbg=NONE
 hi TabLine       cterm=underline      ctermfg=white     ctermbg=NONE
 hi TabLineSel    cterm=underline      ctermfg=white     ctermbg=darkred
@@ -90,6 +90,16 @@ if &term =~ "linux"
 	hi StatusLine    cterm=NONE ctermfg=black ctermbg=darkred
 	hi StatusLineNC  cterm=NONE ctermfg=white ctermbg=NONE
 endif
+
+" TreeSitter
+hi TSField cterm=NONE ctermfg=NONE ctermbg=NONE
+hi TSProperty cterm=NONE ctermfg=NONE ctermbg=NONE
+hi TSParameter cterm=NONE ctermfg=NONE ctermbg=NONE
+hi TSFuncBuiltin cterm=bold ctermfg=255 ctermbg=NONE
+hi TSTypeBuiltin cterm=bold ctermfg=124 ctermbg=NONE
+
+" Telescope
+hi TelescopeMatching cterm=bold ctermfg=255 ctermbg=NONE
 
 " hop
 hi HopNextKey   cterm=bold ctermfg=196
