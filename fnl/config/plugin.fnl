@@ -33,16 +33,19 @@
   :Olical/nvim-local-fennel {}
 
   ; Productivity
+  :jbyuki/instant.nvim {}
   :Olical/conjure {:branch :develop
                    :mod :conjure}
   :Olical/vim-enmasse {}
+
+  :gpanders/editorconfig.nvim {}
 
   :guns/vim-sexp {}
   :tpope/vim-sexp-mappings-for-regular-people {}
 
   :phaazon/hop.nvim {:mod :hop}
   :kyazdani42/nvim-tree.lua {:mod :tree}
-  
+
   :hrsh7th/nvim-cmp {:requires [:hrsh7th/cmp-nvim-lsp
                                 :L3MON4D3/LuaSnip]
                      :mod :cmp}

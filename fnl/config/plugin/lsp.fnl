@@ -31,6 +31,14 @@
           augroup END"
           false))
 
+      (when client.resolved_capabilities.document_highlight
+        (nvim.command "
+          augroup lsp_document_highlight
+            autocmd! * <buffer>
+            autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+            autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+          augroup END"))
+
       (signature.on_attach {:bind true
                             :hint_enable false
                             :handler_opts {:border :none}}
@@ -47,8 +55,8 @@
     (nvim.buf_set_keymap bufnr :n :<leader>cd "<cmd>lua vim.lsp.buf.definition()<cr>" {})
     (nvim.buf_set_keymap bufnr :n :<leader>cD "<cmd>Telescope lsp_references theme=get_dropdown <cr>" {})
     (nvim.buf_set_keymap bufnr :n :<leader>ch "<cmd>lua vim.lsp.buf.signature_help()<cr>" {})
-    (nvim.buf_set_keymap bufnr :n :<leader>cn "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>" {})
-    (nvim.buf_set_keymap bufnr :n :<leader>cp "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>" {})
+    (nvim.buf_set_keymap bufnr :n :<leader>cn "<cmd>lua vim.diagnostic.goto_next()<cr>" {})
+    (nvim.buf_set_keymap bufnr :n :<leader>cp "<cmd>lua vim.diagnostic.goto_prev()<cr>" {})
     (nvim.buf_set_keymap bufnr :n :<leader>cr "<cmd>lua vim.lsp.buf.rename()<cr>" {})
     (nvim.buf_set_keymap bufnr :n :<leader>cs "<cmd>Telescope lsp_dynamic_workspace_symbols theme=get_dropdown <cr>" {})
     (nvim.buf_set_keymap bufnr :n :<leader>ct "<cmd>lua vim.lsp.buf.type_definition()<cr>" {})
@@ -67,9 +75,13 @@
                                 :capabilities capabilities
                                 :on_attach (or ?on-attach (attach))
                                 :settings {(or ?lsp-settings lsp-name) settings}}))
-(setup [:svelte] {})
+
+(vim.diagnostic.config {:underline false})
+(nvim.command "autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope=\"cursor\"})")
+
+(setup [:svelte] {:format {:enable false}})
 (setup [:tailwindcss] {})
-(setup [:tsserver] {})
+(setup [:tsserver] {:format {:enable false}})
 (setup [:texlab] {})
 (setup [:sumneko_lua :Lua] {})
 (setup [:rnix] {})

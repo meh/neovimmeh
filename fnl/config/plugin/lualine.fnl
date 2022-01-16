@@ -3,9 +3,8 @@
              lualine lualine
              session auto-session-library}})
 
-(def- timer (vim.loop.new_timer))
-
 ; Add a timer to re-render the tabline.
+(def- timer (vim.loop.new_timer))
 (timer:start 0 250 (vim.schedule_wrap (fn [] (nvim.command :redrawtabline))))
 
 (nvim.command "set guioptions-=e

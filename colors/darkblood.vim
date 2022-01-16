@@ -91,12 +91,19 @@ if &term =~ "linux"
 	hi StatusLineNC  cterm=NONE ctermfg=white ctermbg=NONE
 endif
 
+" LSP
+hi LspReferenceRead cterm=bold ctermbg=235
+hi LspReferenceText cterm=bold ctermbg=235
+hi LspReferenceWrite cterm=bold ctermbg=235
+
 " TreeSitter
 hi TSField cterm=NONE ctermfg=NONE ctermbg=NONE
 hi TSProperty cterm=NONE ctermfg=NONE ctermbg=NONE
 hi TSParameter cterm=NONE ctermfg=NONE ctermbg=NONE
 hi TSFuncBuiltin cterm=bold ctermfg=255 ctermbg=NONE
+hi TSFuncMacro cterm=bold ctermfg=255 ctermbg=NONE
 hi TSTypeBuiltin cterm=bold ctermfg=124 ctermbg=NONE
+hi TSInclude cterm=bold ctermfg=255 ctermbg=NONE
 
 " Telescope
 hi TelescopeMatching cterm=bold ctermfg=255 ctermbg=NONE
