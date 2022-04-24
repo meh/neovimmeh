@@ -41,8 +41,8 @@
 (remap :n :<leader>bv "<cmd>vnew<cr>")
 
 ;; Windows.
-(remap :n :<leaer>wd "<cmd>q<cr>")
-(remap :n :<leaer>wD "<cmd>q!<cr>")
+(remap :n :<leader>wd "<cmd>q<cr>")
+(remap :n :<leader>wD "<cmd>q!<cr>")
 
 ;; Tabs.
 (remap :n :<C-w>T ":tab split<CR>")
