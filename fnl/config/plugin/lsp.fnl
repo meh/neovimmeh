@@ -87,7 +87,7 @@
 (setup [:rnix] {})
 (setup [:kotlin_language_server] {})
 (setup [:gopls] {})
-(setup [:clojure-lsp] {})
+(setup [:clojure_lsp] {})
 
 (rust.setup
   {:tools {:hover_actions {:border [[" " "FloatBorder"] [" " "FloatBorder"]
