@@ -31,7 +31,7 @@
           augroup END"
           false))
 
-      (when client.resolved_capabilities.document_highlight
+      (when client.server_capabilities.document_highlight
         (nvim.command "
           augroup lsp_document_highlight
             autocmd! * <buffer>
@@ -65,8 +65,7 @@
     (nvim.buf_set_keymap bufnr :i :<C-a> "<cmd>Telescope lsp_code_actions theme=get_dropdown<cr>" {})
     (nvim.buf_set_keymap bufnr :i :<C-h> "<cmd>lua vim.lsp.buf.signature_help()<cr>" {}))))
 
-(def- capabilities
-  (cmp.update_capabilities (vim.lsp.protocol.make_client_capabilities)))
+(def- capabilities (cmp.default_capabilities))
 
 (def- flags {})
 
@@ -84,7 +83,6 @@
 (setup [:tsserver] {:format {:enable false}})
 (setup [:texlab] {})
 (setup [:sumneko_lua :Lua] {})
-(setup [:rnix] {})
 (setup [:kotlin_language_server] {})
 (setup [:gopls] {})
 (setup [:clojure_lsp] {})
@@ -99,14 +97,15 @@
             :on_attach (attach)
             :settings {:rust-analyzer {
               :assist {:importGroup true
-                 :importMergeBehavior :full
+                 :importMergeBehavior :preserve
                  :importPrefix :by_crate}
               :callInfo {:full true}
               :cargo {:allFeatures true
                       :autoreload true
                       :loadOutDirsFromCheck true}
               :checkOnSave {:enable true
-                            :allFeatures true}
+                            :allFeatures true
+                            :extraArgs ["--target-dir" "/home/meh/.cache/nvim/rust"]}
               :completion {:addCallArgumentSnippets true
                            :addCallParenthesis true
                            :postfix {:enable true}

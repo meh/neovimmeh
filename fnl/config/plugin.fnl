@@ -43,7 +43,7 @@
   :guns/vim-sexp {}
   :tpope/vim-sexp-mappings-for-regular-people {}
 
-  :phaazon/hop.nvim {:mod :hop}
+  :phaazon/hop.nvim {:mod :hop :branch :v2}
   :kyazdani42/nvim-tree.lua {:mod :tree}
 
   :hrsh7th/nvim-cmp {:requires [:hrsh7th/cmp-nvim-lsp
@@ -57,6 +57,7 @@
 
   :neovim/nvim-lspconfig {:requires [:hrsh7th/cmp-nvim-lsp
                                      :ray-x/lsp_signature.nvim
+                                     :nvim-lua/lsp_extensions.nvim
                                      :RRethy/vim-illuminate]
                           :mod :lsp}
   :simrat39/rust-tools.nvim {}

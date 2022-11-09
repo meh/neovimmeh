@@ -11,9 +11,7 @@
 ;             {:key k :cb (config.nvim_tree_callback cb)})
 ;           (a.kv-pairs keys))))
 
-(tree.setup {:update_to_buf_dir {:auto_open false :auto_close true}
-             :tab_open false
-             :update_focused_file {:enable true}
+(tree.setup {:update_focused_file {:enable true}
              :view {:mappings {:custom_only true
                                :list (keymap ["<CR>" "<TAB>"] :edit
                                              ["o"] :cd
