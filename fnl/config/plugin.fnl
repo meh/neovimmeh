@@ -34,8 +34,8 @@
 
   ; Productivity
   :jbyuki/instant.nvim {}
-  :Olical/conjure {:branch :develop
-                   :mod :conjure}
+  ;:Olical/conjure {:branch :develop
+  ;                 :mod :conjure}
   :Olical/vim-enmasse {}
 
   :gpanders/editorconfig.nvim {}
@@ -43,8 +43,8 @@
   :guns/vim-sexp {}
   :tpope/vim-sexp-mappings-for-regular-people {}
 
-  :phaazon/hop.nvim {:mod :hop :branch :v2}
-  :kyazdani42/nvim-tree.lua {:mod :tree}
+  ;:phaazon/hop.nvim {:mod :hop}
+  ;:kyazdani42/nvim-tree.lua {:mod :tree}
 
   :hrsh7th/nvim-cmp {:requires [:hrsh7th/cmp-nvim-lsp
                                 :L3MON4D3/LuaSnip]
@@ -95,8 +95,10 @@
                           :mod :session}
 
   :akinsho/toggleterm.nvim {:mod :term}
+  :jamessan/vim-gnupg {}
 
   ; Visual stuff
+  :sindrets/diffview.nvim {}
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate"
                                     :mod :treesitter}
 
@@ -108,6 +110,9 @@
   :norcalli/nvim-colorizer.lua {}
   :lukas-reineke/indent-blankline.nvim {:mod :blankline}
   :rcarriga/nvim-notify {:mod :notify}
+
+  :SmiteshP/nvim-navic {:mod :navic
+                        :requires [:neovim/nvim-lspconfig]}
 
   :nvim-lualine/lualine.nvim {:requires [:rmagatti/auto-session]
                               :mod :lualine}

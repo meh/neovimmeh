@@ -1,7 +1,43 @@
 (module config.plugins.gitsigns
-  {autoload {gitsigns gitsigns}})
+  {autoload {nvim aniseed.nvim
+             gs gitsigns}})
 
-(gitsigns.setup {:signs {:add {:hl :GitSignsAdd
+(defn on_attach [bufnr]
+  (let [map (fn [mode l r] (nvim.keymap.set mode l r { :buffer bufnr }))]
+    (do
+      (nvim.keymap.set :n "]c" (fn []
+        (if (vim.wo.diff)
+          "]c"
+          (do
+            (nvim.schedule gs.next_hunk)
+            "<Ignore>")))
+        { :buffer bufnr :expr true })
+
+      (nvim.keymap.set :n "[c" (fn []
+        (if (vim.wo.diff)
+          "[c"
+          (do
+            (nvim.schedule gs.prev_hunk)
+            "<Ignore>")))
+        { :buffer bufnr :expr true })
+
+      (map :n "<leader>hs" gs.stage_hunk)
+      (map :n "<leader>hr" gs.reset_hunk)
+      (map :v "<leader>hs" (fn [] (gs.stage_hunk [(vim.fn.line :.) (vim.fn.line :v)])))
+      (map :v "<leader>hr" (fn [] (gs.reset_hunk [(vim.fn.line :.) (vim.fn.line :v)])))
+      (map :n "<leader>hS" gs.stage_buffer)
+      (map :n "<leader>hu" gs.undo_stage_hunk)
+      (map :n "<leader>hR" gs.reset_buffer)
+      (map :n "<leader>hp" gs.preview_hunk)
+      (map :n "<leader>hb" (fn [] (gs.blame_line {:full true})))
+      (map :n "<leader>tb" gs.toggle_current_line_blame)
+      (map :n "<leader>hd" gs.diffthis)
+      (map :n "<leader>hD" (fn [] (gs.diffthis "~")))
+      (map :n "<leader>td" gs.toggle_deleted)
+
+      (map [:o :x] :ih ":<C-U>Gitsigns select_hunk<CR>"))))
+
+(gs {:signs {:add {:hl :GitSignsAdd
                                :text "│"
                                :numhl :GitSignsAddNr
                                :linehl :GitSignsAddLn}
@@ -21,19 +57,5 @@
                                         :text "│ "
                                         :numhl :GitSignsChangeNr
                                         :linehl :GitSignsChangeLn}}
-                 :keymaps {:noremap true
-                           "n <leader>gp" {:expr true
-                                           1 "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'"}
-                           "n <leader>gn" {:expr true
-                                           1 "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'"}
-                           "n <leader>gs" "<cmd>lua require\"gitsigns\".stage_hunk()<CR>"
-                           "v <leader>gs" "<cmd>lua require\"gitsigns\".stage_hunk({vim.fn.line(\".\"), vim.fn.line(\"v\")})<CR>"
-                           "n <leader>gu" "<cmd>lua require\"gitsigns\".undo_stage_hunk()<CR>"
-                           "n <leader>gx" "<cmd>lua require\"gitsigns\".reset_hunk()<CR>"
-                           "v <leader>gx" "<cmd>lua require\"gitsigns\".reset_hunk({vim.fn.line(\".\"), vim.fn.line(\"v\")})<CR>"
-                           "n <leader>gX" "<cmd>lua require\"gitsigns\".reset_buffer()<CR>"
-                           "n <leader>gh" "<cmd>lua require\"gitsigns\".preview_hunk()<CR>"
 
-                           ; Text objects
-                           "o ih" ":<C-U>lua require\"gitsigns.actions\".select_hunk()<CR>"
-                           "x ih" ":<C-U>lua require\"gitsigns.actions\".select_hunk()<CR>"}})
+                 :onattach on_attach})

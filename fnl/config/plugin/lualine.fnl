@@ -57,6 +57,6 @@
                           :lualine_b [{1 :buffers
                                        :show_filename_only false}]
                           :lualine_c []
-                          :lualine_x [:lsp_progress]
+                          :lualine_x [:lsp_progress { 1 :navic :color_correction :dynamic }]
                           :lualine_y [:tabs]
                           :lualine_z [(fn [] (session.current_session_name))]}})

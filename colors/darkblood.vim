@@ -18,6 +18,25 @@ if &term =~ "cancer"
   autocmd VimLeave * :silent !echo -ne "\0235cursor:bg:-\0234"
 endif
 
+"" Enable undercurls in terminal
+let &t_Cs = "\e[4:3m"
+let &t_Ce = "\e[4:0m"
+
+" Enable underline colors (ANSI), see alacritty #4660
+let &t_AU = "\<esc>[58;5;%dm"
+
+" Colorscheme
+if !empty($DISPLAY) && $COLORTERM !~# '^rxvt'
+    " Enable true colors, see :help xterm-true-color
+    if &term =~# '^\(tmux\|screen\|st\|alacritty\)'
+        let &t_8f = "\<esc>[38;2;%lu;%lu;%lum"
+        let &t_8b = "\<esc>[48;2;%lu;%lu;%lum"
+    endif
+
+    " Enable underline colors (RGB), see alacritty #4660
+    let &t_8u = "\<esc>[58;2;%lu;%lu;%lum"
+endif
+
 " General colors
 hi Normal        cterm=NONE           ctermfg=251       ctermbg=black
 hi Directory     cterm=NONE           ctermfg=red       ctermbg=NONE
@@ -97,13 +116,21 @@ hi LspReferenceText cterm=bold ctermbg=235
 hi LspReferenceWrite cterm=bold ctermbg=235
 
 " TreeSitter
-hi TSField cterm=NONE ctermfg=NONE ctermbg=NONE
-hi TSProperty cterm=NONE ctermfg=NONE ctermbg=NONE
-hi TSParameter cterm=NONE ctermfg=NONE ctermbg=NONE
-hi TSFuncBuiltin cterm=bold ctermfg=255 ctermbg=NONE
-hi TSFuncMacro cterm=bold ctermfg=255 ctermbg=NONE
-hi TSTypeBuiltin cterm=bold ctermfg=124 ctermbg=NONE
-hi TSInclude cterm=bold ctermfg=255 ctermbg=NONE
+hi @field cterm=NONE ctermfg=NONE ctermbg=NONE
+hi @property cterm=NONE ctermfg=NONE ctermbg=NONE
+hi @parameter cterm=NONE ctermfg=NONE ctermbg=NONE
+hi @function.builtin cterm=bold ctermfg=255 ctermbg=NONE
+hi @function.macro cterm=bold ctermfg=255 ctermbg=NONE
+hi @constant.builtin cterm=bold ctermfg=124 ctermbg=NONE
+hi @include cterm=bold ctermfg=255 ctermbg=NONE
+hi @variable cterm=NONE ctermfg=NONE ctermbg=NONE
+hi @variable.builtin cterm=bold ctermfg=NONE ctermbg=NONE
+hi @tag cterm=bold ctermfg=white ctermbg=NONE
+hi @namespace cterm=NONE ctermfg=white ctermbg=NONE
+
+hi link @lsp.type.property @property
+hi link @lsp.type.variable @variable
+hi link @lsp.type.namespace @namespace
 
 " Telescope
 hi TelescopeMatching cterm=bold ctermfg=255 ctermbg=NONE
@@ -202,6 +229,9 @@ hi link hsVarSym Statement
 
 " YAML
 hi link yamlBlockMappingKey Function
+
+" indent-blankline
+hi IblScope guisp=darkgrey
 
 " syntax
 hi Comment     cterm=NONE ctermfg=darkgrey ctermbg=NONE

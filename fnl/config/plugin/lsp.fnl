@@ -23,14 +23,6 @@
 (defn attach [?opts]
   (fn [client bufnr]
     (do
-      (when (not= (?. ?opts :format) false)
-        (nvim.exec "
-          augroup lsp_formatting_sync
-            autocmd! * <buffer>
-            autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
-          augroup END"
-          false))
-
       (when client.server_capabilities.document_highlight
         (nvim.command "
           augroup lsp_document_highlight
@@ -77,15 +69,16 @@
 
 (vim.diagnostic.config {:underline false})
 (nvim.command "autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope=\"cursor\"})")
+(nvim.command "autocmd BufWritePre * lua vim.lsp.buf.format()")
 
 (setup [:svelte] {:format {:enable false}})
 (setup [:tailwindcss] {})
 (setup [:tsserver] {:format {:enable false}})
 (setup [:texlab] {})
-(setup [:sumneko_lua :Lua] {})
 (setup [:kotlin_language_server] {})
 (setup [:gopls] {})
 (setup [:clojure_lsp] {})
+(setup [:pyright] {})
 
 (rust.setup
   {:tools {:hover_actions {:border [[" " "FloatBorder"] [" " "FloatBorder"]

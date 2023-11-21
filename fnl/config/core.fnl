@@ -11,6 +11,10 @@
                   :shiftwidth 2
                   :softtabstop 2})
 
+; Disable mouse shit
+(a.merge! nvim.o {:mouse ""})
+
+; Fix tabs for Rust
 (nvim.command "autocmd FileType rust set tabstop=2 shiftwidth=2 softtabstop=2")
 
 ; Undo history.
