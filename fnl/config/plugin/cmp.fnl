@@ -30,7 +30,7 @@
 (cmp.setup {:sources [{:name :nvim_lsp}
                       {:name :buffer}
                       {:name :path}
-                      {:name :luasnip}]
+                      {:name :luasnip :priority 99}]
             :mapping {:<C-u> (cmp.mapping (cmp.mapping.scroll_docs -4) [:i :c])
                       :<C-d> (cmp.mapping (cmp.mapping.scroll_docs 4) [:i :c])
                       :<C-Space> (cmp.mapping (cmp.mapping.complete) [:i :c])
@@ -42,10 +42,15 @@
                       :<C-j> next
                       :<Tab> next
                       :<S-Tab> prev}
+            :sorting {:priority_weight 2
+                      :comparators [cmp.config.compare.order
+                                    cmp.config.recently_used
+                                    cmp.config.locality
+                                    cmp.config.scopes]}
             :snippet {:expand (fn [args] (snip.lsp_expand args.body))}})
 
 (cmp.setup.cmdline [:/ :?] {:mapping (cmp.mapping.preset.cmdline)
                             :sources [{:name :buffer}]})
 
 (cmp.setup.cmdline [::] {:mapping (cmp.mapping.preset.cmdline)
-                         :sources [{:name :path} {:name :buffer}]})
+                         :sources [{:name :path :priority 1} {:name :cmdline :priority 0} {:name :buffer :priority 99}]})

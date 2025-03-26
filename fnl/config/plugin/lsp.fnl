@@ -2,23 +2,9 @@
   {autoload {nvim aniseed.nvim
              a aniseed.core
              lsp lspconfig
-             rust rust-tools
              cmp cmp_nvim_lsp
              signature lsp_signature
              hilight illuminate}})
-
-(defn define-signs
-  [prefix]
-  (let [error (.. prefix "SignError")
-        warn  (.. prefix "SignWarn")
-        info  (.. prefix "SignInfo")
-        hint  (.. prefix "SignHint")]
-  (vim.fn.sign_define error {:text :x :texthl error})
-  (vim.fn.sign_define warn  {:text :! :texthl warn})
-  (vim.fn.sign_define info  {:text :i :texthl info})
-  (vim.fn.sign_define hint  {:text :? :texthl hint})))
-
-(define-signs "Diagnostic")
 
 (defn attach [?opts]
   (fn [client bufnr]
@@ -67,56 +53,53 @@
                                 :on_attach (or ?on-attach (attach))
                                 :settings {(or ?lsp-settings lsp-name) settings}}))
 
-(vim.diagnostic.config {:underline false})
+(vim.diagnostic.config {:underline false
+                        :signs {:text {vim.diagnostic.severity.ERROR :x
+                                       vim.diagnostic.severity.WARN :!
+                                       vim.diagnostic.severity.INFO :i
+                                       vim.diagnostic.severity.HINT :?}}})
+
 (nvim.command "autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope=\"cursor\"})")
 (nvim.command "autocmd BufWritePre * lua vim.lsp.buf.format()")
 
-(setup [:svelte] {:format {:enable false}})
+(setup [:svelte] {:format {:enable true}})
 (setup [:tailwindcss] {})
-(setup [:tsserver] {:format {:enable false}})
+(setup [:denols] {})
 (setup [:texlab] {})
 (setup [:kotlin_language_server] {})
 (setup [:gopls] {})
 (setup [:clojure_lsp] {})
 (setup [:pyright] {})
-
-(rust.setup
-  {:tools {:hover_actions {:border [[" " "FloatBorder"] [" " "FloatBorder"]
-                                    [" " "FloatBorder"] [" " "FloatBorder"]
-                                    [" " "FloatBorder"] [" " "FloatBorder"]
-                                    [" " "FloatBorder"] [" " "FloatBorder"]]}}
-   :server {:flags flags
-            :capabilities capabilities
-            :on_attach (attach)
-            :settings {:rust-analyzer {
-              :assist {:importGroup true
+(setup [:gleam] {})
+(setup [:rust_analyzer] {:rust-analyzer
+       {:assist {:importGroup true
                  :importMergeBehavior :preserve
                  :importPrefix :by_crate}
-              :callInfo {:full true}
-              :cargo {:allFeatures true
-                      :autoreload true
-                      :loadOutDirsFromCheck true}
-              :checkOnSave {:enable true
-                            :allFeatures true
-                            :extraArgs ["--target-dir" "/home/meh/.cache/nvim/rust"]}
-              :completion {:addCallArgumentSnippets true
-                           :addCallParenthesis true
-                           :postfix {:enable true}
-                           :autoimport {:enable true}}
-              :diagnostics {:enable true
-                            :enableExperimental true
-                            :disabled [:unresolved-proc-macro]}
-              :hoverActions {:enable true
-                             :debug true
-                             :gotoTypeDef true
-                             :implementations true
-                             :run true
-                             :linksInHover true}
-              :lens {:enable true
-                     :debug true
-                     :implementations true
-                     :run true
-                     :methodReferences true
-                     :references true}
-              :notifications {:cargoTomlNotFound true}
-              :procMacro {:enable true}}}}})
+        :callInfo {:full true}
+        :cargo {:allFeatures true
+                :autoreload true
+                :loadOutDirsFromCheck true}
+        :checkOnSave {:enable true
+                      :allFeatures true
+                      :extraArgs ["--target-dir" "/home/meh/.cache/nvim/rust"]}
+        :completion {:addCallArgumentSnippets true
+                     :addCallParenthesis true
+                     :postfix {:enable true}
+                     :autoimport {:enable true}}
+        :diagnostics {:enable true
+                      :enableExperimental true
+                      :disabled [:unresolved-proc-macro]}
+        :hoverActions {:enable true
+                       :debug true
+                       :gotoTypeDef true
+                       :implementations true
+                       :run true
+                       :linksInHover true}
+        :lens {:enable true
+               :debug true
+               :implementations true
+               :run true
+               :methodReferences true
+               :references true}
+        :notifications {:cargoTomlNotFound true}
+        :procMacro {:enable true}}})

@@ -26,7 +26,7 @@
 (use
   :wbthomason/packer.nvim {}
   :nvim-lua/plenary.nvim {}
-  :liuchengxu/vim-better-default {}
+  ;:liuchengxu/vim-better-default {}
 
   ; Fennel
   :Olical/aniseed {:branch :develop}
@@ -44,7 +44,6 @@
   :tpope/vim-sexp-mappings-for-regular-people {}
 
   ;:phaazon/hop.nvim {:mod :hop}
-  ;:kyazdani42/nvim-tree.lua {:mod :tree}
 
   :hrsh7th/nvim-cmp {:requires [:hrsh7th/cmp-nvim-lsp
                                 :L3MON4D3/LuaSnip]
@@ -55,12 +54,13 @@
   :hrsh7th/cmp-cmdline {}
   :L3MON4D3/LuaSnip {}
 
+  :pmizio/typescript-tools.nvim {:requires [:nvim-lua/plenary.nvim :neovim/nvim-lspconfig]}
+
   :neovim/nvim-lspconfig {:requires [:hrsh7th/cmp-nvim-lsp
                                      :ray-x/lsp_signature.nvim
                                      :nvim-lua/lsp_extensions.nvim
                                      :RRethy/vim-illuminate]
                           :mod :lsp}
-  :simrat39/rust-tools.nvim {}
 
   :universal-ctags/ctags {}
 
@@ -68,6 +68,8 @@
   :nvim-telescope/telescope-fzf-native.nvim {:requires [:nvim-lua/plenary.nvim]
                                              :run :make}
   :nvim-telescope/telescope-ui-select.nvim {}
+  :stevearc/oil.nvim {:mod :oil}
+  :kyazdani42/nvim-tree.lua {:mod :tree}
 
   :lewis6991/gitsigns.nvim {:requires [:nvim-lua/plenary.nvim]
                             :mod :gitsigns}
@@ -87,12 +89,13 @@
 
   :AckslD/nvim-neoclip.lua {:mod :neoclip}
 
-  :mfussenegger/nvim-dap {:mod :dap}
+  :nvim-neotest/nvim-nio {}
+  :mfussenegger/nvim-dap {:requires [:nvim-neotest/nvim-nio]
+                          :mod :dap}
   :rcarriga/nvim-dap-ui {:requires [:mfussenegger/nvim-dap]
                          :mod :dap-ui}
 
-  :rmagatti/session-lens {:requires [:rmagatti/auto-session :nvim-telescope/telescope.nvim]
-                          :mod :session}
+  :rmagatti/auto-session {}
 
   :akinsho/toggleterm.nvim {:mod :term}
   :jamessan/vim-gnupg {}
@@ -102,7 +105,7 @@
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate"
                                     :mod :treesitter}
 
-  :nvim-treesitter/nvim-treesitter-textobjects {}
+  :nvim-treesitter/nvim-treesitter-textobjects {:requires [:nvim-treesitter/nvim-treesitter]}
   :nvim-treesitter/playground {}
 
   :Olical/AnsiEsc {}

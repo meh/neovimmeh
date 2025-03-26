@@ -7,9 +7,10 @@ endif
 let g:colors_name = "darkblood"
 
 " make stuff more readable
-set fillchars=stl:-,stlnc:-,vert:│,fold:\ 
-set listchars=tab:·\ ,trail:░,extends:»,precedes:«
+set fillchars=stl:\ ,stlnc:\ ,vert:│,fold:\ 
+set listchars=tab:·\ ,trail:░,extends:»,precedes:«,eol:\ 
 set list
+set notermguicolors
 
 if &term =~ "cancer"
   silent !echo -ne "\0235cursor:bg:\#404040\0234"
@@ -40,41 +41,43 @@ endif
 " General colors
 hi Normal        cterm=NONE           ctermfg=251       ctermbg=black
 hi Directory     cterm=NONE           ctermfg=red       ctermbg=NONE
-hi ErrorMsg      cterm=NONE           ctermfg=darkred   ctermbg=NONE
+hi ErrorMsg      cterm=NONE           ctermfg=124   ctermbg=NONE
 hi NonText       cterm=NONE           ctermfg=darkgray  ctermbg=NONE
 hi Whitespace    cterm=NONE           ctermfg=236       ctermbg=NONE
 hi SpecialKey    cterm=NONE           ctermfg=236       ctermbg=NONE
 hi LineNr        cterm=NONE           ctermfg=darkgrey  ctermbg=NONE
-hi IncSearch     cterm=bold           ctermfg=232       ctermbg=darkred
-hi Search        cterm=bold           ctermfg=232       ctermbg=darkred
-hi Visual        cterm=NONE           ctermfg=white     ctermbg=darkred
-hi VisualNOS     cterm=NONE           ctermfg=white     ctermbg=darkred
+hi IncSearch     cterm=bold           ctermfg=232       ctermbg=124
+hi Search        cterm=bold           ctermfg=232       ctermbg=124
+hi Visual        cterm=NONE           ctermfg=white     ctermbg=124
+hi VisualNOS     cterm=NONE           ctermfg=white     ctermbg=124
 hi MoreMsg       cterm=bold           ctermfg=white     ctermbg=NONE
 hi Question      cterm=bold           ctermfg=white     ctermbg=NONE
-hi WarningMsg    cterm=bold           ctermfg=255       ctermbg=darkred
+hi WarningMsg    cterm=bold           ctermfg=255       ctermbg=124
 hi WildMenu      cterm=NONE           ctermfg=white     ctermbg=NONE
 hi TabLine       cterm=underline      ctermfg=white     ctermbg=NONE
-hi TabLineSel    cterm=underline      ctermfg=white     ctermbg=darkred
+hi TabLineSel    cterm=underline      ctermfg=white     ctermbg=124
 hi TabLineFill   cterm=underline      ctermfg=white     ctermbg=NONE
 hi DiffAdd       cterm=NONE           ctermfg=darkgreen ctermbg=NONE guifg=green
 hi DiffChange    cterm=NONE           ctermfg=208       ctermbg=NONE guifg=208
-hi DiffDelete    cterm=NONE           ctermfg=darkred   ctermbg=NONE guifg=192
+hi DiffDelete    cterm=NONE           ctermfg=124   ctermbg=NONE guifg=192
 hi DiffText      cterm=NONE           ctermfg=white     ctermbg=NONE guifg=white
-hi SignColumn    cterm=NONE           ctermfg=darkred   ctermbg=NONE
-hi VertSplit     cterm=NONE           ctermfg=darkred   ctermbg=NONE
+hi SignColumn    cterm=NONE           ctermfg=124   ctermbg=NONE
+hi VertSplit     cterm=NONE           ctermfg=124   ctermbg=NONE
+hi WinSeparator  cterm=NONE           ctermfg=124   ctermbg=NONE
 hi CursorColumn  cterm=NONE           ctermfg=NONE      ctermbg=233
 hi CursorLineNr  cterm=NONE           ctermfg=NONE      ctermbg=233
 hi CursorLine    cterm=NONE           ctermfg=NONE      ctermbg=233
 hi ColorColumn   cterm=NONE           ctermfg=NONE      ctermbg=233
-hi Cursor        cterm=bold           ctermfg=white     ctermbg=darkred
+hi Cursor        cterm=bold           ctermfg=white     ctermbg=124
 hi Title         cterm=bold           ctermfg=white     ctermbg=NONE
 hi Pmenu         cterm=NONE           ctermfg=NONE      ctermbg=233
-hi PmenuSel      cterm=bold           ctermfg=white     ctermbg=darkred
+hi PmenuSel      cterm=bold           ctermfg=white     ctermbg=124
 hi PmenuSbar     cterm=NONE           ctermfg=233       ctermbg=233
-hi PmenuThumb    cterm=NONE           ctermfg=darkred   ctermbg=darkred
-hi Folded        cterm=NONE           ctermfg=darkred   ctermbg=NONE
-hi FoldColumn    cterm=NONE           ctermfg=darkred   ctermbg=NONE
+hi PmenuThumb    cterm=NONE           ctermfg=124   ctermbg=124
+hi Folded        cterm=NONE           ctermfg=124   ctermbg=NONE
+hi FoldColumn    cterm=NONE           ctermfg=124   ctermbg=NONE
 hi MatchParen    cterm=bold,underline ctermfg=255       ctermbg=NONE
+hi NvimString    cterm=NONE           ctermfg=124   ctermbg=NONE
 
 " Diagnostics
 hi DiagnosticError cterm=NONE ctermfg=196       ctermbg=NONE
@@ -84,8 +87,8 @@ hi DiagnosticHint  cterm=NONE ctermfg=darkgrey  ctermbg=NONE
 hi DiagnosticOk    cterm=NONE ctermfg=darkgreen ctermbg=NONE
 
 " Status line
-hi StatusLine    cterm=NONE ctermfg=darkred ctermbg=NONE
-hi StatusLineNC  cterm=NONE ctermfg=darkred ctermbg=black
+hi StatusLine    cterm=NONE ctermfg=124 ctermbg=NONE
+hi StatusLineNC  cterm=NONE ctermfg=124 ctermbg=black
 hi ModeMsg       cterm=bold ctermfg=white   ctermbg=NONE
 
 hi User1 cterm=bold ctermfg=white ctermbg=NONE
@@ -97,16 +100,16 @@ hi User6 cterm=bold ctermfg=160   ctermbg=NONE
 
 " spellcheck
 hi SpellBad      cterm=underline                   ctermbg=NONE
-hi SpellRare     cterm=bold      ctermfg=232       ctermbg=darkred
-hi SpellLocal    cterm=NONE      ctermfg=darkred   ctermbg=NONE
+hi SpellRare     cterm=bold      ctermfg=232       ctermbg=124
+hi SpellLocal    cterm=NONE      ctermfg=124   ctermbg=NONE
 hi SpellCap      cterm=underline ctermfg=251       ctermbg=NONE
 
 " tty
 if &term =~ "linux"
 	hi TabLine       cterm=NONE ctermfg=white ctermbg=NONE
-	hi TabLineSel    cterm=NONE ctermfg=white ctermbg=darkred
+	hi TabLineSel    cterm=NONE ctermfg=white ctermbg=124
 	hi TabLineFill   cterm=NONE ctermfg=white ctermbg=NONE
-	hi StatusLine    cterm=NONE ctermfg=black ctermbg=darkred
+	hi StatusLine    cterm=NONE ctermfg=black ctermbg=124
 	hi StatusLineNC  cterm=NONE ctermfg=white ctermbg=NONE
 endif
 
@@ -114,9 +117,11 @@ endif
 hi LspReferenceRead cterm=bold ctermbg=235
 hi LspReferenceText cterm=bold ctermbg=235
 hi LspReferenceWrite cterm=bold ctermbg=235
+hi NormalFloat cterm=NONE ctermbg=234
 
 " TreeSitter
 hi @field cterm=NONE ctermfg=NONE ctermbg=NONE
+hi @string cterm=NONE ctermfg=124  ctermbg=NONE
 hi @property cterm=NONE ctermfg=NONE ctermbg=NONE
 hi @parameter cterm=NONE ctermfg=NONE ctermbg=NONE
 hi @function.builtin cterm=bold ctermfg=255 ctermbg=NONE
@@ -131,6 +136,7 @@ hi @namespace cterm=NONE ctermfg=white ctermbg=NONE
 hi link @lsp.type.property @property
 hi link @lsp.type.variable @variable
 hi link @lsp.type.namespace @namespace
+hi link @lsp.type.string @string
 
 " Telescope
 hi TelescopeMatching cterm=bold ctermfg=255 ctermbg=NONE
@@ -146,14 +152,14 @@ hi IndentBlanklineContextChar ctermfg=235 ctermbg=235
 hi IndentBlanklineContextStart ctermbg=235
 
 " Taglist
-hi TagListFileName cterm=NONE ctermfg=darkred ctermbg=NONE
+hi TagListFileName cterm=NONE ctermfg=124 ctermbg=NONE
 
 " Tagbar
 hi TagbarVisibilityPublic cterm=bold ctermfg=white ctermbg=NONE
 
 " ctrlp
 hi CtrlPMatch cterm=underline ctermfg=white     ctermbg=NONE
-hi CtrlPStats cterm=NONE ctermfg=black ctermbg=darkred
+hi CtrlPStats cterm=NONE ctermfg=black ctermbg=124
 
 " XML
 hi link xmlEndTag Function
@@ -236,21 +242,22 @@ hi IblScope guisp=darkgrey
 " syntax
 hi Comment     cterm=NONE ctermfg=darkgrey ctermbg=NONE
 hi PreProc     cterm=NONE ctermfg=white    ctermbg=NONE
-hi Constant    cterm=NONE ctermfg=darkred  ctermbg=NONE
+hi Constant    cterm=NONE ctermfg=124  ctermbg=NONE
+hi String      cterm=NONE ctermfg=124  ctermbg=NONE
 hi Type        cterm=NONE ctermfg=124      ctermbg=NONE
 hi Statement   cterm=bold ctermfg=white    ctermbg=NONE
 hi Specifier   cterm=bold ctermfg=124      ctermbg=NONE
 hi Identifier  cterm=NONE ctermfg=124      ctermbg=NONE
 hi Ignore      cterm=NONE ctermfg=darkgray ctermbg=NONE
-hi Special     cterm=NONE ctermfg=darkred  ctermbg=NONE
-hi Error       cterm=NONE ctermfg=white    ctermbg=darkred
-hi Todo        cterm=NONE ctermfg=white    ctermbg=darkred
-hi Underlined  cterm=NONE ctermfg=darkred  ctermbg=NONE
-hi Number      cterm=NONE ctermfg=darkred  ctermbg=NONE
+hi Special     cterm=bold ctermfg=white    ctermbg=NONE
+hi Error       cterm=NONE ctermfg=white    ctermbg=124
+hi Todo        cterm=NONE ctermfg=white    ctermbg=124
+hi Underlined  cterm=NONE ctermfg=124  ctermbg=NONE
+hi Number      cterm=NONE ctermfg=124  ctermbg=NONE
 hi Function    cterm=NONE ctermfg=white    ctermbg=NONE
 hi Define      cterm=bold ctermfg=white    ctermbg=NONE
+hi Operator    cterm=bold ctermfg=white    ctermbg=NONE
 
-hi link String          Constant
 hi link Character       Constant
 hi link Number          Constant
 hi link Boolean         Constant
@@ -260,7 +267,6 @@ hi link Repeat          Statement
 hi link Label           Statement
 hi link Keyword         Statement
 hi link Exception       Statement
-hi link Operator        Statement
 hi link Include         PreProc
 hi link Macro           PreProc
 hi link PreCondit       PreProc
