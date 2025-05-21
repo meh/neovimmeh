@@ -4,3 +4,5 @@
 /autoload/plug.vim.old
 /snapshot.vim
 /lua/
+/plugin/
+/undo/

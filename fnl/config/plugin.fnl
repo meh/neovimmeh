@@ -54,6 +54,9 @@
   :hrsh7th/cmp-cmdline {}
   :L3MON4D3/LuaSnip {}
 
+  :williamboman/mason.nvim {:mod :mason}
+  :jay-babu/mason-nvim-dap.nvim {}
+
   :pmizio/typescript-tools.nvim {:requires [:nvim-lua/plenary.nvim :neovim/nvim-lspconfig]}
 
   :neovim/nvim-lspconfig {:requires [:hrsh7th/cmp-nvim-lsp
@@ -61,6 +64,8 @@
                                      :nvim-lua/lsp_extensions.nvim
                                      :RRethy/vim-illuminate]
                           :mod :lsp}
+  :nvimdev/lspsaga.nvim {:requires [:nvim-treesitter/nvim-treesitter :nvim-tree/nvim-web-devicons]}
+  :stevearc/conform.nvim {}
 
   :universal-ctags/ctags {}
 
@@ -90,10 +95,11 @@
   :AckslD/nvim-neoclip.lua {:mod :neoclip}
 
   :nvim-neotest/nvim-nio {}
-  :mfussenegger/nvim-dap {:requires [:nvim-neotest/nvim-nio]
+  :mfussenegger/nvim-dap {:requires [:nvim-neotest/nvim-nio :rcarriga/nvim-dap-ui :mfussenegger/nvim-dap-python]
                           :mod :dap}
-  :rcarriga/nvim-dap-ui {:requires [:mfussenegger/nvim-dap]
-                         :mod :dap-ui}
+  :rcarriga/nvim-dap-ui {}
+  :mfussenegger/nvim-dap-python {}
+  :theHamsta/nvim-dap-virtual-text {}
 
   :rmagatti/auto-session {}
 

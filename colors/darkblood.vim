@@ -233,6 +233,11 @@ hi link hsModuleStartLabel Keyword
 hi link hsImportLabel Keyword
 hi link hsVarSym Statement
 
+" gitsigns
+hi GitSignsAdd ctermfg=darkgreen
+hi GitSignsChange ctermfg=166
+hi GitSignsDelete ctermfg=darkred
+
 " YAML
 hi link yamlBlockMappingKey Function
 

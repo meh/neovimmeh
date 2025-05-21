@@ -2,7 +2,9 @@
   {autoload {nvim aniseed.nvim
              a aniseed.core
              lsp lspconfig
+             saga lspsaga
              cmp cmp_nvim_lsp
+             conform conform
              signature lsp_signature
              hilight illuminate}})
 
@@ -35,6 +37,8 @@
     (nvim.buf_set_keymap bufnr :n :<leader>ch "<cmd>lua vim.lsp.buf.signature_help()<cr>" {})
     (nvim.buf_set_keymap bufnr :n :<leader>cn "<cmd>lua vim.diagnostic.goto_next()<cr>" {})
     (nvim.buf_set_keymap bufnr :n :<leader>cp "<cmd>lua vim.diagnostic.goto_prev()<cr>" {})
+    (nvim.buf_set_keymap bufnr :n :<leader>ci "<cmd>Lspsaga incoming_calls<cr>" {})
+    (nvim.buf_set_keymap bufnr :n :<leader>co "<cmd>Lspsaga outgoing_calls<cr>" {})
     (nvim.buf_set_keymap bufnr :n :<leader>cr "<cmd>lua vim.lsp.buf.rename()<cr>" {})
     (nvim.buf_set_keymap bufnr :n :<leader>cs "<cmd>Telescope lsp_dynamic_workspace_symbols theme=get_dropdown <cr>" {})
     (nvim.buf_set_keymap bufnr :n :<leader>ct "<cmd>lua vim.lsp.buf.type_definition()<cr>" {})
@@ -47,11 +51,12 @@
 
 (def- flags {})
 
-(defn setup [[lsp-name ?lsp-settings] settings ?on-attach]
-  ((. (. lsp lsp-name) :setup) {:flags flags
-                                :capabilities capabilities
-                                :on_attach (or ?on-attach (attach))
-                                :settings {(or ?lsp-settings lsp-name) settings}}))
+(defn setup [[lsp-name ?lsp-settings] settings ?raw ?on-attach]
+  ((. (. lsp lsp-name) :setup) (a.merge ?raw
+                                        {:flags flags
+                                         :capabilities capabilities
+                                         :on_attach (or ?on-attach (attach))
+                                         :settings {(or ?lsp-settings lsp-name) settings}})))
 
 (vim.diagnostic.config {:underline false
                         :signs {:text {vim.diagnostic.severity.ERROR :x
@@ -59,17 +64,50 @@
                                        vim.diagnostic.severity.INFO :i
                                        vim.diagnostic.severity.HINT :?}}})
 
-(nvim.command "autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope=\"cursor\"})")
-(nvim.command "autocmd BufWritePre * lua vim.lsp.buf.format()")
+;(nvim.command "autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope=\"cursor\"})")
+;(nvim.command "autocmd BufWritePre * lua vim.lsp.buf.format()")
+
+(conform.setup {:formatters_by_ft {:lua ["stylua"]
+                                   :python ["black"]
+                                   :rust ["rustfmt" {:lsp_format :fallback}]
+                                   :javascript ["prettierd" "prettier" {:lsp_format :fallback :stop_at_first true}]}
+               :format_on_save {:timeout_ms 500
+                                :lsp_format "fallback"}})
+
+(saga.setup {:symbol_in_winbar {:enable false}})
 
 (setup [:svelte] {:format {:enable true}})
+(setup [:ts_ls :typescript] {:tsserver {:useSyntaxServer false}
+                              :inlayHints {:includeInlayParameterNameHints "all"
+                                           :includeInlayParameterNameHintsWhenArgumentMatchesName true
+                                           :includeInlayFunctionParameterTypeHints true
+                                           :includeInlayVariableTypeHints true
+                                           :includeInlayVariableTypeHintsWhenTypeMatchesName  true
+                                           :includeInlayPropertyDeclarationTypeHints true
+                                           :includeInlayFunctionLikeReturnTypeHints true
+                                           :includeInlayEnumMemberValueHints true}}
+                {:init_options {:plugins [{:name "@vue/typescript-plugin"
+                                           :location (.. (vim.fn.stdpath "data") "/mason/packages/vue-language-server/node_modules/@vue/language-server")
+                                           :languages ["javascript" "typescript" "vue"]}]}
+                 :filetypes ["typescript" "javascript" "javascriptreact" "typescriptreact" "vue"]
+                 :inlay_hints {:enabled true}})
+(setup [:volar :typescript]
+       {:inlayHints {:enumMemberValues {:enabled true}
+                                  :functionLikeReturnTypes {:enabled true}
+                                  :propertyDeclarationTypes {:enabled true}
+                                  :parameterTypes {:enabled true
+                                                   :suppressWhenArgumentMatchesName true}
+                                  :variableTypes {:enabled true}}}
+       {:init_options {:vue {:hybridMode false}}
+        :inlay_hints {:enabled true}})
+
 (setup [:tailwindcss] {})
 (setup [:denols] {})
 (setup [:texlab] {})
 (setup [:kotlin_language_server] {})
 (setup [:gopls] {})
 (setup [:clojure_lsp] {})
-(setup [:pyright] {})
+(setup [:basedpyright] {})
 (setup [:gleam] {})
 (setup [:rust_analyzer] {:rust-analyzer
        {:assist {:importGroup true

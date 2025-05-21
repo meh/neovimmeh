@@ -2,7 +2,8 @@
   {autoload {nvim aniseed.nvim
              navic nvim-navic}})
 
-(navic.setup {:lsp {:auto_attach true}
+(navic.setup {:lsp {:auto_attach true
+                    :preference ["ts_ls" "volar"]}
               :separator " │ "
               :icons {
                 :File "fs "
