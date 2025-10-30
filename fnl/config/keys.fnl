@@ -102,3 +102,5 @@
 (remap :n :<leader>ps "<cmd>PackerStatus<cr>")
 (remap :n :<leader>pS "<cmd>PackerSync<cr>")
 (remap :n :<leader>pu "<cmd>PackerUpdate<cr>")
+
+(remap :n :<leader>cc "<cmd>CodeCompanionChat<cr>" {})

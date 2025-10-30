@@ -1,18 +1,41 @@
 (module config.plugin.lualine
   {autoload {nvim aniseed.nvim
              lualine lualine
-             session auto-session-library}})
+             session auto-session.lib}})
 
 ; Add a timer to re-render the tabline.
 (def- timer (vim.loop.new_timer))
-(timer:start 0 250 (vim.schedule_wrap (fn [] (nvim.command :redrawtabline))))
+(timer:start 0 500 (vim.schedule_wrap (fn [] (nvim.command :redrawtabline))))
 
 (nvim.command "set guioptions-=e
-               set showtabline=2
-               set sessionoptions+=tabpages,globals")
+               set showtabline=2")
 
-(def- theme {:normal {:a {:bg 244 :fg 255 :gui :bold}
-                      :b {:bg 238 :fg 255 :gui :bold}
+(defn- session []
+  (session.current_session_name true))
+
+(defn- battery-icon [charge]
+  (case [charge]
+    (where [c] (<= c 20)) "\u{e0e0}"
+    (where [c] (<= c 40)) "\u{e0e5}"
+    (where [c] (<= c 60)) "\u{e0e4}"
+    (where [c] (<= c 80)) "\u{e0e3}"
+    (where [c] (<= c 95)) "\u{e0e2}"
+    _                     "\u{e0e1}"))
+
+(defn- battery []
+  (with-open [capacity (io.open "/sys/class/power_supply/BAT0/capacity")]
+    (let [charge (capacity:read :n)]
+      (if (= charge 100) ""
+        (string.format "%d %s" charge (battery-icon charge))))))
+
+(defn- battery-color []
+  (with-open [capacity (io.open "/sys/class/power_supply/BAT0/capacity")]
+    (let [charge (capacity:read :n)]
+      (if (<= charge 20)
+        {:bg 52 :fg 255}))))
+
+(def- theme {:normal {:a {:bg 240 :fg 255 :gui :bold}
+                      :b {:bg 237 :fg 255 :gui :bold}
                       :c {:bg 234 :fg 245}}
              :insert {:a {:bg 124 :fg 255 :gui :bold}
                       :b {:bg 88 :fg 255 :gui :bold}
@@ -59,4 +82,4 @@
                           :lualine_c []
                           :lualine_x [:lsp_progress { 1 :navic :color_correction :dynamic }]
                           :lualine_y [:tabs]
-                          :lualine_z [(fn [] (session.current_session_name))]}})
+                          :lualine_z [session {1 battery :color battery-color}]}})

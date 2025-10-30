@@ -7,9 +7,11 @@
 (a.merge! nvim.o {:updatetime 250})
 (a.merge! nvim.o {:number true
                   :relativenumber true
-                  :signcolumn "auto"
+                  :signcolumn "yes"
                   :statuscolumn "%l%s"
-                  :numberwidth 3})
+                  :winhighlight "Normal:ActiveWindow,NormalNC:InactiveWindow"
+                  :numberwidth 3
+                  :cmdheight 0})
 
 ; Indentation
 (a.merge! nvim.o {:tabstop 2

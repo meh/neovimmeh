@@ -48,6 +48,7 @@ hi SpecialKey    cterm=NONE           ctermfg=236       ctermbg=NONE
 hi LineNr        cterm=NONE           ctermfg=darkgrey  ctermbg=NONE
 hi IncSearch     cterm=bold           ctermfg=232       ctermbg=124
 hi Search        cterm=bold           ctermfg=232       ctermbg=124
+hi CurSearch     cterm=bold           ctermfg=124       ctermbg=255
 hi Visual        cterm=NONE           ctermfg=white     ctermbg=124
 hi VisualNOS     cterm=NONE           ctermfg=white     ctermbg=124
 hi MoreMsg       cterm=bold           ctermfg=white     ctermbg=NONE
@@ -284,3 +285,6 @@ hi link Delimiter       Normal
 hi link SpecialComment  Special
 hi link Debug           Special
 hi link Conditional     Statement
+
+hi ActiveWindow cterm=NONE ctermfg=251 ctermbg=black
+hi InactiveWindow cterm=NONE ctermfg=251 ctermbg=233

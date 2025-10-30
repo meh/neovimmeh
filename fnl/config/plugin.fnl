@@ -54,20 +54,31 @@
   :hrsh7th/cmp-cmdline {}
   :L3MON4D3/LuaSnip {}
 
-  :williamboman/mason.nvim {:mod :mason}
+  :mason-org/mason.nvim {:mod :mason}
   :jay-babu/mason-nvim-dap.nvim {}
 
-  :pmizio/typescript-tools.nvim {:requires [:nvim-lua/plenary.nvim :neovim/nvim-lspconfig]}
+  :pmizio/typescript-tools.nvim {:requires [:nvim-lua/plenary.nvim
+                                            :neovim/nvim-lspconfig]}
 
   :neovim/nvim-lspconfig {:requires [:hrsh7th/cmp-nvim-lsp
                                      :ray-x/lsp_signature.nvim
                                      :nvim-lua/lsp_extensions.nvim
                                      :RRethy/vim-illuminate]
                           :mod :lsp}
-  :nvimdev/lspsaga.nvim {:requires [:nvim-treesitter/nvim-treesitter :nvim-tree/nvim-web-devicons]}
-  :stevearc/conform.nvim {}
+  :olimorris/codecompanion.nvim {:mod :llm
+                                 :requires [:nvim-lua/plenary.nvim
+                                            :nvim-treesitter/nvim-treesitter
+                                            :ravitemer/mcphub.nvim
+                                            :banjo/contextfiles.nvim]}
+  :ravitemer/mcphub.nvim {:build "bundled_build.lua"}
+  :nvimdev/lspsaga.nvim {:requires [:nvim-treesitter/nvim-treesitter
+                                    :nvim-tree/nvim-web-devicons]}
+  :stevearc/conform.nvim {:requires [:neovim/nvim-lspconfig]}
 
   :universal-ctags/ctags {}
+
+  ;:OXY2DEV/markview.nvim {:mod :preview}
+  ;:nvim-mini/mini.diff {:mod :minidiff}
 
   :nvim-telescope/telescope.nvim {:mod :telescope}
   :nvim-telescope/telescope-fzf-native.nvim {:requires [:nvim-lua/plenary.nvim]
@@ -101,7 +112,7 @@
   :mfussenegger/nvim-dap-python {}
   :theHamsta/nvim-dap-virtual-text {}
 
-  :rmagatti/auto-session {}
+  :rmagatti/auto-session {:mod :session}
 
   :akinsho/toggleterm.nvim {:mod :term}
   :jamessan/vim-gnupg {}

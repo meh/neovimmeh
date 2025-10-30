@@ -1,7 +1,6 @@
 (module config.plugin.lsp
   {autoload {nvim aniseed.nvim
              a aniseed.core
-             lsp lspconfig
              saga lspsaga
              cmp cmp_nvim_lsp
              conform conform
@@ -29,6 +28,12 @@
     (nvim.buf_set_option bufnr :omnifunc "v:lua.vim.lsp.omnifunc")
 
     ; keybindings
+    (nvim.buf_set_keymap bufnr :n :<leader>si "<cmd>Lspsaga incoming_calls<cr>" {})
+    (nvim.buf_set_keymap bufnr :n :<leader>so "<cmd>Lspsaga outgoing_calls<cr>" {})
+    (nvim.buf_set_keymap bufnr :n :<leader>sO "<cmd>Lspsaga outline<cr>" {})
+    (nvim.buf_set_keymap bufnr :n :<leader>sr "<cmd>Lspsaga rename<cr>" {})
+    (nvim.buf_set_keymap bufnr :n :<leader>sd "<cmd>Lspsaga peek_definition<cr>" {})
+
     (nvim.buf_set_keymap bufnr :n :K "<cmd>lua vim.lsp.buf.hover()<cr>" {})
     (nvim.buf_set_keymap bufnr :n :<leader>clr "<cmd>lua vim.lsp.stop_client(vim.lsp.get_active_clients())<cr>" {})
     (nvim.buf_set_keymap bufnr :n :<leader>ca "<cmd>Telescope lsp_code_actions previewer=false<cr>" {})
@@ -37,8 +42,6 @@
     (nvim.buf_set_keymap bufnr :n :<leader>ch "<cmd>lua vim.lsp.buf.signature_help()<cr>" {})
     (nvim.buf_set_keymap bufnr :n :<leader>cn "<cmd>lua vim.diagnostic.goto_next()<cr>" {})
     (nvim.buf_set_keymap bufnr :n :<leader>cp "<cmd>lua vim.diagnostic.goto_prev()<cr>" {})
-    (nvim.buf_set_keymap bufnr :n :<leader>ci "<cmd>Lspsaga incoming_calls<cr>" {})
-    (nvim.buf_set_keymap bufnr :n :<leader>co "<cmd>Lspsaga outgoing_calls<cr>" {})
     (nvim.buf_set_keymap bufnr :n :<leader>cr "<cmd>lua vim.lsp.buf.rename()<cr>" {})
     (nvim.buf_set_keymap bufnr :n :<leader>cs "<cmd>Telescope lsp_dynamic_workspace_symbols theme=get_dropdown <cr>" {})
     (nvim.buf_set_keymap bufnr :n :<leader>ct "<cmd>lua vim.lsp.buf.type_definition()<cr>" {})
@@ -52,11 +55,11 @@
 (def- flags {})
 
 (defn setup [[lsp-name ?lsp-settings] settings ?raw ?on-attach]
-  ((. (. lsp lsp-name) :setup) (a.merge ?raw
-                                        {:flags flags
-                                         :capabilities capabilities
-                                         :on_attach (or ?on-attach (attach))
-                                         :settings {(or ?lsp-settings lsp-name) settings}})))
+  (vim.lsp.config lsp-name (a.merge ?raw
+                                    {:flags flags
+                                     :capabilities capabilities
+                                     :on_attach (or ?on-attach (attach))
+                                     :settings {(or ?lsp-settings lsp-name) settings}})))
 
 (vim.diagnostic.config {:underline false
                         :signs {:text {vim.diagnostic.severity.ERROR :x
@@ -64,17 +67,22 @@
                                        vim.diagnostic.severity.INFO :i
                                        vim.diagnostic.severity.HINT :?}}})
 
-;(nvim.command "autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope=\"cursor\"})")
-;(nvim.command "autocmd BufWritePre * lua vim.lsp.buf.format()")
-
-(conform.setup {:formatters_by_ft {:lua ["stylua"]
-                                   :python ["black"]
-                                   :rust ["rustfmt" {:lsp_format :fallback}]
-                                   :javascript ["prettierd" "prettier" {:lsp_format :fallback :stop_at_first true}]}
-               :format_on_save {:timeout_ms 500
+(conform.setup {:formatters_by_ft {:lua {1 "stylua"}
+                                   :python {1 "black"}
+                                   :rust {1 "rustfmt"
+                                          :lsp_format :fallback}
+                                   :nix ["nixfmt"]
+                                   :javascript {1 "prettierd"
+                                                2 "prettier"
+                                                :lsp_format :fallback
+                                                :stop_at_first true}}
+               :display {:chat {:window {:width 0.2}}}
+               :log_level vim.log.levels.DEBUG
+               :format_on_save {:timeout_ms 2000
                                 :lsp_format "fallback"}})
 
-(saga.setup {:symbol_in_winbar {:enable false}})
+(saga.setup {:symbol_in_winbar {:enable false}
+             :lightbulb {:enable false}})
 
 (setup [:svelte] {:format {:enable true}})
 (setup [:ts_ls :typescript] {:tsserver {:useSyntaxServer false}
@@ -107,7 +115,7 @@
 (setup [:kotlin_language_server] {})
 (setup [:gopls] {})
 (setup [:clojure_lsp] {})
-(setup [:basedpyright] {})
+(setup [:basedpyright] {:analysis {:reportMissingTypeStubs false}})
 (setup [:gleam] {})
 (setup [:rust_analyzer] {:rust-analyzer
        {:assist {:importGroup true
