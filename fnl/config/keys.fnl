@@ -1,12 +1,11 @@
-(module config.keys
-  {autoload {nvim aniseed.nvim}})
+(local {: merge!} (require :nfnl.core))
 
-(defn remap [mode lhs rhs]
-  (nvim.set_keymap mode lhs rhs {:silent true
-                                 :noremap true}))
+(fn remap [mode lhs rhs]
+  (vim.keymap.set mode lhs rhs {:silent true
+                                :remap false}))
 
-(set nvim.g.mapleader ";")
-(set nvim.g.maplocalleader "\\")
+(merge! vim.g {:mapleader ";"
+               :maplocalleader "\\"})
 
 ;; Clear highlighting on enter in normal mode.
 (remap :n :<Space> ":noh<CR>")
@@ -102,5 +101,6 @@
 (remap :n :<leader>ps "<cmd>PackerStatus<cr>")
 (remap :n :<leader>pS "<cmd>PackerSync<cr>")
 (remap :n :<leader>pu "<cmd>PackerUpdate<cr>")
+(remap :n :<leader>uu "<cmd>UndotreeToggle<cr>")
 
 (remap :n :<leader>cc "<cmd>CodeCompanionChat<cr>" {})
