@@ -1,18 +1,11 @@
 (local {: merge!} (require :nfnl.core))
-
-(fn remap [mode lhs rhs]
-  (vim.keymap.set mode lhs rhs {:silent true
-                                :remap false}))
+(local {: remap} (require :config.util))
 
 (merge! vim.g {:mapleader ";"
                :maplocalleader "\\"})
 
 ;; Clear highlighting on enter in normal mode.
 (remap :n :<Space> ":noh<CR>")
-
-;; Terminal
-(remap :n :<leader>tt "<cmd>ToggleTerm<CR>")
-(remap :n :<leader>tT "<cmd>ToggleTermToggleAll<CR>")
 
 ;; Redo
 (remap :n :U :<cmd>redo<cr>)
@@ -103,4 +96,24 @@
 (remap :n :<leader>pu "<cmd>PackerUpdate<cr>")
 (remap :n :<leader>uu "<cmd>UndotreeToggle<cr>")
 
-(remap :n :<leader>cc "<cmd>CodeCompanionChat<cr>" {})
+;; LSP
+(remap :n :<leader>si "<cmd>Lspsaga incoming_calls<cr>")
+(remap :n :<leader>so "<cmd>Lspsaga outgoing_calls<cr>")
+(remap :n :<leader>sO "<cmd>Lspsaga outline<cr>")
+(remap :n :<leader>sr "<cmd>Lspsaga rename<cr>")
+(remap :n :<leader>sd "<cmd>Lspsaga peek_definition<cr>")
+(remap :n :K "<cmd>lua vim.lsp.buf.hover()<cr>")
+(remap :n :<leader>clr "<cmd>lua vim.lsp.stop_client(vim.lsp.get_active_clients())<cr>")
+(remap :n :<leader>ca "<cmd>Telescope lsp_code_actions previewer=false<cr>")
+(remap :n :<leader>cd "<cmd>lua vim.lsp.buf.definition()<cr>")
+(remap :n :<leader>cD "<cmd>Telescope lsp_references theme=get_dropdown <cr>")
+(remap :n :<leader>ch "<cmd>lua vim.lsp.buf.signature_help()<cr>")
+(remap :n :<leader>cn "<cmd>lua vim.diagnostic.goto_next()<cr>")
+(remap :n :<leader>cp "<cmd>lua vim.diagnostic.goto_prev()<cr>")
+(remap :n :<leader>cr "<cmd>lua vim.lsp.buf.rename()<cr>")
+(remap :n :<leader>cs "<cmd>Telescope lsp_dynamic_workspace_symbols theme=get_dropdown <cr>")
+(remap :n :<leader>ct "<cmd>lua vim.lsp.buf.type_definition()<cr>")
+(remap :n :<leader>cx "<cmd>TroubleToggle<cr>")
+(remap :x :<leader>ca "<cmd>Telescope lsp_range_code_actions theme=get_dropdown<cr>")
+(remap :i :<C-a> "<cmd>Telescope lsp_code_actions theme=get_dropdown<cr>")
+(remap :i :<C-h> "<cmd>lua vim.lsp.buf.signature_help()<cr>")

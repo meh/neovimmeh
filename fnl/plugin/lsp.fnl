@@ -1,12 +1,14 @@
 (local {: merge} (require :nfnl.core))
+(local {: remap} (require :config.util))
 (local saga (require :lspsaga))
 (local cmp (require :cmp_nvim_lsp))
 (local conform (require :conform))
 (local signature (require :lsp_signature))
 (local hilight (require :illuminate))
 
-(fn attach [?opts]
-  (fn [client bufnr]
+(fn on-attach [args]
+  (let [client (vim.lsp.get_client_by_id args.data.client_id)
+	bufnr args.buf]
     (do
       (when client.server_capabilities.document_highlight
         (nvim.command "
@@ -23,41 +25,44 @@
       (hilight.on_attach client)
 
     ; make omnifunc go via LSP’s completion directly
-    (nvim.buf_set_option bufnr :omnifunc "v:lua.vim.lsp.omnifunc")
+    (vim.api.nvim_buf_set_option bufnr :omnifunc "v:lua.vim.lsp.omnifunc")
 
     ; keybindings
-    (nvim.buf_set_keymap bufnr :n :<leader>si "<cmd>Lspsaga incoming_calls<cr>" {})
-    (nvim.buf_set_keymap bufnr :n :<leader>so "<cmd>Lspsaga outgoing_calls<cr>" {})
-    (nvim.buf_set_keymap bufnr :n :<leader>sO "<cmd>Lspsaga outline<cr>" {})
-    (nvim.buf_set_keymap bufnr :n :<leader>sr "<cmd>Lspsaga rename<cr>" {})
-    (nvim.buf_set_keymap bufnr :n :<leader>sd "<cmd>Lspsaga peek_definition<cr>" {})
+    (remap :n :<leader>si "<cmd>Lspsaga incoming_calls<cr>" {:buffer bufnr})
+    (remap :n :<leader>so "<cmd>Lspsaga outgoing_calls<cr>" {:buffer bufnr})
+    (remap :n :<leader>sO "<cmd>Lspsaga outline<cr>" {:buffer bufnr})
+    (remap :n :<leader>sr "<cmd>Lspsaga rename<cr>" {:buffer bufnr})
+    (remap :n :<leader>sd "<cmd>Lspsaga peek_definition<cr>" {:buffer bufnr})
 
-    (nvim.buf_set_keymap bufnr :n :K "<cmd>lua vim.lsp.buf.hover()<cr>" {})
-    (nvim.buf_set_keymap bufnr :n :<leader>clr "<cmd>lua vim.lsp.stop_client(vim.lsp.get_active_clients())<cr>" {})
-    (nvim.buf_set_keymap bufnr :n :<leader>ca "<cmd>Telescope lsp_code_actions previewer=false<cr>" {})
-    (nvim.buf_set_keymap bufnr :n :<leader>cd "<cmd>lua vim.lsp.buf.definition()<cr>" {})
-    (nvim.buf_set_keymap bufnr :n :<leader>cD "<cmd>Telescope lsp_references theme=get_dropdown <cr>" {})
-    (nvim.buf_set_keymap bufnr :n :<leader>ch "<cmd>lua vim.lsp.buf.signature_help()<cr>" {})
-    (nvim.buf_set_keymap bufnr :n :<leader>cn "<cmd>lua vim.diagnostic.goto_next()<cr>" {})
-    (nvim.buf_set_keymap bufnr :n :<leader>cp "<cmd>lua vim.diagnostic.goto_prev()<cr>" {})
-    (nvim.buf_set_keymap bufnr :n :<leader>cr "<cmd>lua vim.lsp.buf.rename()<cr>" {})
-    (nvim.buf_set_keymap bufnr :n :<leader>cs "<cmd>Telescope lsp_dynamic_workspace_symbols theme=get_dropdown <cr>" {})
-    (nvim.buf_set_keymap bufnr :n :<leader>ct "<cmd>lua vim.lsp.buf.type_definition()<cr>" {})
-    (nvim.buf_set_keymap bufnr :n :<leader>cx "<cmd>TroubleToggle<cr>" {})
-    (nvim.buf_set_keymap bufnr :x :<leader>ca "<cmd>Telescope lsp_range_code_actions theme=get_dropdown<cr>" {})
-    (nvim.buf_set_keymap bufnr :i :<C-a> "<cmd>Telescope lsp_code_actions theme=get_dropdown<cr>" {})
-    (nvim.buf_set_keymap bufnr :i :<C-h> "<cmd>lua vim.lsp.buf.signature_help()<cr>" {}))))
+    (remap :n :K "<cmd>lua vim.lsp.buf.hover()<cr>" {:buffer bufnr})
+    (remap :n :<leader>clr "<cmd>lua vim.lsp.stop_client(vim.lsp.get_active_clients())<cr>" {:buffer bufnr})
+    (remap :n :<leader>ca "<cmd>Telescope lsp_code_actions previewer=false<cr>" {:buffer bufnr})
+    (remap :n :<leader>cd "<cmd>lua vim.lsp.buf.definition()<cr>" {:buffer bufnr})
+    (remap :n :<leader>cD "<cmd>Telescope lsp_references theme=get_dropdown <cr>" {:buffer bufnr})
+    (remap :n :<leader>ch "<cmd>lua vim.lsp.buf.signature_help()<cr>" {:buffer bufnr})
+    (remap :n :<leader>cn "<cmd>lua vim.diagnostic.goto_next()<cr>" {:buffer bufnr})
+    (remap :n :<leader>cp "<cmd>lua vim.diagnostic.goto_prev()<cr>" {:buffer bufnr})
+    (remap :n :<leader>cr "<cmd>lua vim.lsp.buf.rename()<cr>" {:buffer bufnr})
+    (remap :n :<leader>cs "<cmd>Telescope lsp_dynamic_workspace_symbols theme=get_dropdown <cr>" {:buffer bufnr})
+    (remap :n :<leader>ct "<cmd>lua vim.lsp.buf.type_definition()<cr>" {:buffer bufnr})
+    (remap :n :<leader>cx "<cmd>TroubleToggle<cr>" {:buffer bufnr})
+    (remap :x :<leader>ca "<cmd>Telescope lsp_range_code_actions theme=get_dropdown<cr>" {:buffer bufnr})
+    (remap :i :<C-a> "<cmd>Telescope lsp_code_actions theme=get_dropdown<cr>" {:buffer bufnr})
+    (remap :i :<C-h> "<cmd>lua vim.lsp.buf.signature_help()<cr>" {:buffer bufnr}))))
 
 (local capabilities (cmp.default_capabilities))
-
 (local flags {})
+(local lsps {:rust [:rust_analyzer]})
+
+(vim.api.nvim_create_autocmd :LspAttach {:callback on-attach})
 
 (fn setup [[lsp-name ?lsp-settings] settings ?raw ?on-attach]
-  (vim.lsp.config lsp-name (merge ?raw
-                                    {:flags flags
-                                     :capabilities capabilities
-                                     :on_attach (or ?on-attach (attach))
-                                     :settings {(or ?lsp-settings lsp-name) settings}})))
+  (do
+    (vim.lsp.config lsp-name (merge ?raw
+                                      {:flags flags
+                                       :capabilities capabilities
+                                       :settings {(or ?lsp-settings lsp-name) settings}}))
+    (vim.lsp.enable lsp-name)))
 
 (vim.diagnostic.config {:underline false
                         :signs {:text {vim.diagnostic.severity.ERROR :x
@@ -106,7 +111,6 @@
                                   :variableTypes {:enabled true}}}
        {:init_options {:vue {:hybridMode false}}
         :inlay_hints {:enabled true}})
-
 (setup [:tailwindcss] {})
 (setup [:denols] {})
 (setup [:texlab] {})

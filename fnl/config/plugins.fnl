@@ -35,8 +35,6 @@
   :jbyuki/instant.nvim
   :Olical/vim-enmasse
 
-  :gpanders/editorconfig.nvim
-
   :guns/vim-sexp
   :tpope/vim-sexp-mappings-for-regular-people
 
@@ -49,6 +47,7 @@
   :hrsh7th/cmp-buffer
   :hrsh7th/cmp-path
   :hrsh7th/cmp-cmdline
+  :tzachar/cmp-fuzzy-path {:requires [:hrsh7th/nvim-cmp :tzachar/fuzzy.nvim]}
   :L3MON4D3/LuaSnip
 
   :mason-org/mason.nvim {:requires [:jay-babu/mason-nvim-dap.nvim]
@@ -69,6 +68,7 @@
                                  :requires [:nvim-lua/plenary.nvim
                                             :nvim-treesitter/nvim-treesitter
                                             :banjo/contextfiles.nvim]}
+
   :nvimdev/lspsaga.nvim {:requires [:nvim-treesitter/nvim-treesitter
                                     :nvim-tree/nvim-web-devicons]}
   :stevearc/conform.nvim {:requires [:neovim/nvim-lspconfig]}
@@ -122,6 +122,7 @@
   :sindrets/diffview.nvim
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate"
                                     :mod :treesitter}
+
 
   :Olical/AnsiEsc
 

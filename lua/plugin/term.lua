@@ -1,18 +1,26 @@
 -- [nfnl] fnl/plugin/term.fnl
 local _local_1_ = require("config.util")
-local using_monitor_3f = _local_1_["using-monitor?"]
+local on_monitor_3f = _local_1_["on-monitor?"]
+local remap = _local_1_.remap
 local term = require("toggleterm")
-local _2_
-if using_monitor_3f() then
-  _2_ = "vertical"
-else
-  _2_ = "horizontal"
-end
-local function _4_(term0)
-  if using_monitor_3f() then
-    return 120
+local _local_2_ = require("toggleterm.terminal")
+local Terminal = _local_2_.Terminal
+local function terminal()
+  if on_monitor_3f() then
+    return Terminal:new({id = 0, direction = "vertical"})
   else
-    return math.min(50, math.floor((vim.o.lines / 2)))
+    return Terminal:new({id = 0, direction = "horizontal"})
   end
 end
-return term.setup({orientation = _2_, size = _4_})
+local function terminal_size(term0)
+  if on_monitor_3f() then
+    return 120
+  else
+    return 30
+  end
+end
+term.setup({size = terminal_size})
+local function _5_()
+  return terminal():toggle()
+end
+return remap("n", "<leader>tt", _5_)

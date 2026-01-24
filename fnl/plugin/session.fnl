@@ -4,4 +4,6 @@
 
 (auto.setup {:suppressed_dirs ["~/"]
              :git_use_branch_name true
-             :git_auto_restore_on_branch_change true})
+             :git_auto_restore_on_branch_change true
+             :session_lens {:buftypes_to_ignorre [:terminal]
+                            :filetypes_to_ignore [:toggleterm :codecompanion]}})

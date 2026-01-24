@@ -1,19 +1,18 @@
 (local {: assoc : nil?} (require :nfnl.core))
 (local cmp (require :cmp))
-
-(fn has-words-before []
-  (let [[line col] (vim.api.nvim_win_get_cursor 0)]
-    (and (not= col 0)
-         (not (nil? (-?> (vim.buf_get_lines 0 (- 1 line) line true)
-                           (. 1)
-                           (: :sub col col)
-                           (: :match :%s)))))))
+(local context (require :cmp.config.context))
 
 (assoc vim.o :completeopt "menuone,noselect")
 
+(fn has-words-before []
+  (let [(line col) (unpack (vim.api.nvim_win_get_cursor 0))
+        line-content (. (vim.api.nvim_buf_get_lines 0 (- line 1) line true) 1)
+        before-cursor (line-content:sub col col)]
+    (and (not= col 0)
+         (= (before-cursor:match "%s") nil))))
+
 (local next (cmp.mapping (fn [fallback]
                           (if (cmp.visible) (cmp.select_next_item)
-                              (snip.expand_or_jumpable) (snip.expand_or_jump)
                               (has-words-before) (cmp.complete)
                               (fallback)))
                         [:i :s]))
@@ -23,9 +22,12 @@
                               (fallback)))
                         [:i :s]))
 
-(cmp.setup {:sources [{:name :vim_lsp}
-                      {:name :buffer}
-                      {:name :path}]
+(fn enabled []
+  (not (context.in_treesitter_capture :comment)))
+
+(cmp.setup {:sources [{:name :nvim_lsp :priority 8}
+                      {:name :buffer :priority 7}
+                      {:name :fuzzy_path :priority 4}]
             :mapping {:<C-u> (cmp.mapping (cmp.mapping.scroll_docs -4) [:i :c])
                       :<C-d> (cmp.mapping (cmp.mapping.scroll_docs 4) [:i :c])
                       :<C-Space> (cmp.mapping (cmp.mapping.complete) [:i :c])
@@ -41,7 +43,8 @@
                       :comparators [cmp.config.compare.order
                                     cmp.config.recently_used
                                     cmp.config.locality
-                                    cmp.config.scopes]}})
+                                    cmp.config.scopes]}
+	    :enabled enabled})
 
 (cmp.setup.cmdline [:/ :?] {:mapping (cmp.mapping.preset.cmdline)
                             :sources [{:name :buffer}]})

@@ -13,10 +13,10 @@
                :scrollback 100000})
 
 ; Indentation
-(merge! vim.o {:tabstop 2
-               :shiftwidth 2
-               :softtabstop 2
-               :wrap false})
+;(merge! vim.o {:tabstop 2
+;               :shiftwidth 2
+;               :softtabstop 2
+;               :wrap false})
 
 ; Disable mouse shit
 (merge! vim.o {:mouse ""})
@@ -35,5 +35,8 @@
                              :extends "»"
                              :precedes "«"
                              :eol " "}})
+
+(merge! vim.g {:editorconfig true})
+
 (require :config.keys)
 (require :config.plugins)

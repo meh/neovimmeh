@@ -1,16 +1,19 @@
-(local treesitter (require :nvim-treesitter.config))
+(local treesitter (require :nvim-treesitter))
+;(local textobjects (require :nvim-treesitter-textobjects))
 
-(treesitter.setup {:highlight {:enable true}
-                   :indent {:enable true}
-                   :textobjects {:enable true}
-                   :incremental_selection {:enable true
-                                           :keymaps {:init_selection "gnn"
-                                                     :node_incremental "grn"
-                                                     :scope_incremental "grc"
-                                                     :node_decremental "grm"}}
-                   :matchup {:enable true}
-                   :playground {:enable true}
-                   :textobjects {:lsp_interop {:enable true
-                                               :border :none
-                                               :peek_definition_code {:<leader>df "@function.outer"
-                                                                      :<leader>dF "@class.outer"}}}})
+(treesitter.install
+ [:c :cpp :cmake :comment :go :java :javascript :fennel
+  :jsx :lua :ledger :markdown :markdown_inline
+  :python :rust :typescript :tsx :vim :vue :zsh])
+
+;(textobjects:setup)
+; {:select {:lookahead true}
+;  :move {:set_jumps true}})
+
+;; Autocommands
+(vim.api.nvim_create_autocmd
+  :FileType
+  {:pattern [:cpp :cmake :go :java :javascript :javascriptreact :ledger :fennel
+             :lua :markdown :python :rust :typescript :typescriptreact :vue]
+   :callback #(vim.treesitter.start)
+   :group nvimrc_augroup})
