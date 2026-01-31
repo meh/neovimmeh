@@ -1,3 +1,3 @@
 (local hop (require :hop))
 
-(hop.setup {:keys "etovxqpdygéèfblzhckisuran"})
+(hop.setup {:keys "asdfghjkl"})

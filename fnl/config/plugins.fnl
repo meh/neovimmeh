@@ -35,14 +35,11 @@
   :jbyuki/instant.nvim
   :Olical/vim-enmasse
 
-  :guns/vim-sexp
-  :tpope/vim-sexp-mappings-for-regular-people
-
-  ;:phaazon/hop.nvim {:mod :hop}
+  :smoka7/hop.nvim {:mod :hop}
 
   :hrsh7th/nvim-cmp {:requires [:hrsh7th/cmp-nvim-lsp
                                 :L3MON4D3/LuaSnip]
-                     :mod :cmp}
+                     :mod :completion}
 
   :hrsh7th/cmp-buffer
   :hrsh7th/cmp-path
@@ -64,8 +61,11 @@
                                      :stevearc/conform.nvim
                                      :RRethy/vim-illuminate]
                           :mod :lsp}
+
+  :ravitemer/mcphub.nvim
   :olimorris/codecompanion.nvim {:mod :llm
                                  :requires [:nvim-lua/plenary.nvim
+                                            :ravitemer/mcphub.nvim
                                             :nvim-treesitter/nvim-treesitter
                                             :banjo/contextfiles.nvim]}
 
@@ -75,8 +75,8 @@
 
   :universal-ctags/ctags
 
-  ;:OXY2DEV/markview.nvim {:mod :preview}
-  ;:nvim-mini/mini.diff {:mod :minidiff}
+  :OXY2DEV/markview.nvim {:mod :preview}
+  :nvim-mini/mini.diff {:mod :minidiff}
 
   :nvim-telescope/telescope.nvim {:mod :telescope}
   :nvim-telescope/telescope-fzf-native.nvim {:requires [:nvim-lua/plenary.nvim]
@@ -85,12 +85,10 @@
   :stevearc/oil.nvim {:mod :oil}
   :kyazdani42/nvim-tree.lua {:mod :tree}
 
-  :lewis6991/gitsigns.nvim {:requires [:nvim-lua/plenary.nvim]
-                            :mod :gitsigns}
-
   :andymass/vim-matchup
   :folke/trouble.nvim
   :chentau/marks.nvim
+  :yorickpeterse/nvim-window {:mod :window-picker}
 
   :lambdalisue/suda.vim
   :simnalamburt/vim-mundo
@@ -124,6 +122,7 @@
                                     :mod :treesitter}
 
 
+  :hakonharnes/img-clip.nvim
   :Olical/AnsiEsc
 
   :norcalli/nvim-colorizer.lua

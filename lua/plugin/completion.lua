@@ -1,4 +1,4 @@
--- [nfnl] fnl/plugin/cmp.fnl
+-- [nfnl] fnl/plugin/completion.fnl
 local _local_1_ = require("nfnl.core")
 local assoc = _local_1_.assoc
 local nil_3f = _local_1_["nil?"]

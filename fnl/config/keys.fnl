@@ -35,6 +35,7 @@
 ;; Windows.
 (remap :n :<leader>wd "<cmd>q<cr>")
 (remap :n :<leader>wD "<cmd>q!<cr>")
+(remap :n :<leader>ww "<cmd>lua require('nvim-window').pick()<cr>")
 
 ;; Tabs.
 (remap :n :<C-w>T ":tab split<CR>")

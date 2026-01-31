@@ -1,4 +1,5 @@
 (local {: merge!} (require :nfnl.core))
+(local editorconfig (require :editorconfig))
 
 ; Stuff
 (vim.cmd "colorscheme darkblood")
@@ -37,6 +38,10 @@
                              :eol " "}})
 
 (merge! vim.g {:editorconfig true})
+
+(vim.api.nvim_create_autocmd :FileType
+  {:pattern "*"
+   :callback (fn [] (editorconfig.config (vim.fn.bufnr)))})
 
 (require :config.keys)
 (require :config.plugins)

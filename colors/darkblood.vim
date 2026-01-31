@@ -234,10 +234,14 @@ hi link hsModuleStartLabel Keyword
 hi link hsImportLabel Keyword
 hi link hsVarSym Statement
 
-" gitsigns
+" signs
 hi GitSignsAdd ctermfg=darkgreen
 hi GitSignsChange ctermfg=166
 hi GitSignsDelete ctermfg=darkred
+
+hi MiniDiffSignAdd ctermfg=darkgreen
+hi MiniDiffSignChange ctermfg=166
+hi MiniDiffSignDelete ctermfg=darkred
 
 " YAML
 hi link yamlBlockMappingKey Function
