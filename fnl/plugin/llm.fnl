@@ -17,7 +17,8 @@
                   :strategies {:chat {:adapter :claude_code}
                                :inline {:adapter :claude_code}
                                :cmd {:adapter :claude_code}}
-                  :interactions {:chat {:opts {:completion_provider :cmp}}}
+                  :interactions {:chat {:opts {:completion_provider :cmp}
+                                        :slash_commands {:file {:opts {:provider :telescope}}}}}
                   :extensions {:contextfiles {}
                                :mcphub {:callback "mcphub.extensions.codecompanion"
                                          :opts {:make_vars true

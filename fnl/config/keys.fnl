@@ -118,3 +118,4 @@
 (remap :x :<leader>ca "<cmd>Telescope lsp_range_code_actions theme=get_dropdown<cr>")
 (remap :i :<C-a> "<cmd>Telescope lsp_code_actions theme=get_dropdown<cr>")
 (remap :i :<C-h> "<cmd>lua vim.lsp.buf.signature_help()<cr>")
+(remap :n :<leader>lh "<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.get())<cr>")

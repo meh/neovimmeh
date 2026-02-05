@@ -1,6 +1,7 @@
 -- [nfnl] fnl/plugin/lualine.fnl
 local lualine = require("lualine")
 local session = require("auto-session.lib")
+local noice = require("noice")
 local timer = vim.loop.new_timer()
 local function _1_()
   return vim.cmd("redrawtabline")
@@ -153,8 +154,9 @@ local function battery_color()
   end
   return close_handlers_13_(_G.xpcall(_25_, or_32_.traceback))
 end
+local recording = {noice.api.statusline.mode.get, cond = noice.api.statusline.mode.has, color = {fg = "#ffffff"}}
 local theme = {normal = {a = {bg = 240, fg = 255, gui = "bold"}, b = {bg = 237, fg = 255, gui = "bold"}, c = {bg = 234, fg = 245}}, insert = {a = {bg = 124, fg = 255, gui = "bold"}, b = {bg = 88, fg = 255, gui = "bold"}, c = {bg = 52, fg = 255}}, visual = {a = {bg = 255, fg = "black"}, b = {bg = 250, fg = "black"}, c = {bg = 246, fg = "black"}}, replace = {a = {bg = "black", fg = "black"}, b = {bg = "black", fg = "black"}, c = {bg = "black", fg = "black"}}, command = {a = {bg = 237, fg = 255, gui = "bold"}, b = {bg = 235, fg = 255, gui = "bold"}, c = {bg = 232, fg = 245}}, inactive = {a = {bg = 238, fg = 255}, b = {bg = 235, fg = 255}, c = {bg = 232, fg = 245}}}
 local function _34_(str)
   return str:sub(1, 1)
 end
-return lualine.setup({extensions = {"fugitive", "nvim-tree", "quickfix", "toggleterm"}, options = {component_separators = {left = "\226\148\130", right = "\226\148\130"}, section_separators = {left = "", right = ""}, theme = theme, icons_enabled = false}, sections = {lualine_a = {{"mode", fmt = _34_}}, lualine_b = {"branch", "diff"}, lualine_c = {{"diagnostics", symbols = {error = "x", warn = "!", info = "i", hint = "?"}}, {"filename", path = 1}}, lualine_x = {"filetype"}, lualine_y = {"progress"}, lualine_z = {"location"}}, inactive_sections = {lualine_a = {}, lualine_b = {"branch", "diff"}, lualine_c = {{"filename", path = 1}}, lualine_x = {"filetype"}, lualine_y = {"location"}, lualine_z = {}}, tabline = {lualine_a = {}, lualine_b = {{"buffers", show_filename_only = false}}, lualine_c = {}, lualine_x = {"lsp_progress", {"navic", color_correction = "dynamic"}}, lualine_y = {"tabs"}, lualine_z = {session0, {battery, color = battery_color}}}})
+return lualine.setup({extensions = {"fugitive", "nvim-tree", "quickfix", "toggleterm"}, options = {component_separators = {left = "\226\148\130", right = "\226\148\130"}, section_separators = {left = "", right = ""}, theme = theme, icons_enabled = false}, sections = {lualine_a = {{"mode", fmt = _34_}}, lualine_b = {"branch", "diff"}, lualine_c = {{"diagnostics", symbols = {error = "x", warn = "!", info = "i", hint = "?"}}, {"filename", path = 1}}, lualine_x = {recording, "filetype"}, lualine_y = {"progress"}, lualine_z = {"location"}}, inactive_sections = {lualine_a = {}, lualine_b = {"branch", "diff"}, lualine_c = {{"filename", path = 1}}, lualine_x = {"filetype"}, lualine_y = {"location"}, lualine_z = {}}, tabline = {lualine_a = {}, lualine_b = {{"buffers", show_filename_only = false}}, lualine_c = {}, lualine_x = {{"navic", color_correction = "dynamic"}}, lualine_y = {"tabs"}, lualine_z = {session0, {battery, color = battery_color}}}})

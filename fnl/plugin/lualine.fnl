@@ -1,5 +1,6 @@
 (local lualine (require :lualine))
 (local session (require :auto-session.lib))
+(local noice (require :noice))
 
 ; Add a timer to re-render the tabline.
 (local timer (vim.loop.new_timer))
@@ -31,6 +32,11 @@
     (let [charge (capacity:read :n)]
       (if (<= charge 20)
         {:bg 52 :fg 255}))))
+
+(local recording
+  {1 noice.api.statusline.mode.get
+   :cond noice.api.statusline.mode.has
+   :color {:fg "#ffffff"}})
 
 (local theme {:normal {:a {:bg 240 :fg 255 :gui :bold}
                        :b {:bg 237 :fg 255 :gui :bold}
@@ -65,7 +71,7 @@
                                                   :hint :?}}
                                        {1 :filename
                                         :path 1}]
-                           :lualine_x [:filetype]
+                           :lualine_x [recording :filetype]
                            :lualine_y [:progress]
                            :lualine_z [:location]}
                 :inactive_sections {:lualine_a []
@@ -78,6 +84,6 @@
                           :lualine_b [{1 :buffers
                                        :show_filename_only false}]
                           :lualine_c []
-                          :lualine_x [:lsp_progress { 1 :navic :color_correction :dynamic }]
+                          :lualine_x [{ 1 :navic :color_correction :dynamic }]
                           :lualine_y [:tabs]
                           :lualine_z [session {1 battery :color battery-color}]}})

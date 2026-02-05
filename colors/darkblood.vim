@@ -10,7 +10,7 @@ let g:colors_name = "darkblood"
 set fillchars=stl:\ ,stlnc:\ ,vert:│,fold:\ 
 set listchars=tab:·\ ,trail:░,extends:»,precedes:«,eol:\ 
 set list
-set notermguicolors
+set termguicolors
 
 if &term =~ "cancer"
   silent !echo -ne "\0235cursor:bg:\#404040\0234"
@@ -39,100 +39,329 @@ if !empty($DISPLAY) && $COLORTERM !~# '^rxvt'
 endif
 
 " General colors
-hi Normal        cterm=NONE           ctermfg=251       ctermbg=black
-hi Directory     cterm=NONE           ctermfg=red       ctermbg=NONE
-hi ErrorMsg      cterm=NONE           ctermfg=124   ctermbg=NONE
-hi NonText       cterm=NONE           ctermfg=darkgray  ctermbg=NONE
-hi Whitespace    cterm=NONE           ctermfg=236       ctermbg=NONE
-hi SpecialKey    cterm=NONE           ctermfg=236       ctermbg=NONE
-hi LineNr        cterm=NONE           ctermfg=darkgrey  ctermbg=NONE
-hi IncSearch     cterm=bold           ctermfg=232       ctermbg=124
-hi Search        cterm=bold           ctermfg=232       ctermbg=124
-hi CurSearch     cterm=bold           ctermfg=124       ctermbg=255
-hi Visual        cterm=NONE           ctermfg=white     ctermbg=124
-hi VisualNOS     cterm=NONE           ctermfg=white     ctermbg=124
-hi MoreMsg       cterm=bold           ctermfg=white     ctermbg=NONE
-hi Question      cterm=bold           ctermfg=white     ctermbg=NONE
-hi WarningMsg    cterm=bold           ctermfg=255       ctermbg=124
-hi WildMenu      cterm=NONE           ctermfg=white     ctermbg=NONE
-hi TabLine       cterm=underline      ctermfg=white     ctermbg=NONE
-hi TabLineSel    cterm=underline      ctermfg=white     ctermbg=124
-hi TabLineFill   cterm=underline      ctermfg=white     ctermbg=NONE
-hi DiffAdd       cterm=NONE           ctermfg=darkgreen ctermbg=NONE guifg=green
-hi DiffChange    cterm=NONE           ctermfg=208       ctermbg=NONE guifg=208
-hi DiffDelete    cterm=NONE           ctermfg=124   ctermbg=NONE guifg=192
-hi DiffText      cterm=NONE           ctermfg=white     ctermbg=NONE guifg=white
-hi SignColumn    cterm=NONE           ctermfg=124   ctermbg=NONE
-hi VertSplit     cterm=NONE           ctermfg=124   ctermbg=NONE
-hi WinSeparator  cterm=NONE           ctermfg=124   ctermbg=NONE
-hi CursorColumn  cterm=NONE           ctermfg=NONE      ctermbg=233
-hi CursorLineNr  cterm=NONE           ctermfg=NONE      ctermbg=233
-hi CursorLine    cterm=NONE           ctermfg=NONE      ctermbg=233
-hi ColorColumn   cterm=NONE           ctermfg=NONE      ctermbg=233
-hi Cursor        cterm=bold           ctermfg=white     ctermbg=124
-hi Title         cterm=bold           ctermfg=white     ctermbg=NONE
-hi Pmenu         cterm=NONE           ctermfg=NONE      ctermbg=233
-hi PmenuSel      cterm=bold           ctermfg=white     ctermbg=124
-hi PmenuSbar     cterm=NONE           ctermfg=233       ctermbg=233
-hi PmenuThumb    cterm=NONE           ctermfg=124   ctermbg=124
-hi Folded        cterm=NONE           ctermfg=124   ctermbg=NONE
-hi FoldColumn    cterm=NONE           ctermfg=124   ctermbg=NONE
-hi MatchParen    cterm=bold,underline ctermfg=255       ctermbg=NONE
-hi NvimString    cterm=NONE           ctermfg=124   ctermbg=NONE
+hi Normal
+  \ cterm=NONE ctermfg=251 ctermbg=black
+  \ gui=NONE guifg=#c6c6c6 guibg=#000000
+
+hi Directory
+  \ cterm=NONE ctermfg=red ctermbg=NONE
+  \ gui=NONE guifg=#b21818 guibg=NONE
+
+hi ErrorMsg
+  \ cterm=NONE ctermfg=124 ctermbg=NONE
+  \ gui=NONE guifg=#b21818 guibg=NONE
+
+hi NonText
+  \ cterm=NONE ctermfg=darkgray ctermbg=NONE
+  \ gui=NONE guifg=#686868 guibg=NONE
+
+hi Whitespace
+  \ cterm=NONE ctermfg=236 ctermbg=NONE
+  \ gui=NONE guifg=#303030 guibg=NONE
+
+hi SpecialKey
+  \ cterm=NONE ctermfg=236 ctermbg=NONE
+  \ gui=NONE guifg=#303030 guibg=NONE
+
+hi LineNr
+  \ cterm=NONE ctermfg=darkgrey ctermbg=NONE
+  \ gui=NONE guifg=#686868 guibg=NONE
+
+hi IncSearch
+  \ cterm=bold ctermfg=232 ctermbg=124
+  \ gui=bold guifg=#000000 guibg=#b21818
+
+hi Search
+  \ cterm=bold ctermfg=232 ctermbg=124
+  \ gui=bold guifg=#000000 guibg=#b21818
+
+hi CurSearch
+  \ cterm=bold ctermfg=124 ctermbg=255
+  \ gui=bold guifg=#b21818 guibg=#ffffff
+
+hi Visual
+  \ cterm=NONE ctermfg=white ctermbg=124
+  \ gui=NONE guifg=#ffffff guibg=#b21818
+
+hi VisualNOS
+  \ cterm=NONE ctermfg=white ctermbg=124
+  \ gui=NONE guifg=#ffffff guibg=#b21818
+
+hi MoreMsg
+  \ cterm=bold ctermfg=white ctermbg=NONE
+  \ gui=bold guifg=#ffffff guibg=NONE
+
+hi Question
+  \ cterm=bold ctermfg=white ctermbg=NONE
+  \ gui=bold guifg=#ffffff guibg=NONE
+
+hi WarningMsg
+  \ cterm=bold ctermfg=255 ctermbg=124
+  \ gui=bold guifg=#ffffff guibg=#b21818
+
+hi WildMenu
+  \ cterm=NONE ctermfg=white ctermbg=NONE
+  \ gui=NONE guifg=#ffffff guibg=NONE
+
+hi TabLine
+  \ cterm=underline ctermfg=white ctermbg=NONE
+  \ gui=underline guifg=#ffffff guibg=NONE
+
+hi TabLineSel
+  \ cterm=underline ctermfg=white ctermbg=124
+  \ gui=underline guifg=#ffffff guibg=#b21818
+
+hi TabLineFill
+  \ cterm=underline ctermfg=white ctermbg=NONE
+  \ gui=underline guifg=#ffffff guibg=NONE
+
+hi DiffAdd
+  \ cterm=NONE ctermfg=darkgreen ctermbg=NONE
+  \ gui=NONE guifg=#1b8218 guibg=NONE
+
+hi DiffChange
+  \ cterm=NONE ctermfg=208 ctermbg=NONE
+  \ gui=NONE guifg=#be5f00 guibg=NONE
+
+hi DiffDelete
+  \ cterm=NONE ctermfg=124 ctermbg=NONE
+  \ gui=NONE guifg=#b21818 guibg=NONE
+
+hi DiffText
+  \ cterm=NONE ctermfg=white ctermbg=NONE
+  \ gui=NONE guifg=#ffffff guibg=NONE
+
+hi SignColumn
+  \ cterm=NONE ctermfg=124 ctermbg=NONE
+  \ gui=NONE guifg=#b21818 guibg=NONE
+
+hi VertSplit
+  \ cterm=NONE ctermfg=124 ctermbg=NONE
+  \ gui=NONE guifg=#b21818 guibg=NONE
+
+hi WinSeparator
+  \ cterm=NONE ctermfg=124 ctermbg=NONE
+  \ gui=NONE guifg=#b21818 guibg=NONE
+
+hi CursorColumn
+  \ cterm=NONE ctermfg=NONE ctermbg=233
+  \ gui=NONE guifg=NONE guibg=#121212
+
+hi CursorLineNr
+  \ cterm=NONE ctermfg=NONE ctermbg=233
+  \ gui=NONE guifg=NONE guibg=#121212
+
+hi CursorLine
+  \ cterm=NONE ctermfg=NONE ctermbg=233
+  \ gui=NONE guifg=NONE guibg=#121212
+
+hi ColorColumn
+  \ cterm=NONE ctermfg=NONE ctermbg=233
+  \ gui=NONE guifg=NONE guibg=#121212
+
+hi Cursor
+  \ cterm=bold ctermfg=white ctermbg=124
+  \ gui=bold guifg=#ffffff guibg=#b21818
+
+hi Title
+  \ cterm=bold ctermfg=white ctermbg=NONE
+  \ gui=bold guifg=#ffffff guibg=NONE
+
+hi Pmenu
+  \ cterm=NONE ctermfg=NONE ctermbg=233
+  \ gui=NONE guifg=NONE guibg=#121212
+
+hi PmenuSel
+  \ cterm=bold ctermfg=white ctermbg=124
+  \ gui=bold guifg=#ffffff guibg=#b21818
+
+hi PmenuSbar
+  \ cterm=NONE ctermfg=233 ctermbg=233
+  \ gui=NONE guifg=#121212 guibg=#121212
+
+hi PmenuThumb
+  \ cterm=NONE ctermfg=124 ctermbg=124
+  \ gui=NONE guifg=#b21818 guibg=#b21818
+
+hi Folded
+  \ cterm=NONE ctermfg=124 ctermbg=NONE
+  \ gui=NONE guifg=#b21818 guibg=NONE
+
+hi FoldColumn
+  \ cterm=NONE ctermfg=124 ctermbg=NONE
+  \ gui=NONE guifg=#b21818 guibg=NONE
+
+hi MatchParen
+  \ cterm=bold,underline ctermfg=255 ctermbg=NONE
+  \ gui=bold,underline guifg=#ffffff guibg=NONE
+
+hi NvimString
+  \ cterm=NONE ctermfg=124 ctermbg=NONE
+  \ gui=NONE guifg=#b21818 guibg=NONE
 
 " Diagnostics
-hi DiagnosticError cterm=NONE ctermfg=196       ctermbg=NONE
-hi DiagnosticWarn  cterm=NONE ctermfg=208       ctermbg=NONE
-hi DiagnosticInfo  cterm=NONE ctermfg=251       ctermbg=NONE
-hi DiagnosticHint  cterm=NONE ctermfg=darkgrey  ctermbg=NONE
-hi DiagnosticOk    cterm=NONE ctermfg=darkgreen ctermbg=NONE
+hi DiagnosticError
+  \ cterm=NONE ctermfg=196 ctermbg=NONE
+  \ gui=NONE guifg=#ff5454 guibg=NONE
+
+hi DiagnosticWarn
+  \ cterm=NONE ctermfg=208 ctermbg=NONE
+  \ gui=NONE guifg=#be5f00 guibg=NONE
+
+hi DiagnosticInfo
+  \ cterm=NONE ctermfg=251 ctermbg=NONE
+  \ gui=NONE guifg=#c6c6c6 guibg=NONE
+
+hi DiagnosticHint
+  \ cterm=NONE ctermfg=darkgrey ctermbg=NONE
+  \ gui=NONE guifg=#686868 guibg=NONE
+
+hi DiagnosticOk
+  \ cterm=NONE ctermfg=darkgreen ctermbg=NONE
+  \ gui=NONE guifg=#1b8218 guibg=NONE
 
 " Status line
-hi StatusLine    cterm=NONE ctermfg=124 ctermbg=NONE
-hi StatusLineNC  cterm=NONE ctermfg=124 ctermbg=black
-hi ModeMsg       cterm=bold ctermfg=white   ctermbg=NONE
+hi StatusLine
+  \ cterm=NONE ctermfg=124 ctermbg=NONE
+  \ gui=NONE guifg=#b21818 guibg=NONE
 
-hi User1 cterm=bold ctermfg=white ctermbg=NONE
-hi User2 cterm=NONE ctermfg=white ctermbg=NONE
-hi User3 cterm=bold ctermfg=237   ctermbg=NONE
-hi User4 cterm=bold ctermfg=220   ctermbg=NONE
-hi User5 cterm=bold ctermfg=34    ctermbg=NONE
-hi User6 cterm=bold ctermfg=160   ctermbg=NONE
+hi StatusLineNC
+  \ cterm=NONE ctermfg=124 ctermbg=black
+  \ gui=NONE guifg=#b21818 guibg=#000000
+
+hi ModeMsg
+  \ cterm=bold ctermfg=white ctermbg=NONE
+  \ gui=bold guifg=#ffffff guibg=NONE
+
+hi User1
+  \ cterm=bold ctermfg=white ctermbg=NONE
+  \ gui=bold guifg=#ffffff guibg=NONE
+
+hi User2
+  \ cterm=NONE ctermfg=white ctermbg=NONE
+  \ gui=NONE guifg=#ffffff guibg=NONE
+
+hi User3
+  \ cterm=bold ctermfg=237 ctermbg=NONE
+  \ gui=bold guifg=#3a3a3a guibg=NONE
+
+hi User4
+  \ cterm=bold ctermfg=220 ctermbg=NONE
+  \ gui=bold guifg=#ffff54 guibg=NONE
+
+hi User5
+  \ cterm=bold ctermfg=34 ctermbg=NONE
+  \ gui=bold guifg=#54ff54 guibg=NONE
+
+hi User6
+  \ cterm=bold ctermfg=160 ctermbg=NONE
+  \ gui=bold guifg=#b21818 guibg=NONE
 
 " spellcheck
-hi SpellBad      cterm=underline                   ctermbg=NONE
-hi SpellRare     cterm=bold      ctermfg=232       ctermbg=124
-hi SpellLocal    cterm=NONE      ctermfg=124   ctermbg=NONE
-hi SpellCap      cterm=underline ctermfg=251       ctermbg=NONE
+hi SpellBad
+  \ cterm=underline ctermbg=NONE
+  \ gui=underline guibg=NONE
+
+hi SpellRare
+  \ cterm=bold ctermfg=232 ctermbg=124
+  \ gui=bold guifg=#000000 guibg=#b21818
+
+hi SpellLocal
+  \ cterm=NONE ctermfg=124 ctermbg=NONE
+  \ gui=NONE guifg=#b21818 guibg=NONE
+
+hi SpellCap
+  \ cterm=underline ctermfg=251 ctermbg=NONE
+  \ gui=underline guifg=#c6c6c6 guibg=NONE
 
 " tty
 if &term =~ "linux"
-	hi TabLine       cterm=NONE ctermfg=white ctermbg=NONE
-	hi TabLineSel    cterm=NONE ctermfg=white ctermbg=124
-	hi TabLineFill   cterm=NONE ctermfg=white ctermbg=NONE
-	hi StatusLine    cterm=NONE ctermfg=black ctermbg=124
-	hi StatusLineNC  cterm=NONE ctermfg=white ctermbg=NONE
+  hi TabLine
+    \ cterm=NONE ctermfg=white ctermbg=NONE
+    \ gui=NONE guifg=#ffffff guibg=NONE
+
+  hi TabLineSel
+    \ cterm=NONE ctermfg=white ctermbg=124
+    \ gui=NONE guifg=#ffffff guibg=#b21818
+
+	hi TabLineFill
+    \ cterm=NONE ctermfg=white ctermbg=NONE
+    \ gui=NONE guifg=#ffffff guibg=NONE
+
+	hi StatusLine
+    \ cterm=NONE ctermfg=black ctermbg=124
+    \ gui=NONE guifg=#000000 guibg=#b21818
+
+	hi StatusLineNC
+    \ cterm=NONE ctermfg=white ctermbg=NONE
+    \ gui=NONE guifg=#ffffff guibg=NONE
 endif
 
 " LSP
-hi LspReferenceRead cterm=bold ctermbg=235
-hi LspReferenceText cterm=bold ctermbg=235
-hi LspReferenceWrite cterm=bold ctermbg=235
-hi NormalFloat cterm=NONE ctermbg=234
+hi LspReferenceRead
+  \ cterm=bold ctermbg=235
+  \ gui=bold guibg=#1c1c1c
+
+hi LspReferenceText
+  \ cterm=bold ctermbg=235
+  \ gui=bold guibg=#1c1c1c
+
+hi LspReferenceWrite
+  \ cterm=bold ctermbg=235
+  \ gui=bold guibg=#1c1c1c
+
+hi NormalFloat
+  \ cterm=NONE ctermbg=234
+  \ gui=NONE guibg=#1c1c1c
 
 " TreeSitter
-hi @field cterm=NONE ctermfg=NONE ctermbg=NONE
-hi @string cterm=NONE ctermfg=124  ctermbg=NONE
-hi @property cterm=NONE ctermfg=NONE ctermbg=NONE
-hi @parameter cterm=NONE ctermfg=NONE ctermbg=NONE
-hi @function.builtin cterm=bold ctermfg=255 ctermbg=NONE
-hi @function.macro cterm=bold ctermfg=255 ctermbg=NONE
-hi @constant.builtin cterm=bold ctermfg=124 ctermbg=NONE
-hi @include cterm=bold ctermfg=255 ctermbg=NONE
-hi @variable cterm=NONE ctermfg=NONE ctermbg=NONE
-hi @variable.builtin cterm=bold ctermfg=NONE ctermbg=NONE
-hi @tag cterm=bold ctermfg=white ctermbg=NONE
-hi @namespace cterm=NONE ctermfg=white ctermbg=NONE
+hi @field
+  \ cterm=NONE ctermfg=NONE ctermbg=NONE
+  \ gui=NONE guifg=NONE guibg=NONE
+
+hi @string
+  \ cterm=NONE ctermfg=124 ctermbg=NONE
+  \ gui=NONE guifg=#b21818 guibg=NONE
+
+hi @property
+  \ cterm=NONE ctermfg=NONE ctermbg=NONE
+  \ gui=NONE guifg=NONE guibg=NONE
+
+hi @parameter
+  \ cterm=NONE ctermfg=NONE ctermbg=NONE
+  \ gui=NONE guifg=NONE guibg=NONE
+
+hi @function.builtin
+  \ cterm=bold ctermfg=255 ctermbg=NONE
+  \ gui=bold guifg=#ffffff guibg=NONE
+
+hi @function.macro
+  \ cterm=bold ctermfg=255 ctermbg=NONE
+  \ gui=bold guifg=#ffffff guibg=NONE
+
+hi @constant.builtin
+  \ cterm=bold ctermfg=124 ctermbg=NONE
+  \ gui=bold guifg=#b21818 guibg=NONE
+
+hi @include
+  \ cterm=bold ctermfg=255 ctermbg=NONE
+  \ gui=bold guifg=#ffffff guibg=NONE
+
+hi @variable
+  \ cterm=NONE ctermfg=NONE ctermbg=NONE
+  \ gui=NONE guifg=NONE guibg=NONE
+
+hi @variable.builtin
+  \ cterm=bold ctermfg=NONE ctermbg=NONE
+  \ gui=bold guifg=NONE guibg=NONE
+
+hi @tag
+  \ cterm=bold ctermfg=white ctermbg=NONE
+  \ gui=bold guifg=#ffffff guibg=NONE
+
+hi @namespace
+  \ cterm=NONE ctermfg=white ctermbg=NONE
+  \ gui=NONE guifg=#ffffff guibg=NONE
 
 hi link @lsp.type.property @property
 hi link @lsp.type.variable @variable
@@ -140,34 +369,66 @@ hi link @lsp.type.namespace @namespace
 hi link @lsp.type.string @string
 
 " Telescope
-hi TelescopeMatching cterm=bold ctermfg=255 ctermbg=NONE
+hi TelescopeMatching
+  \ cterm=bold ctermfg=255 ctermbg=NONE
+  \ gui=bold guifg=#ffffff guibg=NONE
 
 " hop
-hi HopNextKey   cterm=bold ctermfg=196
-hi HopNextKey1  cterm=bold ctermfg=255
-hi HopNextKey2             ctermfg=255
-hi HopUnmatched cterm=NONE ctermfg=240
+hi HopNextKey
+  \ cterm=bold ctermfg=196
+  \ gui=bold guifg=#ff5454
+
+hi HopNextKey1
+  \ cterm=bold ctermfg=255
+  \ gui=bold guifg=#ffffff
+
+hi HopNextKey2
+  \ ctermfg=255
+  \ guifg=#ffffff
+
+hi HopUnmatched
+  \ cterm=NONE ctermfg=240
+  \ gui=NONE guifg=#585858
 
 " blankline
-hi IndentBlanklineContextChar ctermfg=235 ctermbg=235
-hi IndentBlanklineContextStart ctermbg=235
+hi IndentBlanklineContextChar
+  \ ctermfg=235 ctermbg=235
+  \ guifg=#1c1c1c guibg=#1c1c1c
+
+hi IndentBlanklineContextStart
+  \ ctermbg=235
+  \ guibg=#1c1c1c
 
 " Taglist
-hi TagListFileName cterm=NONE ctermfg=124 ctermbg=NONE
+hi TagListFileName
+  \ cterm=NONE ctermfg=124 ctermbg=NONE
+  \ gui=NONE guifg=#b21818 guibg=NONE
 
 " Tagbar
-hi TagbarVisibilityPublic cterm=bold ctermfg=white ctermbg=NONE
+hi TagbarVisibilityPublic
+  \ cterm=bold ctermfg=white ctermbg=NONE
+  \ gui=bold guifg=#ffffff guibg=NONE
 
 " ctrlp
-hi CtrlPMatch cterm=underline ctermfg=white     ctermbg=NONE
-hi CtrlPStats cterm=NONE ctermfg=black ctermbg=124
+hi CtrlPMatch
+  \ cterm=underline ctermfg=white ctermbg=NONE
+  \ gui=underline guifg=#ffffff guibg=NONE
+
+hi CtrlPStats
+  \ cterm=NONE ctermfg=black ctermbg=124
+  \ gui=NONE guifg=#000000 guibg=#b21818
 
 " XML
 hi link xmlEndTag Function
 
 " Diff
-hi diffIdentical cterm=NONE ctermfg=white ctermbg=NONE
-hi diffAdded     cterm=NONE ctermfg=darkgreen ctermbg=NONE
+hi diffIdentical
+  \ cterm=NONE ctermfg=white ctermbg=NONE
+  \ gui=NONE guifg=#ffffff guibg=NONE
+
+hi diffAdded
+  \ cterm=NONE ctermfg=darkgreen ctermbg=NONE
+  \ gui=NONE guifg=#1b8218 guibg=NONE
 
 " Python
 hi link pythonInclude Statement
@@ -235,38 +496,147 @@ hi link hsImportLabel Keyword
 hi link hsVarSym Statement
 
 " signs
-hi GitSignsAdd ctermfg=darkgreen
-hi GitSignsChange ctermfg=166
-hi GitSignsDelete ctermfg=darkred
+hi GitSignsAdd
+  \ ctermfg=darkgreen
+  \ guifg=#1b8218
 
-hi MiniDiffSignAdd ctermfg=darkgreen
-hi MiniDiffSignChange ctermfg=166
-hi MiniDiffSignDelete ctermfg=darkred
+hi GitSignsChange
+  \ ctermfg=166
+  \ guifg=#be5f00
+
+hi GitSignsDelete
+  \ ctermfg=darkred
+  \ guifg=#b21818
+
+hi MiniDiffSignAdd
+  \ ctermfg=darkgreen
+  \ guifg=#1b8218
+
+hi MiniDiffSignChange
+  \ ctermfg=166
+  \ guifg=#be5f00
+
+hi MiniDiffSignDelete
+  \ ctermfg=darkred
+  \ guifg=#b21818
+
+" noice
+hi NotifyBackground
+  \ ctermbg=black
+  \ guibg=#000000
+
+hi NotifyERRORBorder guifg=#8A1F1F
+hi NotifyWARNBorder guifg=#79491D
+hi NotifyINFOBorder guifg=#4F6752
+hi NotifyDEBUGBorder guifg=#8B8B8B
+hi NotifyTRACEBorder guifg=#4F3552
+hi NotifyERRORIcon guifg=#F70067
+hi NotifyWARNIcon guifg=#F79000
+hi NotifyINFOIcon guifg=#A9FF68
+hi NotifyDEBUGIcon guifg=#8B8B8B
+hi NotifyTRACEIcon guifg=#D484FF
+hi NotifyERRORTitle  guifg=#F70067
+hi NotifyWARNTitle guifg=#F79000
+hi NotifyINFOTitle guifg=#A9FF68
+hi NotifyDEBUGTitle  guifg=#8B8B8B
+hi NotifyTRACETitle  guifg=#D484FF
+hi link NotifyERRORBody Normal
+hi link NotifyWARNBody Normal
+hi link NotifyINFOBody Normal
+hi link NotifyDEBUGBody Normal
+hi link NotifyTRACEBody Normal
+
+hi NoiceCmdlineIcon
+  \ ctermfg=255
+  \ guifg=#ffffff
+
+hi NoiceCmdlineIconSearch
+  \ ctermfg=255 cterm=BOLD
+  \ guifg=#ffffff gui=BOLD
+
+hi NoiceCmdlinePopupBorder
+  \ ctermfg=124 cterm=BOLD
+  \ guifg=#b21818 gui=BOLD
+
+hi NoiceCmdlinePopupTitle
+  \ ctermfg=255 cterm=BOLD
+  \ guifg=#ffffff gui=BOLD
 
 " YAML
 hi link yamlBlockMappingKey Function
 
 " indent-blankline
-hi IblScope guisp=darkgrey
+hi IblScope
+  \ guisp=#686868
 
 " syntax
-hi Comment     cterm=NONE ctermfg=darkgrey ctermbg=NONE
-hi PreProc     cterm=NONE ctermfg=white    ctermbg=NONE
-hi Constant    cterm=NONE ctermfg=124  ctermbg=NONE
-hi String      cterm=NONE ctermfg=124  ctermbg=NONE
-hi Type        cterm=NONE ctermfg=124      ctermbg=NONE
-hi Statement   cterm=bold ctermfg=white    ctermbg=NONE
-hi Specifier   cterm=bold ctermfg=124      ctermbg=NONE
-hi Identifier  cterm=NONE ctermfg=124      ctermbg=NONE
-hi Ignore      cterm=NONE ctermfg=darkgray ctermbg=NONE
-hi Special     cterm=bold ctermfg=white    ctermbg=NONE
-hi Error       cterm=NONE ctermfg=white    ctermbg=124
-hi Todo        cterm=NONE ctermfg=white    ctermbg=124
-hi Underlined  cterm=NONE ctermfg=124  ctermbg=NONE
-hi Number      cterm=NONE ctermfg=124  ctermbg=NONE
-hi Function    cterm=NONE ctermfg=white    ctermbg=NONE
-hi Define      cterm=bold ctermfg=white    ctermbg=NONE
-hi Operator    cterm=bold ctermfg=white    ctermbg=NONE
+hi Comment
+  \ cterm=NONE ctermfg=darkgrey ctermbg=NONE
+  \ gui=NONE guifg=#686868 guibg=NONE
+
+hi PreProc
+  \ cterm=NONE ctermfg=white ctermbg=NONE
+  \ gui=NONE guifg=#ffffff guibg=NONE
+
+hi Constant
+  \ cterm=NONE ctermfg=124 ctermbg=NONE
+  \ gui=NONE guifg=#b21818 guibg=NONE
+
+hi String
+  \ cterm=NONE ctermfg=124 ctermbg=NONE
+  \ gui=NONE guifg=#b21818 guibg=NONE
+
+hi Type
+  \ cterm=NONE ctermfg=124 ctermbg=NONE
+  \ gui=NONE guifg=#b21818 guibg=NONE
+
+hi Statement
+  \ cterm=bold ctermfg=white ctermbg=NONE
+  \ gui=bold guifg=#ffffff guibg=NONE
+
+hi Specifier
+  \ cterm=bold ctermfg=124 ctermbg=NONE
+  \ gui=bold guifg=#b21818 guibg=NONE
+
+hi Identifier
+  \ cterm=NONE ctermfg=124 ctermbg=NONE
+  \ gui=NONE guifg=#b21818 guibg=NONE
+
+hi Ignore
+  \ cterm=NONE ctermfg=darkgray ctermbg=NONE
+  \ gui=NONE guifg=#686868 guibg=NONE
+
+hi Special
+  \ cterm=bold ctermfg=white ctermbg=NONE
+  \ gui=bold guifg=#ffffff guibg=NONE
+
+hi Error
+  \ cterm=NONE ctermfg=white ctermbg=124
+  \ gui=NONE guifg=#ffffff guibg=#b21818
+
+hi Todo
+  \ cterm=NONE ctermfg=white ctermbg=124
+  \ gui=NONE guifg=#ffffff guibg=#b21818
+
+hi Underlined
+  \ cterm=NONE ctermfg=124 ctermbg=NONE
+  \ gui=NONE guifg=#b21818 guibg=NONE
+
+hi Number
+  \ cterm=NONE ctermfg=124 ctermbg=NONE
+  \ gui=NONE guifg=#b21818 guibg=NONE
+
+hi Function
+  \ cterm=NONE ctermfg=white ctermbg=NONE
+  \ gui=NONE guifg=#ffffff guibg=NONE
+
+hi Define
+  \ cterm=bold ctermfg=white ctermbg=NONE
+  \ gui=bold guifg=#ffffff guibg=NONE
+
+hi Operator
+  \ cterm=bold ctermfg=white ctermbg=NONE
+  \ gui=bold guifg=#ffffff guibg=NONE
 
 hi link Character       Constant
 hi link Number          Constant
@@ -290,5 +660,10 @@ hi link SpecialComment  Special
 hi link Debug           Special
 hi link Conditional     Statement
 
-hi ActiveWindow cterm=NONE ctermfg=251 ctermbg=black
-hi InactiveWindow cterm=NONE ctermfg=251 ctermbg=233
+hi ActiveWindow
+  \ cterm=NONE ctermfg=251 ctermbg=black
+  \ gui=NONE guifg=#c6c6c6 guibg=#000000
+
+hi InactiveWindow
+  \ cterm=NONE ctermfg=251 ctermbg=233
+  \ gui=NONE guifg=#c6c6c6 guibg=#121212

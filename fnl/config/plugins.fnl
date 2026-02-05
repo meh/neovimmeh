@@ -37,15 +37,9 @@
 
   :smoka7/hop.nvim {:mod :hop}
 
-  :hrsh7th/nvim-cmp {:requires [:hrsh7th/cmp-nvim-lsp
-                                :L3MON4D3/LuaSnip]
-                     :mod :completion}
-
-  :hrsh7th/cmp-buffer
-  :hrsh7th/cmp-path
-  :hrsh7th/cmp-cmdline
-  :tzachar/cmp-fuzzy-path {:requires [:hrsh7th/nvim-cmp :tzachar/fuzzy.nvim]}
-  :L3MON4D3/LuaSnip
+  :saghen/blink.cmp {:mod :completion
+                     :run "nix run .#build-plugin"
+                     :requires [:xzbdmw/colorful-menu.nvim]}
 
   :mason-org/mason.nvim {:requires [:jay-babu/mason-nvim-dap.nvim]
                          :mod :mason}
@@ -54,8 +48,7 @@
   :pmizio/typescript-tools.nvim {:requires [:nvim-lua/plenary.nvim
                                             :neovim/nvim-lspconfig]}
 
-  :neovim/nvim-lspconfig {:requires [:hrsh7th/cmp-nvim-lsp
-                                     :ray-x/lsp_signature.nvim
+  :neovim/nvim-lspconfig {:requires [:saghen/blink.cmp
                                      :nvim-lua/lsp_extensions.nvim
                                      :nvimdev/lspsaga.nvim
                                      :stevearc/conform.nvim
@@ -117,6 +110,7 @@
   :jamessan/vim-gnupg
 
   ; Visual stuff
+  :RaafatTurki/hex.nvim {:mod :hex}
   :sindrets/diffview.nvim
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate"
                                     :mod :treesitter}
@@ -125,13 +119,16 @@
   :hakonharnes/img-clip.nvim
   :Olical/AnsiEsc
 
+  :folke/noice.nvim {:mod :noice
+                     :requires [:MunifTanjim/nui.nvim
+                                :rcarriga/nvim-notify
+                                :nvim-telescope/telescope.nvim]}
   :norcalli/nvim-colorizer.lua
   :lukas-reineke/indent-blankline.nvim {:mod :blankline}
-  :rcarriga/nvim-notify {:mod :notify}
 
   :SmiteshP/nvim-navic {:mod :navic
                         :requires [:neovim/nvim-lspconfig]}
 
-  :nvim-lualine/lualine.nvim {:requires [:rmagatti/auto-session]
+  :nvim-lualine/lualine.nvim {:requires [:rmagatti/auto-session :folke/noice.nvim]
                               :mod :lualine}
   :arkav/lualine-lsp-progress)

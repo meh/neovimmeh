@@ -1,9 +1,8 @@
 (local {: merge} (require :nfnl.core))
 (local {: remap} (require :config.util))
 (local saga (require :lspsaga))
-(local cmp (require :cmp_nvim_lsp))
+(local blink (require :blink.cmp))
 (local conform (require :conform))
-(local signature (require :lsp_signature))
 (local hilight (require :illuminate))
 
 (fn on-attach [args]
@@ -17,42 +16,13 @@
             autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
             autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
           augroup END"))
-
-      (signature.on_attach {:bind true
-                            :hint_enable false
-                            :handler_opts {:border :none}}
-                           bufnr)
       (hilight.on_attach client)
 
     ; make omnifunc go via LSP’s completion directly
-    (vim.api.nvim_buf_set_option bufnr :omnifunc "v:lua.vim.lsp.omnifunc")
+    (vim.api.nvim_buf_set_option bufnr :omnifunc "v:lua.vim.lsp.omnifunc"))))
 
-    ; keybindings
-    (remap :n :<leader>si "<cmd>Lspsaga incoming_calls<cr>" {:buffer bufnr})
-    (remap :n :<leader>so "<cmd>Lspsaga outgoing_calls<cr>" {:buffer bufnr})
-    (remap :n :<leader>sO "<cmd>Lspsaga outline<cr>" {:buffer bufnr})
-    (remap :n :<leader>sr "<cmd>Lspsaga rename<cr>" {:buffer bufnr})
-    (remap :n :<leader>sd "<cmd>Lspsaga peek_definition<cr>" {:buffer bufnr})
-
-    (remap :n :K "<cmd>lua vim.lsp.buf.hover()<cr>" {:buffer bufnr})
-    (remap :n :<leader>clr "<cmd>lua vim.lsp.stop_client(vim.lsp.get_active_clients())<cr>" {:buffer bufnr})
-    (remap :n :<leader>ca "<cmd>Telescope lsp_code_actions previewer=false<cr>" {:buffer bufnr})
-    (remap :n :<leader>cd "<cmd>lua vim.lsp.buf.definition()<cr>" {:buffer bufnr})
-    (remap :n :<leader>cD "<cmd>Telescope lsp_references theme=get_dropdown <cr>" {:buffer bufnr})
-    (remap :n :<leader>ch "<cmd>lua vim.lsp.buf.signature_help()<cr>" {:buffer bufnr})
-    (remap :n :<leader>cn "<cmd>lua vim.diagnostic.goto_next()<cr>" {:buffer bufnr})
-    (remap :n :<leader>cp "<cmd>lua vim.diagnostic.goto_prev()<cr>" {:buffer bufnr})
-    (remap :n :<leader>cr "<cmd>lua vim.lsp.buf.rename()<cr>" {:buffer bufnr})
-    (remap :n :<leader>cs "<cmd>Telescope lsp_dynamic_workspace_symbols theme=get_dropdown <cr>" {:buffer bufnr})
-    (remap :n :<leader>ct "<cmd>lua vim.lsp.buf.type_definition()<cr>" {:buffer bufnr})
-    (remap :n :<leader>cx "<cmd>TroubleToggle<cr>" {:buffer bufnr})
-    (remap :x :<leader>ca "<cmd>Telescope lsp_range_code_actions theme=get_dropdown<cr>" {:buffer bufnr})
-    (remap :i :<C-a> "<cmd>Telescope lsp_code_actions theme=get_dropdown<cr>" {:buffer bufnr})
-    (remap :i :<C-h> "<cmd>lua vim.lsp.buf.signature_help()<cr>" {:buffer bufnr}))))
-
-(local capabilities (cmp.default_capabilities))
+(local capabilities (blink.get_lsp_capabilities {}))
 (local flags {})
-(local lsps {:rust [:rust_analyzer]})
 
 (vim.api.nvim_create_autocmd :LspAttach {:callback on-attach})
 
@@ -102,15 +72,6 @@
                                            :languages ["javascript" "typescript" "vue"]}]}
                  :filetypes ["typescript" "javascript" "javascriptreact" "typescriptreact" "vue"]
                  :inlay_hints {:enabled true}})
-(setup [:volar :typescript]
-       {:inlayHints {:enumMemberValues {:enabled true}
-                                  :functionLikeReturnTypes {:enabled true}
-                                  :propertyDeclarationTypes {:enabled true}
-                                  :parameterTypes {:enabled true
-                                                   :suppressWhenArgumentMatchesName true}
-                                  :variableTypes {:enabled true}}}
-       {:init_options {:vue {:hybridMode false}}
-        :inlay_hints {:enabled true}})
 (setup [:tailwindcss] {})
 (setup [:denols] {})
 (setup [:texlab] {})
