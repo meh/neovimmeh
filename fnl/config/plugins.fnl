@@ -28,12 +28,15 @@
 (use
   :Olical/nfnl {:cond (fn [load] (if (= vim.bo.filetype "fnl") (load)))}
 
+  :folke/snacks.nvim {:mod :snacks}
   :nvim-lua/plenary.nvim
   ;:liuchengxu/vim-better-default
 
   ; Productivity
   :jbyuki/instant.nvim
   :Olical/vim-enmasse
+  :gbprod/yanky.nvim {:mod :yank
+                      :requires [:kkharji/sqlite.lua]}
 
   :smoka7/hop.nvim {:mod :hop}
 
@@ -45,6 +48,8 @@
                          :mod :mason}
   :jay-babu/mason-nvim-dap.nvim {:requires [:mfussenegger/nvim-dap]}
 
+  ;:mrcjkb/rustaceanvim {:mod :rust}
+  :nvim-flutter/flutter-tools.nvim {:mod :flutter}
   :pmizio/typescript-tools.nvim {:requires [:nvim-lua/plenary.nvim
                                             :neovim/nvim-lspconfig]}
 
@@ -59,6 +64,8 @@
   :olimorris/codecompanion.nvim {:mod :llm
                                  :requires [:nvim-lua/plenary.nvim
                                             :ravitemer/mcphub.nvim
+                                            :ravitemer/codecompanion-history.nvim
+                                            :franco-ruggeri/codecompanion-spinner.nvim
                                             :nvim-treesitter/nvim-treesitter
                                             :banjo/contextfiles.nvim]}
 

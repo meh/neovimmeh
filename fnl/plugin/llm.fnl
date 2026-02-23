@@ -20,6 +20,9 @@
                   :interactions {:chat {:opts {:completion_provider :cmp}
                                         :slash_commands {:file {:opts {:provider :telescope}}}}}
                   :extensions {:contextfiles {}
+                               :spinner {}
+                               :history {
+                                 :enabled true}
                                :mcphub {:callback "mcphub.extensions.codecompanion"
                                          :opts {:make_vars true
                                                 :make_slash_commands true

@@ -58,8 +58,8 @@
    :WARN ""}
   :level 2
   :minimum_width 50
-  :render :minimal
-  :stages :fade
+  :render :wrapped-compact
+  :stages :static
   :time_formats
   {:notification "%T"
    :notification_history "%FT%T"}

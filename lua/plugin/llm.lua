@@ -11,7 +11,7 @@ end
 local function _3_()
   return adapters.extend("openai", {name = "furnace", formatted_name = "Furnace", url = "http://192.168.178.22:11434/v1/chat/completions"})
 end
-companion.setup({display = {chat = {window = {layout = "float"}}}, adapters = {acp = {claude_code = _2_}, http = {furnace = _3_}}, strategies = {chat = {adapter = "claude_code"}, inline = {adapter = "claude_code"}, cmd = {adapter = "claude_code"}}, interactions = {chat = {opts = {completion_provider = "cmp"}, slash_commands = {file = {opts = {provider = "telescope"}}}}}, extensions = {contextfiles = {}, mcphub = {callback = "mcphub.extensions.codecompanion", opts = {make_vars = true, make_slash_commands = true, show_result_in_chat = true}}}})
+companion.setup({display = {chat = {window = {layout = "float"}}}, adapters = {acp = {claude_code = _2_}, http = {furnace = _3_}}, strategies = {chat = {adapter = "claude_code"}, inline = {adapter = "claude_code"}, cmd = {adapter = "claude_code"}}, interactions = {chat = {opts = {completion_provider = "cmp"}, slash_commands = {file = {opts = {provider = "telescope"}}}}}, extensions = {contextfiles = {}, spinner = {}, history = {enabled = true}, mcphub = {callback = "mcphub.extensions.codecompanion", opts = {make_vars = true, make_slash_commands = true, show_result_in_chat = true}}}})
 vim.api.nvim_create_autocmd("FileType", {pattern = "codecompanion", command = "setlocal nonu nornu"})
 local function open_chat()
   if on_monitor_3f() then
