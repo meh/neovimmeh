@@ -1,11 +1,11 @@
 (local {: merge!} (require :nfnl.core))
 (local {: remap} (require :config.util))
 
-(merge! vim.g {:mapleader ";"
+(merge! vim.g {:mapleader " "
                :maplocalleader "\\"})
 
 ;; Clear highlighting on enter in normal mode.
-(remap :n :<Space> ":noh<CR>")
+(remap :n ";;" ":noh<CR>")
 
 ;; Redo
 (remap :n :U :<cmd>redo<cr>)

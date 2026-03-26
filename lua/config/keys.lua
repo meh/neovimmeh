@@ -3,8 +3,8 @@ local _local_1_ = require("nfnl.core")
 local merge_21 = _local_1_["merge!"]
 local _local_2_ = require("config.util")
 local remap = _local_2_.remap
-merge_21(vim.g, {mapleader = ";", maplocalleader = "\\"})
-remap("n", "<Space>", ":noh<CR>")
+merge_21(vim.g, {mapleader = " ", maplocalleader = "\\"})
+remap("n", ";;", ":noh<CR>")
 remap("n", "U", "<cmd>redo<cr>")
 remap("n", "<leader>'", "<cmd>Telescope resume<cr>")
 remap("n", "<leader>bb", "<cmd>Telescope buffers previewer=false<cr>")

@@ -23,12 +23,10 @@
     :<Tab> [:show :fallback]
     :<Enter> [:select_and_accept :fallback]
     :<M-j> [:select_next :fallback]
-    :<M-k> [:select_prev :fallback]
-    :<Esc> [:hide :fallback] }
+    :<M-k> [:select_prev :fallback]}
 
   :cmdline {
-    :keymap {
-      :<Esc> [:hide :fallback]}
+    :keymap {}
     :completion { :ghost_text {:enabled true}}}
 
   :signature {:enabled true}

@@ -562,6 +562,23 @@ hi NoiceCmdlinePopupTitle
   \ ctermfg=255 cterm=BOLD
   \ guifg=#ffffff gui=BOLD
 
+" OpenCode
+hi OpencodeBorder
+  \ ctermfg=darkred
+  \ guifg=#b21818
+
+hi OpencodeToolBorder
+  \ ctermfg=darkred
+  \ guifg=#b21818
+
+hi OpencodeAgentPlan
+  \ ctermfg=255 ctermbg=darkred cterm=BOLD
+  \ guifg=#ffffff guibg=#b21818 gui=BOLD
+
+hi OpencodeContestualAction
+  \ ctermbg=233
+  \ guibg=#121212
+
 " YAML
 hi link yamlBlockMappingKey Function
 

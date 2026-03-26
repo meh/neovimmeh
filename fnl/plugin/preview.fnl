@@ -1,6 +1,4 @@
-(local mkv (require :markview))
+(local markdown (require :render-markdown))
 
-(mkv.setup {:preview {:filetypes [:markdown :codecompanion]
-                      :ignore_buftypes []
-                      :hybrid_modes [:n]
-                      :linewise_hybrid_mode true}})
+(markdown.setup {:anti_conceal {:enabled false}
+   :file_types [:markdown :opencode_output]})

@@ -1,4 +1,4 @@
-(local {: assoc : map : update : get : merge} (require :nfnl.core))
+(local {: contains? : assoc : map : update : get : merge} (require :nfnl.core))
 (local {: plugin} (require :config.util))
 (local pckr (require :pckr))
 
@@ -60,14 +60,30 @@
                                      :RRethy/vim-illuminate]
                           :mod :lsp}
 
+
+  :MeanderingProgrammer/render-markdown.nvim {
+    :mod :preview
+    :requires [:nvim-treesitter/nvim-treesitter]}
+
+  :sudo-tee/opencode.nvim {:mod :llm
+                           :requires [:nvim-lua/plenary.nvim
+                                      :ravitemer/mcphub.nvim
+                                      :saghen/blink.cmp
+                                      :MeanderingProgrammer/render-markdown.nvim
+                                      :nvim-telescope/telescope.nvim
+                                      :meh/rust-oryx]}
+
+
+
   :ravitemer/mcphub.nvim
-  :olimorris/codecompanion.nvim {:mod :llm
-                                 :requires [:nvim-lua/plenary.nvim
-                                            :ravitemer/mcphub.nvim
-                                            :ravitemer/codecompanion-history.nvim
-                                            :franco-ruggeri/codecompanion-spinner.nvim
-                                            :nvim-treesitter/nvim-treesitter
-                                            :banjo/contextfiles.nvim]}
+;  :olimorris/codecompanion.nvim {:mod :llm
+;                                 :requires [:nvim-lua/plenary.nvim
+;                                            :ravitemer/mcphub.nvim
+;                                            :ravitemer/codecompanion-history.nvim
+;                                            :lalitmee/codecompanion-spinners.nvim
+;                                            :folke/noice.nvim
+;                                            :nvim-treesitter/nvim-treesitter
+;                                            :banjo/contextfiles.nvim]}
 
   :nvimdev/lspsaga.nvim {:requires [:nvim-treesitter/nvim-treesitter
                                     :nvim-tree/nvim-web-devicons]}
@@ -75,7 +91,7 @@
 
   :universal-ctags/ctags
 
-  :OXY2DEV/markview.nvim {:mod :preview}
+;  :OXY2DEV/markview.nvim {:mod :preview}
   :nvim-mini/mini.diff {:mod :minidiff}
 
   :nvim-telescope/telescope.nvim {:mod :telescope}

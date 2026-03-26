@@ -22,7 +22,6 @@
                                              :vertical {:mirror false}}
                              :extensions {:ui-select [(themes.get_dropdown)]}
                              :file_sorter sorters.get_fuzzy_file
-                             :file_ignore_patterns []
                              :generic_sorter sorters.get_generic_fuzzy_sorter
                              :winblend 0
                              :border []

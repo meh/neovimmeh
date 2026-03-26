@@ -61,6 +61,7 @@
                 :options {:icons_enabled false
                           :component_separators {:left "│" :right "│"}
                           :section_separators {:left "" :right ""}
+                          :disabled_filetypes [:opencode_output :opencode]
                           :theme theme}
                 :sections {:lualine_a [{1 :mode :fmt (fn [str] (str:sub 1 1))}]
                            :lualine_b [:branch :diff]

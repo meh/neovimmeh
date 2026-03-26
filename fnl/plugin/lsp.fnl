@@ -40,13 +40,14 @@
                                        vim.diagnostic.severity.INFO :i
                                        vim.diagnostic.severity.HINT :?}}})
 
-(conform.setup {:formatters_by_ft {:lua {1 "stylua"}
-                                   :python {1 "black"}
-                                   :rust {1 "rustfmt"
+(conform.setup {:formatters_by_ft {:lua [:stylua]
+                                   :python [:black]
+                                   :rust {1 :rustfmt
                                           :lsp_format :fallback}
-                                   :nix ["nixfmt"]
-                                   :javascript {1 "prettierd"
-                                                2 "prettier"
+                                   :qml [:qmlformat]
+                                   :nix [:nixfmt]
+                                   :javascript {1 :prettierd
+                                                2 :prettier
                                                 :lsp_format :fallback
                                                 :stop_at_first true}}
                :display {:chat {:window {:width 0.2}}}
