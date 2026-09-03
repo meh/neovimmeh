@@ -115,21 +115,22 @@ hi TabLineFill
   \ cterm=underline ctermfg=white ctermbg=NONE
   \ gui=underline guifg=#ffffff guibg=NONE
 
+" Diffs only tint the background, foreground/attributes stay as-is
 hi DiffAdd
-  \ cterm=NONE ctermfg=darkgreen ctermbg=NONE
-  \ gui=NONE guifg=#1b8218 guibg=NONE
+  \ cterm=NONE ctermfg=NONE ctermbg=22
+  \ gui=NONE guifg=NONE guibg=#10240f
 
 hi DiffChange
-  \ cterm=NONE ctermfg=208 ctermbg=NONE
-  \ gui=NONE guifg=#be5f00 guibg=NONE
+  \ cterm=NONE ctermfg=NONE ctermbg=58
+  \ gui=NONE guifg=NONE guibg=#2b1a06
 
 hi DiffDelete
-  \ cterm=NONE ctermfg=124 ctermbg=NONE
-  \ gui=NONE guifg=#b21818 guibg=NONE
+  \ cterm=NONE ctermfg=NONE ctermbg=52
+  \ gui=NONE guifg=NONE guibg=#2a0c0c
 
 hi DiffText
-  \ cterm=NONE ctermfg=white ctermbg=NONE
-  \ gui=NONE guifg=#ffffff guibg=NONE
+  \ cterm=NONE ctermfg=NONE ctermbg=94
+  \ gui=NONE guifg=NONE guibg=#4a2c0a
 
 hi SignColumn
   \ cterm=NONE ctermfg=124 ctermbg=NONE

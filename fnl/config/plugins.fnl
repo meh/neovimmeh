@@ -83,7 +83,6 @@
 
 ;  :OXY2DEV/markview.nvim {:mod :preview}
   :nvim-mini/mini.diff {:mod :minidiff}
-	:sindrets/diffview.nvim {:mod :diffview}
 
   :nvim-telescope/telescope.nvim {:mod :telescope}
   :nvim-telescope/telescope-fzf-native.nvim {:requires [:nvim-lua/plenary.nvim]
@@ -125,7 +124,8 @@
 
   ; Visual stuff
   :RaafatTurki/hex.nvim {:mod :hex}
-  :sindrets/diffview.nvim
+	:dlyongemallo/diffview-plus.nvim {:mod :diffview}
+	:rickhowe/diffchar.vim
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate"
                                     :mod :treesitter}
 
