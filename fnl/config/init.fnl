@@ -14,10 +14,18 @@
                :scrollback 100000})
 
 ; Indentation
-;(merge! vim.o {:tabstop 2
-;               :shiftwidth 2
-;               :softtabstop 2
-;               :wrap false})
+(merge! vim.o {:tabstop 2
+               :shiftwidth 2
+               :softtabstop 2
+               :wrap false})
+
+; Shell
+(merge! vim.o {:shell :nu
+               :shellcmdflag "--stdin --no-newline -c"
+               :shelltemp false
+               :shellpipe "| complete | update stderr { ansi strip } | tee { get stderr | save --force      
+ --raw %s } | into record"
+               :shellredir "o+e> %s"})
 
 ; Disable mouse shit
 (merge! vim.o {:mouse ""})

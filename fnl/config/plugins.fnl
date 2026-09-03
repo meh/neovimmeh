@@ -41,6 +41,7 @@
   :smoka7/hop.nvim {:mod :hop}
 
   :saghen/blink.cmp {:mod :completion
+                     :branch "v1"
                      :run "nix run .#build-plugin"
                      :requires [:xzbdmw/colorful-menu.nvim]}
 
@@ -60,30 +61,19 @@
                                      :RRethy/vim-illuminate]
                           :mod :lsp}
 
+  :FluxxField/bionic-reading.nvim {:mod :bionic}
 
+  :3rd/image.nvim
+  :3rd/diagram.nvim {:requires :3rd/image.nvim}
   :MeanderingProgrammer/render-markdown.nvim {
     :mod :preview
-    :requires [:nvim-treesitter/nvim-treesitter]}
+    :requires [:nvim-treesitter/nvim-treesitter
+               :3rd/image.nvim
+               :3rd/diagram.nvim]}
 
-  :sudo-tee/opencode.nvim {:mod :llm
-                           :requires [:nvim-lua/plenary.nvim
-                                      :ravitemer/mcphub.nvim
-                                      :saghen/blink.cmp
-                                      :MeanderingProgrammer/render-markdown.nvim
-                                      :nvim-telescope/telescope.nvim
-                                      :meh/rust-oryx]}
-
-
-
-  :ravitemer/mcphub.nvim
-;  :olimorris/codecompanion.nvim {:mod :llm
-;                                 :requires [:nvim-lua/plenary.nvim
-;                                            :ravitemer/mcphub.nvim
-;                                            :ravitemer/codecompanion-history.nvim
-;                                            :lalitmee/codecompanion-spinners.nvim
-;                                            :folke/noice.nvim
-;                                            :nvim-treesitter/nvim-treesitter
-;                                            :banjo/contextfiles.nvim]}
+  :alex35mil/pi.nvim {:mod :llm
+                      :requires [:HakonHarnes/img-clip.nvim
+                                 :MeanderingProgrammer/render-markdown.nvim]}
 
   :nvimdev/lspsaga.nvim {:requires [:nvim-treesitter/nvim-treesitter
                                     :nvim-tree/nvim-web-devicons]}
@@ -93,6 +83,7 @@
 
 ;  :OXY2DEV/markview.nvim {:mod :preview}
   :nvim-mini/mini.diff {:mod :minidiff}
+	:sindrets/diffview.nvim {:mod :diffview}
 
   :nvim-telescope/telescope.nvim {:mod :telescope}
   :nvim-telescope/telescope-fzf-native.nvim {:requires [:nvim-lua/plenary.nvim]
@@ -138,6 +129,7 @@
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate"
                                     :mod :treesitter}
 
+  :hylang/vim-hy
 
   :hakonharnes/img-clip.nvim
   :Olical/AnsiEsc

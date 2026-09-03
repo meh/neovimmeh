@@ -30,4 +30,7 @@
     :completion { :ghost_text {:enabled true}}}
 
   :signature {:enabled true}
-  :enabled (fn [] true)})
+  :enabled (fn [] true)
+  :sources {
+    :per_filetype {:pi-chat-prompt [:pi]}
+    :providers {:pi {:name "Pi" :module "pi.completion.blink"}}}})

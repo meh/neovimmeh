@@ -368,6 +368,8 @@ hi link @lsp.type.variable @variable
 hi link @lsp.type.namespace @namespace
 hi link @lsp.type.string @string
 
+hi link graphqlName @namespace
+
 " Telescope
 hi TelescopeMatching
   \ cterm=bold ctermfg=255 ctermbg=NONE
@@ -586,6 +588,28 @@ hi link yamlBlockMappingKey Function
 hi IblScope
   \ guisp=#686868
 
+" render-markdown
+hi RenderMarkdownH1Bg
+  \ cterm=underline,bold ctermfg=white ctermbg=NONE
+  \ gui=underline,bold guifg=white guibg=NONE
+
+hi RenderMarkdownH2Bg
+  \ cterm=bold ctermfg=white ctermbg=NONE
+  \ gui=bold guifg=white guibg=NONE
+
+hi RenderMarkdownH3Bg
+  \ cterm=NONE ctermfg=white ctermbg=NONE
+  \ gui=NONE guifg=white guibg=NONE
+
+hi RenderMarkdownH4Bg
+  \ cterm=NONE ctermfg=252 ctermbg=NONE
+
+hi RenderMarkdownH5Bg
+  \ cterm=NONE ctermfg=249 ctermbg=NONE
+
+hi RenderMarkdownH6Bg
+  \ cterm=NONE ctermfg=246 ctermbg=NONE
+
 " syntax
 hi Comment
   \ cterm=NONE ctermfg=darkgrey ctermbg=NONE
@@ -684,3 +708,28 @@ hi ActiveWindow
 hi InactiveWindow
   \ cterm=NONE ctermfg=251 ctermbg=233
   \ gui=NONE guifg=#c6c6c6 guibg=#121212
+
+" Pi 
+"
+"
+"
+hi PiChatHistoryWinbarTitle
+  \ cterm=NONE ctermfg=red ctermbg=NONE
+  \ gui=NONE guifg=#b21818 guibg=NONE
+
+hi PiUserMessageLabel
+  \ cterm=bold ctermfg=red ctermbg=NONE
+  \ gui=bold guifg=#b21818
+
+hi link PiAgentResponseLabel PiUserMessageLabel
+hi link PiDebugLabel PiUserMessageLabel
+hi link PiStartupLabel PiUserMessageLabel
+hi link PiStartupErrorLabel PiUserMessageLabel
+
+hi PiToolBorder
+  \ cterm=NONE ctermfg=red ctermbg=NONE
+	\ gui=NONE guifg=#b21818 guibg=NONE
+
+hi PiToolStatus
+  \ cterm=NONE ctermfg=darkgreen ctermbg=NONE
+  \ gui=NONE guifg=#1b8218 guibg=NONE

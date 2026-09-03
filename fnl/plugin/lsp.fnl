@@ -44,12 +44,19 @@
                                    :python [:black]
                                    :rust {1 :rustfmt
                                           :lsp_format :fallback}
+                                   :cue [:cue]
                                    :qml [:qmlformat]
                                    :nix [:nixfmt]
+                                   :go [:golines]
                                    :javascript {1 :prettierd
                                                 2 :prettier
                                                 :lsp_format :fallback
                                                 :stop_at_first true}}
+               :formatters {
+                 :cue {
+                   :prepend_args ["fmt"]}
+                 :golines {
+                   :prepend_args ["--base-formatter=gofumpt"]}}
                :display {:chat {:window {:width 0.2}}}
                :log_level vim.log.levels.DEBUG
                :format_on_save {:timeout_ms 2000
@@ -78,6 +85,7 @@
 (setup [:texlab] {})
 (setup [:kotlin_language_server] {})
 (setup [:gopls] {})
+(setup [:nixd] {})
 (setup [:clojure_lsp] {})
 (setup [:basedpyright] {:analysis {:reportMissingTypeStubs false}})
 (setup [:gleam] {})

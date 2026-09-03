@@ -21,17 +21,20 @@
     (where [c] (<= c 95)) "\u{e0e2}"
     _                     "\u{e0e1}"))
 
+(fn read-file [path fmt]
+  (let [f (io.open path)]
+    (when f (with-open [f f] (f:read fmt)))))
+
 (fn battery []
-  (with-open [capacity (io.open "/sys/class/power_supply/BAT0/capacity")]
-    (let [charge (capacity:read :n)]
+  (let [charge (read-file "/sys/class/power_supply/BAT0/capacity" :n)]
+    (when charge
       (if (= charge 100) ""
         (string.format "%d %s" charge (battery-icon charge))))))
 
 (fn battery-color []
-  (with-open [capacity (io.open "/sys/class/power_supply/BAT0/capacity")]
-    (let [charge (capacity:read :n)]
-      (if (<= charge 20)
-        {:bg 52 :fg 255}))))
+  (let [charge (read-file "/sys/class/power_supply/BAT0/capacity" :n)]
+    (when (and charge (<= charge 20))
+      {:bg 52 :fg 255})))
 
 (local recording
   {1 noice.api.statusline.mode.get
@@ -61,7 +64,7 @@
                 :options {:icons_enabled false
                           :component_separators {:left "│" :right "│"}
                           :section_separators {:left "" :right ""}
-                          :disabled_filetypes [:opencode_output :opencode]
+                          :disabled_filetypes [:pi-chat-prompt :pi-chat-history]
                           :theme theme}
                 :sections {:lualine_a [{1 :mode :fmt (fn [str] (str:sub 1 1))}]
                            :lualine_b [:branch :diff]
@@ -86,5 +89,5 @@
                                        :show_filename_only false}]
                           :lualine_c []
                           :lualine_x [{ 1 :navic :color_correction :dynamic }]
-                          :lualine_y [:tabs]
+                          :lualine_y [{ 1 :jobs :show_empty false } :tabs]
                           :lualine_z [session {1 battery :color battery-color}]}})

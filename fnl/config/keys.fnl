@@ -119,3 +119,11 @@
 (remap :i :<C-a> "<cmd>Telescope lsp_code_actions theme=get_dropdown<cr>")
 (remap :i :<C-h> "<cmd>lua vim.lsp.buf.signature_help()<cr>")
 (remap :n :<leader>lh "<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.get())<cr>")
+
+(remap ["n" "v"] "<Leader>pp" (fn [] (vim.cmd "Pi layout=side")) {:desc "Pi side"})
+(remap ["n" "v"] "<Leader>pf" (fn [] (vim.cmd "Pi layout=float")) {:desc "Pi float"})
+(remap ["n" "v"] "<Leader>pl" "<Cmd>PiToggleLayout<CR>" {:desc "Pi toggle layout"})
+(remap ["n" "v"] "<Leader>pc" "<Cmd>PiContinue<CR>" {:desc "Pi continue last session"})
+(remap ["n" "v"] "<Leader>pr" "<Cmd>PiResume<CR>" {:desc "Pi resume past session"})
+(remap ["n" "v"] "<Leader>pm" "<Cmd>PiSendMention<CR>" {:desc "Pi mention file/selection"})
+(remap ["n" "v"] "<Leader>pa" "<Cmd>PiAttention<CR>" {:desc "Pi open next attention request"})

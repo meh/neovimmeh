@@ -2,9 +2,5 @@
 local _local_1_ = require("config.util")
 local remap = _local_1_.remap
 local on_monitor_3f = _local_1_["on-monitor?"]
-local mcphub = require("mcphub")
-local opencode = require("opencode")
-local oryx = require("opencode-jobs")
-mcphub.setup({global_env = {FIGMA_ACCESS_TOKEN = vim.env.FIGMA_ACCESS_TOKEN}, make_tools = true, show_server_tools_in_chat = true, make_slash_commands = true})
-opencode.setup({ui = {position = "left", window_width = 0.33, input = {min_height = 0.15, max_height = 0.15}}})
-return oryx.setup({})
+local pi = require("pi")
+return pi.setup({spinner = "classic", panels = {history = {title = "\207\128"}, prompt = {title = "prompt"}, attachments = {title = "files"}}, labels = {user_message = ">", agent_response = "<", system_error = "\243\177\154\159", tool = "\226\151\143", tool_success = "\226\156\148", tool_failure = "\226\156\150", steer_message = ">", follow_up_message = ">", thinking = "<", attachment = ">", attachments = ">", error = "!"}, expand_startup_details = false})
