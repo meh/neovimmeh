@@ -118,19 +118,19 @@ hi TabLineFill
 " Diffs only tint the background, foreground/attributes stay as-is
 hi DiffAdd
   \ cterm=NONE ctermfg=NONE ctermbg=22
-  \ gui=NONE guifg=NONE guibg=#10240f
+  \ gui=NONE guifg=NONE guibg=#122911
 
 hi DiffChange
   \ cterm=NONE ctermfg=NONE ctermbg=58
-  \ gui=NONE guifg=NONE guibg=#2b1a06
+  \ gui=NONE guifg=NONE guibg=#311e07
 
 hi DiffDelete
   \ cterm=NONE ctermfg=NONE ctermbg=52
-  \ gui=NONE guifg=NONE guibg=#2a0c0c
+  \ gui=NONE guifg=NONE guibg=#300e0e
 
 hi DiffText
   \ cterm=NONE ctermfg=NONE ctermbg=94
-  \ gui=NONE guifg=NONE guibg=#4a2c0a
+  \ gui=NONE guifg=NONE guibg=#55330c
 
 hi SignColumn
   \ cterm=NONE ctermfg=124 ctermbg=NONE
